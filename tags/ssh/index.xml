@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ssh on Insidehand</title>
+    <link>/tags/ssh/</link>
+    <description>Recent content in ssh on Insidehand</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 28 Jun 2020 18:34:47 +0800</lastBuildDate>
+    
+        <atom:link href="/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>對不起我就廢-01</title>
+      <link>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/</link>
+      <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
+      
+      <guid>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/</guid>
+      <description>ssh到GitHub的時候，使用私鑰進行驗證</description>
+      
+    </item>
+    
+  </channel>
+</rss>
