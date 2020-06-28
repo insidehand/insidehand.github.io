@@ -9,10 +9,55 @@
     <description>Recent content in Posts on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Jun 2020 16:06:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2020 18:34:47 +0800</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>對不起我就廢-01</title>
+      <link>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/</link>
+      <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
+      
+      <guid>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          最近電腦爆了，懷疑應該是副廠的線造成的問題，
+看樣子東西真的不能買便宜的（？
+剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&amp;hellip;
+之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。
+ 身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。
+ 正文開始
+ ssh到GitHub的時候，使用私鑰進行驗證 具體步驟大概分為
+ 產生rsa的公私鑰 設定ssh的config （optional） 登入Github並且加入剛剛產生的公鑰 （手動） 測試連線   產生rsa的公私鑰 ssh-keygen 過程中會問兩個問題
+ 產生的公私鑰要放的位置 設定密碼 ( passphrase )  公私鑰的位置如果直接按Return的話，就會存在預設的位置。
+預設位置為：/Users/username/.ssh/id_rsa
+ 這邊的username請自行修改成你的帳號，不是真的路徑喔&amp;hellip;
+ 不然也可以自行輸入要存放的位置，例如：
+/Users/username/.ssh/rsa-for-github
+ 不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字
+ 密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。
+如果輸入密碼的話就每次使用ssh連接時都需要打密碼。這部分我就沒特別研究了，有需要的請自行研究。
+完成以後會產生一組公私鑰檔案，例如
+rsa-for-github.pub and rsa-for-github
+ 沒有.pub的檔案就是私鑰，請好好保管。
+  設定ssh的config 如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧
+用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，
+減少私鑰遺失後全部都被攻破的風險。
+缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。
+因為預設的ssh會去讀id_rsa作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。
+基本上我常用的大概就幾個
+Host # 用來連線的 alias 名稱 HostName # host domain 或 ip Port # host 的 SSH port IdentityFile # 私鑰位置 User # 登入帳號 舉幾個例子：
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Hello World</title>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>對不起我就廢-01 :: Insidehand — inside hand</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="最近電腦爆了，懷疑應該是副廠的線造成的問題，
+看樣子東西真的不能買便宜的（？
+剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&amp;hellip;
+之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。
+ 身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。
+ 正文開始
+ ssh到GitHub的時候，使用私鑰進行驗證 具體步驟大概分為
+ 產生rsa的公私鑰 設定ssh的config （optional） 登入Github並且加入剛剛產生的公鑰 （手動） 測試連線   產生rsa的公私鑰 ssh-keygen 過程中會問兩個問題
+ 產生的公私鑰要放的位置 設定密碼 ( passphrase )  公私鑰的位置如果直接按Return的話，就會存在預設的位置。
+預設位置為：/Users/username/.ssh/id_rsa
+ 這邊的username請自行修改成你的帳號，不是真的路徑喔&amp;hellip;
+ 不然也可以自行輸入要存放的位置，例如：
+/Users/username/.ssh/rsa-for-github
+ 不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字
+ 密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。
+如果輸入密碼的話就每次使用ssh連接時都需要打密碼。這部分我就沒特別研究了，有需要的請自行研究。
+完成以後會產生一組公私鑰檔案，例如
+rsa-for-github.pub and rsa-for-github
+ 沒有.pub的檔案就是私鑰，請好好保管。
+  設定ssh的config 如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧
+用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，
+減少私鑰遺失後全部都被攻破的風險。
+缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。
+因為預設的ssh會去讀id_rsa作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。
+基本上我常用的大概就幾個
+Host # 用來連線的 alias 名稱 HostName # host domain 或 ip Port # host 的 SSH port IdentityFile # 私鑰位置 User # 登入帳號 舉幾個例子："/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="對不起我就廢-01"/>
+<meta name="twitter:description" content="最近電腦爆了，懷疑應該是副廠的線造成的問題，
+看樣子東西真的不能買便宜的（？
+剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;
+之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。
+ 身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。
+ 正文開始
+ ssh到GitHub的時候，使用私鑰進行驗證 具體步驟大概分為
+ 產生rsa的公私鑰 設定ssh的config （optional） 登入Github並且加入剛剛產生的公鑰 （手動） 測試連線   產生rsa的公私鑰 ssh-keygen 過程中會問兩個問題
+ 產生的公私鑰要放的位置 設定密碼 ( passphrase )  公私鑰的位置如果直接按Return的話，就會存在預設的位置。
+預設位置為：/Users/username/.ssh/id_rsa
+ 這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;
+ 不然也可以自行輸入要存放的位置，例如：
+/Users/username/.ssh/rsa-for-github
+ 不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字
+ 密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。
+如果輸入密碼的話就每次使用ssh連接時都需要打密碼。這部分我就沒特別研究了，有需要的請自行研究。
+完成以後會產生一組公私鑰檔案，例如
+rsa-for-github.pub and rsa-for-github
+ 沒有.pub的檔案就是私鑰，請好好保管。
+  設定ssh的config 如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧
+用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，
+減少私鑰遺失後全部都被攻破的風險。
+缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。
+因為預設的ssh會去讀id_rsa作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。
+基本上我常用的大概就幾個
+Host # 用來連線的 alias 名稱 HostName # host domain 或 ip Port # host 的 SSH port IdentityFile # 私鑰位置 User # 登入帳號 舉幾個例子："/>
+
+
+
+<meta property="og:title" content="對不起我就廢-01" />
+<meta property="og:description" content="最近電腦爆了，懷疑應該是副廠的線造成的問題，
+看樣子東西真的不能買便宜的（？
+剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;
+之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。
+ 身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。
+ 正文開始
+ ssh到GitHub的時候，使用私鑰進行驗證 具體步驟大概分為
+ 產生rsa的公私鑰 設定ssh的config （optional） 登入Github並且加入剛剛產生的公鑰 （手動） 測試連線   產生rsa的公私鑰 ssh-keygen 過程中會問兩個問題
+ 產生的公私鑰要放的位置 設定密碼 ( passphrase )  公私鑰的位置如果直接按Return的話，就會存在預設的位置。
+預設位置為：/Users/username/.ssh/id_rsa
+ 這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;
+ 不然也可以自行輸入要存放的位置，例如：
+/Users/username/.ssh/rsa-for-github
+ 不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字
+ 密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。
+如果輸入密碼的話就每次使用ssh連接時都需要打密碼。這部分我就沒特別研究了，有需要的請自行研究。
+完成以後會產生一組公私鑰檔案，例如
+rsa-for-github.pub and rsa-for-github
+ 沒有.pub的檔案就是私鑰，請好好保管。
+  設定ssh的config 如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧
+用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，
+減少私鑰遺失後全部都被攻破的風險。
+缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。
+因為預設的ssh會去讀id_rsa作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。
+基本上我常用的大概就幾個
+Host # 用來連線的 alias 名稱 HostName # host domain 或 ip Port # host 的 SSH port IdentityFile # 私鑰位置 User # 登入帳號 舉幾個例子：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/" />
+<meta property="article:published_time" content="2020-06-28T18:34:47+08:00" />
+<meta property="article:modified_time" content="2020-06-28T18:34:47+08:00" /><meta property="og:site_name" content="Insidehand" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Swift</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/">對不起我就廢-01</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-06-28
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>最近電腦爆了，懷疑應該是副廠的線造成的問題，</p>
+<p>看樣子東西真的不能買便宜的（？</p>
+<p>剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;</p>
+<p>之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。</p>
+<blockquote>
+<p>身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。</p>
+</blockquote>
+<p>正文開始</p>
+<hr>
+<h2 id="ssh到github的時候使用私鑰進行驗證">ssh到GitHub的時候，使用私鑰進行驗證</h2>
+<p>具體步驟大概分為</p>
+<ol>
+<li><a href="#%E7%94%A2%E7%94%9Frsa%E7%9A%84%E5%85%AC%E7%A7%81%E9%91%B0">產生rsa的公私鑰</a></li>
+<li><a href="#%E8%A8%AD%E5%AE%9Assh%E7%9A%84config">設定ssh的config</a> （optional）</li>
+<li><a href="#%E7%99%BB%E5%85%A5Github%E4%B8%A6%E4%B8%94%E5%8A%A0%E5%85%A5%E5%89%9B%E5%89%9B%E7%94%A2%E7%94%9F%E7%9A%84%E5%85%AC%E9%91%B0">登入Github並且加入剛剛產生的公鑰</a> （手動）</li>
+<li><a href="#%E6%B8%AC%E8%A9%A6%E9%80%A3%E7%B7%9A">測試連線</a></li>
+</ol>
+<hr>
+<h3 id="產生rsa的公私鑰">產生rsa的公私鑰</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-keygen
+</code></pre></div><p>過程中會問兩個問題</p>
+<ol>
+<li>產生的公私鑰要放的位置</li>
+<li>設定密碼 ( passphrase )</li>
+</ol>
+<p>公私鑰的位置如果直接按Return的話，就會存在預設的位置。</p>
+<p>預設位置為：<code>/Users/username/.ssh/id_rsa</code></p>
+<blockquote>
+<p>這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;</p>
+</blockquote>
+<p>不然也可以自行輸入要存放的位置，例如：</p>
+<p><code>/Users/username/.ssh/rsa-for-github</code></p>
+<blockquote>
+<p>不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字</p>
+</blockquote>
+<p>密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。</p>
+<p>如果輸入密碼的話就每次使用ssh連接時都需要打密碼。這部分我就沒特別研究了，有需要的請自行研究。</p>
+<p>完成以後會產生一組公私鑰檔案，例如</p>
+<p><code>rsa-for-github.pub</code> and <code>rsa-for-github</code></p>
+<blockquote>
+<p>沒有<code>.pub</code>的檔案就是私鑰，請好好保管。</p>
+</blockquote>
+<hr>
+<h3 id="設定ssh的config">設定ssh的config</h3>
+<p>如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧</p>
+<p>用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，</p>
+<p>減少私鑰遺失後全部都被攻破的風險。</p>
+<p>缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。</p>
+<p>因為預設的ssh會去讀<code>id_rsa</code>作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。</p>
+<p>基本上我常用的大概就幾個</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Host         <span style="color:#75715e"># 用來連線的 alias 名稱</span>
+HostName     <span style="color:#75715e"># host domain 或 ip</span>
+Port         <span style="color:#75715e"># host 的 SSH port</span>
+IdentityFile <span style="color:#75715e"># 私鑰位置</span>
+User         <span style="color:#75715e"># 登入帳號</span>
+</code></pre></div><p>舉幾個例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Github</span>
+Host github.com
+HostName github.com
+IdentityFile ~/.ssh/rsa_for_github
+User git
+
+<span style="color:#75715e"># Raspberry</span>
+<span style="color:#75715e"># 因為我有買樹莓派回來玩，如果不用這樣登入的話，每次都是要打帳號密碼，很煩。</span>
+Host raspbian
+HostName 192.168.1.123
+IdentityFile ~/.ssh/rsa_for_rpi
+User pi
+</code></pre></div><hr>
+<h3 id="登入github並且加入剛剛產生的公鑰">登入Github並且加入剛剛產生的公鑰</h3>
+<p>可以先用<code>cat</code>指令來顯示公鑰內容，然後再把公鑰貼到Github的SSH Key欄位中</p>
+<p><img src="/github-setting-ssh-step-1.png" alt="image"></p>
+<p><img src="/github-setting-ssh-step-2.png" alt="image"></p>
+<p><img src="/github-setting-ssh-step-3.png" alt="image"></p>
+<p>這邊比較簡單就放三張圖自己研究一下就夠了。</p>
+<p>這邊補充一下，如果要用命令將公鑰加入到目標server中的話（例如樹莓派）可以用以下的命令來執行。</p>
+<p>不確定能不能用命令把公鑰加入到Github中，這部分沒特別研究。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 語法：</span>
+ssh-copy-id user@host
+
+<span style="color:#75715e"># 如果不是用預設的名稱，就要加入參數 i，用來指定IdentityFile</span>
+ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub user@host
+
+<span style="color:#75715e"># 範例</span>
+ssh-copy-id pi@192.168.1.123
+ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub pi@192.168.1.123
+</code></pre></div><hr>
+<h3 id="測試連線">測試連線</h3>
+<p>根據Github的<a href="https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection">線上文件</a>，只要透過下面這行命令即可</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ssh -T git@github.com
+</code></pre></div><p>只要最後出現的是下面這樣就算成功了，至於沒出現的話，就看看有哪些地方做錯了吧。</p>
+<pre><code>&gt; Hi username! You've successfully authenticated, but GitHub does not
+&gt; provide shell access.
+</code></pre><h2 id="參考網頁">參考網頁</h2>
+<p><a href="">https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/</a></p>
+<p><a href="">https://xenby.com/b/220-教學-產生ssh-key並且透過key進行免密碼登入</a></p>
+<p><a href="">https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection</a></p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/posts/hello-world/">
+                  <span class="button__text">Hello World</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Swift</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
