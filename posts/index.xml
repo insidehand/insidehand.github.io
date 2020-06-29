@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 28 Jun 2020 18:34:47 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2020 19:18:33 +0800</lastBuildDate>
     
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>對不起我就廢 02</title>
+      <link>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-02/</link>
+      <pubDate>Mon, 29 Jun 2020 19:18:33 +0800</pubDate>
+      
+      <guid>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-02/</guid>
+      <description>關於GCD的一些筆記-1</description>
+      
+    </item>
     
     <item>
       <title>對不起我就廢-01</title>
