@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.73.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>對不起我就廢 02&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.5e39f04a0c2c64b3741f94e7e58162327e3c30d7b92e327a8ac77589da0f7b91e1d3c2469dc5b9479ca7246d5b984e4c.css" integrity="sha384-XjnwSgwsZLN0H5Tn5YFiMn48MNe5LjJ6isd1idoPe5Hh08JGncW5R5ynJG1bmE5M"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>對不起我就廢 02&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="對不起我就廢 02" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
         <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
@@ -30,7 +30,7 @@
 <p>所以在用sync方法的時候一定要非常小心一個重點</p>
 <p><strong>如果當前的執行中的Queue是Serial，而且你又要拿來做sync的動作的話，就會造成Deadlock</strong></p>
 <p>舉個例子，下面這段程式如果用Main Queue來執行，就永遠不會執行到<code>print</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">DispatchQueue.main.sync {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">DispatchQueue.main.sync {
 	print(<span style="color:#e6db74">&#34;never execute here&#34;</span>)
 }
 </code></pre></div><p>發生的原因很簡單，因為當系統執行到<code>DispatchQueue.main.sync</code>這段的時候，系統就知道「阿，要塞住當前的Queue」也就是MainQueue，然後又叫MainQueue去做事。但是這時候Main Queue已經被塞住了，又怎麼能去print呢？</p>
@@ -38,7 +38,7 @@
 所以當Queue用非同步去執行WorkItem的時候，系統會開一條新的Thread去執行這個WorkItem，然後就繼續往下執行。</p>
 <p>非同步程式可以保證當前的Thread執行不會被卡住，因為都會開一個新的Thread去執行WorkItem。但是非同步程式常常會遇到的就是他不會有返回值，所以很容易出現<code>Callback Hell</code>的狀況。不過這不是本篇要講的重點，後面寫<code>PromiseKit</code>或<code>RxSwift</code>的時候再說。</p>
 <p>舉幾個例子，這可以直接貼到Playground裡面來執行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">syncDemo</span>() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">syncDemo</span>() {
     print(<span style="color:#e6db74">&#34;do something before sync&#34;</span>)
     
     DispatchQueue.global().sync {
@@ -50,7 +50,7 @@
 
 syncDemo()
 </code></pre></div><p>結果是比較顯而易見的，就跟程式執行順序一致。</p>
-<pre><code>do something before sync
+<pre tabindex="0"><code>do something before sync
 sync
 sync
 sync
@@ -59,7 +59,7 @@ sync
 sync
 do something after sync
 </code></pre><p>那麼用差不多的架構，只不過把sync換成async的話，會怎麼樣的？</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">asyncDemo</span>() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">asyncDemo</span>() {
     print(<span style="color:#e6db74">&#34;do something before async&#34;</span>)
     
     DispatchQueue.global().async {       <span style="color:#75715e">// &lt;-- 注意這裡是async</span>
@@ -72,7 +72,7 @@ do something after sync
 asyncDemo()
 </code></pre></div><p>這邊就差很多了。</p>
 <p>因為是另外開執行緒去做事，所以跟看到的結果就會有明顯差異</p>
-<pre><code>do something before async
+<pre tabindex="0"><code>do something before async
 do something after async
 async
 async

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.73.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>對不起我就廢-01&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.5e39f04a0c2c64b3741f94e7e58162327e3c30d7b92e327a8ac77589da0f7b91e1d3c2469dc5b9479ca7246d5b984e4c.css" integrity="sha384-XjnwSgwsZLN0H5Tn5YFiMn48MNe5LjJ6isd1idoPe5Hh08JGncW5R5ynJG1bmE5M"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>對不起我就廢-01&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="對不起我就廢-01" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
         <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
@@ -24,7 +24,7 @@
 </ol>
 <hr>
 <h3 id="產生rsa的公私鑰">產生rsa的公私鑰</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-keygen
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-keygen
 </code></pre></div><p>過程中會問兩個問題</p>
 <ol>
 <li>產生的公私鑰要放的位置</li>
@@ -56,13 +56,13 @@
 <p>缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。</p>
 <p>因為預設的ssh會去讀<code>id_rsa</code>作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。</p>
 <p>基本上我常用的大概就幾個</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Host         <span style="color:#75715e"># 用來連線的 alias 名稱</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Host         <span style="color:#75715e"># 用來連線的 alias 名稱</span>
 HostName     <span style="color:#75715e"># host domain 或 ip</span>
 Port         <span style="color:#75715e"># host 的 SSH port</span>
 IdentityFile <span style="color:#75715e"># 私鑰位置</span>
 User         <span style="color:#75715e"># 登入帳號</span>
 </code></pre></div><p>舉幾個例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Github</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Github</span>
 Host github.com
 HostName github.com
 IdentityFile ~/.ssh/rsa_for_github
@@ -86,7 +86,7 @@ User pi
 <p>這邊比較簡單就放三張圖自己研究一下就夠了。</p>
 <p>這邊補充一下，如果要用命令將公鑰加入到目標server中的話（例如樹莓派）可以用以下的命令來執行。</p>
 <p>不確定能不能用命令把公鑰加入到Github中，這部分沒特別研究。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 語法：</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 語法：</span>
 ssh-copy-id user@host
 
 <span style="color:#75715e"># 如果不是用預設的名稱，就要加入參數 i，用來指定IdentityFile</span>
@@ -98,9 +98,9 @@ ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub pi@192.168.1.123
 </code></pre></div><hr>
 <h3 id="測試連線">測試連線</h3>
 <p>根據Github的<a href="https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection"target="_blank">線上文件</a>，只要透過下面這行命令即可</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ssh -T git@github.com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ssh -T git@github.com
 </code></pre></div><p>只要最後出現的是下面這樣就算成功了，至於沒出現的話，就看看有哪些地方做錯了吧。</p>
-<pre><code>&gt; Hi username! You've successfully authenticated, but GitHub does not
+<pre tabindex="0"><code>&gt; Hi username! You've successfully authenticated, but GitHub does not
 &gt; provide shell access.
 </code></pre><h2 id="參考網頁">參考網頁</h2>
 <p><a href="">https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/</a></p>
