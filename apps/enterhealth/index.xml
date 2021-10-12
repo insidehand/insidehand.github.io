@@ -12,11 +12,21 @@
     
     <item>
       <title></title>
-      <link>/apps/enterhealth/privacy-policy/</link>
+      <link>/apps/enterhealth/support/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/apps/enterhealth/privacy-policy/</guid>
-      <description>Use of term </description>
+      <guid>/apps/enterhealth/support/</guid>
+      <description>EnterHealth EnterHealth 提供簡單易用的方式輸入健康資訊到Apple的健康之中。 讓健康資訊不再散落在各地。
+以輕鬆記錄血壓資訊為主建立的App
+因為家人有記錄血壓的需求，所以想幫他們建立一個容易閱讀、記錄的軟體。
+相關的健康資訊都會保留在Apple提供的「健康」App中
+・使用Apple的Health保存資訊，不再將健康資訊儲存在多個地方。
+・提供保存「最近刪除的記錄」讓手滑刪除後還能救得回來。
+提醒： 刪除的資訊只會保留在手機之中，並不會上傳到網路。 如果在「健康App」中刪除這些資訊，則不會被保留記錄，該檔案將會永久刪除。
+  可以匯出JSON與CSV格式的檔案，可以提供給醫療人員幫忙分析。
+  提供通知來提醒自己量測血壓。
+  如果需要任何支援或提供建議
+歡迎來信</description>
       
     </item>
     
