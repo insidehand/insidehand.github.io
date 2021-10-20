@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Insidehand</title>
+    <link>/apps/requestflow/</link>
+    <description>Recent content on Insidehand</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    
+        <atom:link href="/apps/requestflow/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/apps/requestflow/privacy_policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/apps/requestflow/privacy_policy/</guid>
+      <description>Requestflow 隱私權政策 Requestflow 是一個純粹的網路測試工具
+由Requestflow所產生的資料會被儲存在app本地或是iCloud之中。
+無論是儲存在哪裡，這些資料都只會被你所使用。
+Requestflow並不會搜集或使用你的任何資訊。
+由於許多網站的設計並不相同，送出的資訊可能會造成資料缺失，請小心的處理你要送出的資訊。任何使用本軟體所造成的損害，Requestflow概不負責。</description>
+      
+    </item>
+    
+  </channel>
+</rss>

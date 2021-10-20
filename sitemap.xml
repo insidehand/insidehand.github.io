@@ -13,4 +13,6 @@
     <loc>/apps/enterhealth/</loc><priority>0</priority></url><url>
     <loc>/apps/enterhealth/support/</loc><priority>0</priority></url><url>
     <loc>/apps/enterhealth/terms_and_privacy_policy/</loc><priority>0</priority></url><url>
+    <loc>/apps/requestflow/</loc><priority>0</priority></url><url>
+    <loc>/apps/requestflow/privacy_policy/</loc><priority>0</priority></url><url>
     <loc>/categories/</loc></url></urlset>
