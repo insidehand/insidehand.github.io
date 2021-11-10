@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>/apps/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod><priority>0</priority></url><url>
-    <loc>/apps/enterhealth/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod><priority>0</priority></url><url>
-    <loc>/apps/looplayer/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod><priority>0</priority></url><url>
-    <loc>/apps/requestflow/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod><priority>0</priority></url><url>
-    <loc>/apps/enterhealth/support/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
-    <loc>/apps/enterhealth/terms_and_privacy_policy/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/enterhealth/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/looplayer/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/requestflow/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/enterhealth/support/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/enterhealth/terms_and_privacy_policy/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/tags/ios/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
-    <loc>/apps/looplayer/privacy_policy/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/looplayer/privacy_policy/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/posts/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
-    <loc>/apps/requestflow/privacy_policy/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/apps/requestflow/privacy_policy/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/tags/simulator/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/tags/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</loc><lastmod>2021-11-09T19:18:33+08:00</lastmod></url><url>
     <loc>/tags/gcd/</loc><lastmod>2020-06-29T19:18:33+08:00</lastmod></url><url>
-    <loc>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-02/</loc><lastmod>2020-06-29T19:18:33+08:00</lastmod></url><url>
+    <loc>/posts/gcd%E7%AD%86%E8%A8%98-01/</loc><lastmod>2020-06-29T19:18:33+08:00</lastmod></url><url>
     <loc>/tags/ssh/</loc><lastmod>2020-06-28T18:34:47+08:00</lastmod></url><url>
-    <loc>/posts/%E5%B0%8D%E4%B8%8D%E8%B5%B7%E6%88%91%E5%B0%B1%E5%BB%A2-01/</loc><lastmod>2020-06-28T18:34:47+08:00</lastmod></url><url>
+    <loc>/posts/ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</loc><lastmod>2020-06-28T18:34:47+08:00</lastmod></url><url>
     <loc>/posts/hello-world/</loc><lastmod>2020-06-28T16:06:07+08:00</lastmod></url><url>
     <loc>/categories/</loc></url></urlset>

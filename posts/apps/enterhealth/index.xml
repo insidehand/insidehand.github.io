@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Insidehand</title>
+    <link>/posts/apps/enterhealth/</link>
+    <description>Recent content on Insidehand</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
+    
+        <atom:link href="/posts/apps/enterhealth/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>EnterHealth Support</title>
+      <link>/posts/apps/enterhealth/support/</link>
+      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+      
+      <guid>/posts/apps/enterhealth/support/</guid>
+      <description>EnterHealth support</description>
+      
+    </item>
+    
+    <item>
+      <title>EnterHealth Terms</title>
+      <link>/posts/apps/enterhealth/terms_and_privacy_policy/</link>
+      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+      
+      <guid>/posts/apps/enterhealth/terms_and_privacy_policy/</guid>
+      <description>EnterHealth terms and privacy policy</description>
+      
+    </item>
+    
+  </channel>
+</rss>
