@@ -6,20 +6,18 @@
     <description>Recent content on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
+    <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
     
         <atom:link href="/apps/looplayer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title></title>
+      <title>LooPlayer privacy term</title>
       <link>/apps/looplayer/privacy_policy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
       
       <guid>/apps/looplayer/privacy_policy/</guid>
-      <description>LooPlayer 隱私權政策 LooPlayer 是一個簡單的循環播放筆記軟體
-由LooPlayer所產生的資料會被儲存在app本地或是iCloud之中。
-無論是儲存在哪裡，這些資料都只會被你所使用。
-LooPlayer並不會搜集或使用你的任何資訊。</description>
+      <description>LooPlayer support</description>
       
     </item>
     
