@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Git常用命令筆記&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Git常用命令筆記" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Git常用命令筆記</h1><p class="article date">2021-11-10</p></section><article class="article markdown-body"><p>老實說，Git很好用，但是有很多突發狀況下，Git的命令常常會想不太起來或是忘記怎麼用。</p>
+<p>這邊有印象就寫個筆記</p>
+<h3 id="stash">stash</h3>
+<p>如果今天突然有問題要修改，但是你現在的code又還不能commit
+那麼就適合用<code>stash</code>來保存這些異動</p>
+<p>基本命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
+<span style="color:#75715e"># 保存當前所有異動</span>
+git stash save
+
+
+<span style="color:#75715e"># 讀取stash i</span>
+<span style="color:#75715e"># 請善用自動補完，i代表第幾個stash，不是真的命令</span>
+<span style="color:#75715e"># 這兩個命令基本上是一樣的，所以寫在一起</span>
+<span style="color:#75715e"># 差別在於pop取得異動後，會直接刪掉stash中的備份，而apply不會</span>
+<span style="color:#75715e"># 所以如果你只是想「取出來看看」，建議用apply</span>
+git stash pop stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+git stash apply stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+
+
+<span style="color:#75715e"># 列出所有的stash</span>
+git stash list
+
+
+<span style="color:#75715e"># 拋棄stash i</span>
+git stash drop stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+
+
+<span style="color:#75715e"># 顯示stash i有哪些檔案有異動</span>
+<span style="color:#75715e"># 如果要更精細的看異動內容，就加上 -p 這個變數</span>
+git stash show stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+
+</code></pre></div><p>常用命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
+<span style="color:#75715e"># 用來保存當前所有的異動，message為這個stash的說明，或著說註解。</span>
+<span style="color:#75715e"># 在 git stash list 的時候會看得到</span>
+git stash save -m <span style="color:#e6db74">&#39;message&#39;</span>
+
+
+<span style="color:#75715e"># 互動式的stash，如果只要stash部分異動，那麼就可以用這個命令。</span>
+<span style="color:#75715e"># 這會把有異動的檔案找出來，然後分片段詢問要不要保留</span>
+<span style="color:#75715e"># 基本上的git add --patch 的用法一樣</span>
+git stash save --patch 
+
+
+<span style="color:#75715e"># 當你只想保留特定檔案，但是不想用add --patch的話</span>
+<span style="color:#75715e"># 可以直接用 -- 檔案路徑</span>
+git stash -- project/module/file.xxx
+
+</code></pre></div><h3 id="clean">clean</h3>
+<p>針對那些沒有被版控的檔案，如果老是要一個一個刪就會很煩躁</p>
+<p>這個沒啥好筆記的，直接把可用變數列出來好了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
+--dry-run      -n  -- only show what would and what would not be removed
+--exclude      -e  -- skip files matching specified pattern
+--force        -f  -- required when clean.requireForce is true <span style="color:#f92672">(</span>default<span style="color:#f92672">)</span>
+--interactive  -i  -- show what would be <span style="color:#66d9ef">done</span> and clean files interactively
+--quiet        -q  -- don<span style="color:#960050;background-color:#1e0010">&#39;</span>t print names of files removed
+-X                 -- remove only ignored files
+-d                 -- also remove untracked directories
+-x                 -- also remove ignored files
+
+<span style="color:#75715e"># 強制刪除所有untracked files，而且連資料夾也會刪除</span>
+git clean -f -d
+
+</code></pre></div></article><section class="article labels"><a class="tag" href=/tags/git/>git</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/"><span class="iconfont icon-article"></span>Kobo Nickel Menu的用法</a></p><p><a class="link" href="/posts/template/"><span class="iconfont icon-article"></span>Template</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">Insidehand</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section></body>
+
+</html>

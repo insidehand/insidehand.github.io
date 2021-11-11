@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Kobo Nickel Menu的用法&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Kobo Nickel Menu的用法" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Kobo Nickel Menu的用法</h1><p class="article date">2021-11-11</p></section><article class="article markdown-body"><p>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，</p>
+<p>有聽說其他閱讀軟體可以抓但是有點懶得弄。</p>
+<p>後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。</p>
+<p>Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。</p>
+<p><strong>但是傳資料還是一個痛點。</strong></p>
+<p>經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是<code>Nickel Menu</code>
+這就是本篇的重點。</p>
+<p>基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。
+<a href="https://chiahsien.github.io/post/alternative-kobo-e-reader-koreader-and-plato/"target="_blank">安裝第三方閱讀器</a></p>
+<p>安裝完以後右下角會出現一個<code>Nickel Menu</code>的功能選項，裡面的選項是可以自訂的。下面會說明</p>
+<p>流程概略是這樣：</p>
+<ol>
+<li>安裝第三方閱讀器</li>
+<li>打開KOReader</li>
+<li>在KOReader中打開SSH Server</li>
+<li>連線進Kobo，進到<code>/mnt/onboard/.adds/nm</code>資料夾</li>
+<li>建立一個檔案，檔名自訂，不要加上副檔名<del>不確定加了會怎麼樣，可以自行嘗試，概不負責啊</del></li>
+<li>加入想要的命令</li>
+</ol>
+<p>整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講</p>
+<p>進到<code>/mnt/onboard/.adds/nm</code>這邊後，裡面基本上會有一個doc檔，
+裡面就是文件說明。</p>
+<p>建議可以用<code>cp</code>複製一份以後，直接用<code>vi</code>或是<code>nano</code>來編輯。
+下面有很多的範例可供參考</p>
+<p>這邊列一些我覺得比較實用的</p>
+<pre tabindex="0"><code># Reboot
+menu_item               :main :Reboot :power :reboot
+
+# Refresh library
+menu_item               :main :Import books       :nickel_misc        :rescan_books_full
+
+# Force Wifi On/Off
+menu_item               :main :Force Wi-Fi On (toggle)       :nickel_setting        :toggle:force_wifi
+
+# Toggle Telnet
+menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet :/usr/bin/pkill -f &quot;^/usr/bin/tcpsvd -E 0.0.0.0 2023&quot;
+  chain_success:skip:5
+    chain_failure                      :cmd_spawn          :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; }
+    chain_success                      :cmd_spawn          :quiet :exec /usr/bin/tcpsvd -E 0.0.0.0 2023 /usr/sbin/telnetd -i -l /bin/login
+    chain_success                      :dbg_toast          :Started Telnet server on port 2023
+    chain_failure                      :dbg_toast          :Error starting Telnet server on port 2023
+    chain_always:skip:-1
+  chain_success                        :dbg_toast          :Stopped Telnet server on port 2023
+
+# Open FTP
+menu_item               :main    :FTP                :cmd_spawn          :quiet:/usr/bin/pkill -f &quot;^/usr/bin/tcpsvd -E 0.0.0.0 1021&quot; || true &amp;&amp; exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard
+  chain_success                        :dbg_toast          :Started FTP server for KOBOeReader partition on port 1021.
+
+# Show IP
+menu_item               :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk '/inet addr/{print substr($2,6)}'
+</code></pre><h2 id="mac端基本設定">mac端基本設定</h2>
+<p>這邊是用macOS，但是基於安全性macOS已經移除了<code>telnet</code>這個套件
+所以要先安裝<code>telnet</code>，這邊推薦用<code>inetutils</code>，裡面就包含了<code>telnet, FTP</code>等</p>
+<p>安裝語法：
+<code>brew install inetutils</code></p>
+<p>安裝完成後就可以用 <code>telnet kobo-reader-ip</code>連線進Kobo了
+帳號是<code>root</code>，沒有密碼。
+因為是<code>root</code>，各種操作請自行小心！</p>
+<p><a href="https://pgaskin.net/NickelMenu/"target="_blank">Official site</a></p>
+<p><a href="https://tylpk.blogspot.com/2021/07/nickelmenu.html"target="_blank">參考連結</a></p>
+</article><section class="article labels"><a class="tag" href=/tags/kobo/>kobo</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/"><span class="iconfont icon-article"></span>Git常用命令筆記</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">Insidehand</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section></body>
+
+</html>
