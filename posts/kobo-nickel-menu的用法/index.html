@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark"><title>Kobo Nickel Menu的用法&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Kobo Nickel Menu的用法" /><body><section id="header">
@@ -40,7 +40,7 @@ menu_item               :main :Import books       :nickel_misc        :rescan_bo
 menu_item               :main :Force Wi-Fi On (toggle)       :nickel_setting        :toggle:force_wifi
 
 # Toggle Telnet
-menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet :/usr/bin/pkill -f &quot;^/usr/bin/tcpsvd -E 0.0.0.0 2023&quot;
+menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet :/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&#34;
   chain_success:skip:5
     chain_failure                      :cmd_spawn          :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; }
     chain_success                      :cmd_spawn          :quiet :exec /usr/bin/tcpsvd -E 0.0.0.0 2023 /usr/sbin/telnetd -i -l /bin/login
@@ -50,11 +50,11 @@ menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet
   chain_success                        :dbg_toast          :Stopped Telnet server on port 2023
 
 # Open FTP
-menu_item               :main    :FTP                :cmd_spawn          :quiet:/usr/bin/pkill -f &quot;^/usr/bin/tcpsvd -E 0.0.0.0 1021&quot; || true &amp;&amp; exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard
+menu_item               :main    :FTP                :cmd_spawn          :quiet:/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 1021&#34; || true &amp;&amp; exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard
   chain_success                        :dbg_toast          :Started FTP server for KOBOeReader partition on port 1021.
 
 # Show IP
-menu_item               :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk '/inet addr/{print substr($2,6)}'
+menu_item               :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk &#39;/inet addr/{print substr($2,6)}&#39;
 </code></pre><h2 id="mac端基本設定">mac端基本設定</h2>
 <p>這邊是用macOS，但是基於安全性macOS已經移除了<code>telnet</code>這個套件
 所以要先安裝<code>telnet</code>，這邊推薦用<code>inetutils</code>，裡面就包含了<code>telnet, FTP</code>等</p>
@@ -66,7 +66,7 @@ menu_item               :main    :IP Address         :cmd_output         :500:/s
 <p><a href="https://pgaskin.net/NickelMenu/"target="_blank">Official site</a></p>
 <p><a href="https://tylpk.blogspot.com/2021/07/nickelmenu.html"target="_blank">參考連結</a></p>
 </article><section class="article labels"><a class="tag" href=/tags/kobo/>kobo</a></section></div>
-<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/"><span class="iconfont icon-article"></span>Git常用命令筆記</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/"><span class="iconfont icon-article"></span>新公司應該要注意的開發觀念</a></p><p><a class="link" href="/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/"><span class="iconfont icon-article"></span>Git常用命令筆記</a></p></section></div></section><section id="footer"><div class="footer-wrap">
     <p class="copyright">Insidehand</p>
     <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 

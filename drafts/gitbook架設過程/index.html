@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title"></h1></section><article class="article markdown-body"><h1 id="gitbook架設-part-1">Gitbook架設 Part 1</h1>
+<p>根據目前查到的資料，似乎線上版有一些微微妙妙的問題，
+所以這邊打算採用自己架設的做法。</p>
+<p>因為文件都散落在各個MD檔之中，想說要找找一個方便地管理工具
+有很多東西因為以前比較少碰到，所以也算是粗略做個記錄。</p>
+<p>以下是踩坑過程。</p>
+<h2 id="安裝yarn">安裝yarn</h2>
+<p>要安裝Gitbook的時候，網路上搜尋到的是用<code>npm</code>來安裝。
+然後莫名的就搜尋到新的管理工具<code>yarn</code></p>
+<p>秉持著<del>有新的就用新的</del>原則，就學著用新的工具來安裝看看。</p>
+<pre tabindex="0"><code>brew install yarn
+</code></pre><p>然後就是安裝gitbook套件</p>
+<pre tabindex="0"><code>yarn global add gitbook gitbook-cli
+</code></pre><p>因為有很多地方都打算導入<code>gitbook</code>來管理文件，所以就選用<code>global</code></p>
+<h2 id="node-與-nvm">node 與 nvm</h2>
+<p>然後按照教學輸入</p>
+<pre tabindex="0"><code>gitbook init
+</code></pre><p>之後就就很順利地炸了。error log如下</p>
+<pre tabindex="0"><code>warn: no summary file in this book
+info: create SUMMARY.md
+
+TypeError [ERR_INVALID_ARG_TYPE]: The &#34;data&#34; argument must be of type string or an instance of Buffer, 
+TypedArray, or DataView. Received an instance of Promise
+</code></pre><p>發現是<code>node</code>的版本太新，可以用<code>node -v</code>來檢查當前的node版本。</p>
+<p>於是就開始研究<code>nvm</code>的使用方式。</p>
+<h2 id="nvm-管理node版本的工具">nvm: 管理Node版本的工具</h2>
+<p>使用<code>homebrew</code>來安裝nvm</p>
+<pre tabindex="0"><code>brew install nvm
+</code></pre><p>安裝成功後有一些環境變數要設定到.zshrc(或是.bashrc中)
+全部處理完成以後就可以使用nvm來管理node</p>
+<pre tabindex="0"><code>nvm ls-remote
+nvm install v13.14.0
+nvm use v13.14.0
+</code></pre><p>詳細的nvm指令與功能就另外開一篇來寫好了，就不在這邊多說了。</p>
+<p>切換node版本以後就可以順利執行了</p>
+<p>再次輸入：</p>
+<pre tabindex="0"><code>gitbook init
+</code></pre><p>會產生一個SUMMARY.md檔，這是左側的目錄</p>
+<p>裡面也是使用markdown的超連結方式進行撰寫</p>
+<p>路徑的部分還沒想好應該要怎麼部，就先做個測試版吧。</p>
+<pre tabindex="0"><code># Summary
+
+* [Introduction](README.md)
+* [Test1](test1/test1.md)
+* [Test2](test2/test2.md)
+    * [Sub2](test2/test2-2.md)
+</code></pre><p>第一部分就先寫個架設篇，
+後面真的用起來了再來寫第二部分。</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://yarnpkg.com/package/gitbook"target="_blank">Gitbook in yarn</a></li>
+<li><a href="https://yarnpkg.com/package/gitbook-cli"target="_blank">Gitbook-CLI in yarn</a></li>
+<li><a href="https://juejin.cn/post/6931225754264928269"target="_blank">參考</a></li>
+<li><a href="https://woni.link/post/145"target="_blank">參考</a></li>
+<li><a href="https://medium.com/itsoktomakemistakes/%e8%87%aa%e6%9e%b6-gitbook-%e6%95%99%e5%ad%b8-639118adea15"target="_blank">參考</a></li>
+</ul>
+</article></div>
+<div class="article bottom"><section class="article navigation"></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">Insidehand</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section></body>
+
+</html>

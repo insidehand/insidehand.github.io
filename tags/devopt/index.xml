@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DevOpt on Insidehand</title>
+    <link>/tags/devopt/</link>
+    <description>Recent content in DevOpt on Insidehand</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate>
+    
+        <atom:link href="/tags/devopt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新公司應該要注意的開發觀念</title>
+      <link>/posts/%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</link>
+      <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
+      
+      <guid>/posts/%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</guid>
+      <description>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子 花了一段時間以後，突然有所體悟。 在老闆、主管、工程師都是新手的情況下， 在一</description>
+      
+    </item>
+    
+  </channel>
+</rss>

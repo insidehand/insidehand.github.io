@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title"></h1></section><article class="article markdown-body"><h1 id="heading"></h1>
+<p>例如說常在SwiftUI <code>List</code>, <code>ForEach</code>裡面用到的<code>Identifiable</code>，
+每次要做比較的時候都要寫一次<code>Equable</code>的等價關係</p>
+<p>如果善用<code>protocol extenion</code>的話，就可以針對大部分的<code>Identifiable</code>做一個通用的擴充</p>
+<p>所有實作了<code>Identifiable</code>的對象都可以直接擴充<code>Equable</code>，而不用再寫同樣的程式碼</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">Equable</span> <span style="color:#66d9ef">where</span> <span style="color:#66d9ef">Self</span>: Identifiable {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">func</span> == (lhs: Environment, rhs: Environment) -&gt; Bool {
+</span></span><span style="display:flex;"><span>      lhs.id == rhs.id
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果有不一樣的需求，再自己實作一次介面方法就可以了。</p>
+</article></div>
+<div class="article bottom"><section class="article navigation"></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">Insidehand</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section></body>
+
+</html>

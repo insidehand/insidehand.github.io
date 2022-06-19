@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>新公司應該要注意的開發觀念&nbsp;&ndash;&nbsp;Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="新公司應該要注意的開發觀念" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">新公司應該要注意的開發觀念</h1><p class="article date">2022-06-19</p></section><article class="article markdown-body"><p>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子</p>
+<p>花了一段時間以後，突然有所體悟。</p>
+<p>在老闆、主管、工程師都是新手的情況下，</p>
+<p><del>在一個公司是新創、員工是新手、老闆不懂技術狀況下</del></p>
+<p>一起合作下去是有一定程度上的難處的。</p>
+<p>這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。
+也希望這些資料可以對其他人產生幫助。</p>
+<p>不過這邊都是以工程師的角度出發，
+對於一個資方要怎麼面對勞方我就沒輒了啊。</p>
+<h2 id="關於產品">關於產品</h2>
+<p>工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。
+能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。</p>
+<p>但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。
+工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。</p>
+<p>所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。</p>
+<p>直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。</p>
+<p>當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。
+有些規劃還是要由工程師來完成的。</p>
+<p>舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。
+包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。</p>
+<p>這在大公司可以，但是在小公司不行。</p>
+<p>因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。</p>
+<p>小公司一旦賭錯，整個公司都會直接陪進去。</p>
+<p>至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。</p>
+<hr>
+<h2 id="關於文件">關於文件</h2>
+<p>所有產品、功能在具現化的過程都是不斷地溝通討論。
+產品在具現化的過程中必須要留下一些資料。
+基本的就是研究數據、使用情境、開發環境。</p>
+<p>這部分都統稱為「文件」</p>
+<p>文件的撰寫與程式碼的註解基本保持一個原則：
+「不要告訴我What，告訴我Why。」</p>
+<p>舉個「沒用」的例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色</span>
+</span></span><span style="display:flex;"><span>view.background = someCondition ? .black : .blue
+</span></span></code></pre></div><p>這種註解，不寫會更好。因為程式碼就能看得出來。
+程式碼看不出來的是：「為什麼是藍色跟黑色」。</p>
+<p>開發過程中留下的文件也一樣。</p>
+<p>寫下「<strong>為什麼這樣寫</strong>」比起「<strong>這裡寫了什麼</strong>」更為重要。</p>
+<blockquote>
+<p>開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。
+但至少這功能想表達什麼要寫個文件。</p>
+</blockquote>
+<h2 id="關於程式碼">關於程式碼</h2>
+<p>對於程式碼來說，一定要有一套<code>Coding Style</code>的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。</p>
+<p>至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。</p>
+<p>套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。</p>
+<p>程式碼有幾個注意點：</p>
+<ul>
+<li>註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。</li>
+<li>IDE自動產生的註解記得拿掉，例如說前人有很多的<code>TODO: //Auto generate method stub</code>留在那邊，不知道為什麼。</li>
+<li>不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。</li>
+<li>變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西</li>
+<li>不要在程式碼裡面留下常數，全部都請拿去定義。
+<ul>
+<li>3.14請定義成pi</li>
+<li>errorCode請定義成有意義的名稱</li>
+</ul>
+</li>
+</ul>
+<h2 id="關於版本控制">關於版本控制</h2>
+<p>版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」</p>
+<p>這個概念必須要擴張到所有的產品、文件、記錄上。</p>
+<p>版本控制，重要的是控制，而並非版本。</p>
+<p>這邊說的版控並不是「放到版控系統」這麼簡單的事情。</p>
+<p>而是應該具有<strong>透過現行的資訊，判斷出當前使用的版本</strong>的能力。</p>
+<p>例如：</p>
+<ul>
+<li>測試<code>production code</code>中的某個bug，應該從主幹上取得最新的版本來進行測試。</li>
+<li>要測試<code>release code</code>相關功能，應該從對應的分支取得最新版本來測試。</li>
+<li>客戶反映了問題，應該要能透過客戶的版本號來檢查問題是否被處理過。</li>
+</ul>
+<p>版本控制有幾個要點：</p>
+<ul>
+<li>沒有用的程式（功能、分支、文件、資料夾、etc.）就不要留，但是刪除的節點記得留下說明。</li>
+<li>上版的程式碼一定要有tag</li>
+<li>不要取自己的名字當成分支名稱，毫無意義。</li>
+<li>git flow要就好好做，不要污染develop。占著茅坑不拉屎。</li>
+</ul>
+<blockquote>
+<p>韌體、前端、移動端、後端、資料庫schema一定要有對應，
+而對應只能靠版本號碼，版本號碼只能靠版控或文件。</p>
+</blockquote>
+<p>後面想到再寫吧。</p>
+<p>一樣舉個例子：</p>
+<p>這家公司的<strong>所有，對，是所有</strong>。所有的東西都沒有版控。
+但是這公司的版控並不具備相關的能力，或者說，工程師並沒有相對應的概念。</p>
+<p>上線的Server程式可能在develop分支、某個feature分支、兩三個版本前的主幹節點都有可能；開發中的硬體可能具備某些功能，也可能不具備，可能修了某些問題，也可能沒修復。<del>族繁不及備載</del></p>
+<h2 id="其他一些觀察到的狀況">其他一些觀察到的狀況</h2>
+<ul>
+<li>
+<p>資料庫的使用者、帳號、密碼請設計規範一點，不要寫一堆用戶與資料卻都沒有用到。</p>
+</li>
+<li>
+<p>對於不熟悉的東西不要亂改，去隨便設定防火牆或是更換預設IP, Port, etc.的設定。</p>
+</li>
+</ul>
+<blockquote>
+<p>如果為了安全性要進行修改，就把整套的功能都研究完再來處理。</p>
+</blockquote>
+<p>情境：</p>
+<ul>
+<li>遇到電信公司改IP，結果無法登入遠端機器。最後發現不只在管理區有擋，還在遠端機器內部寫死允許連線的IP。而且沒有留下文件</li>
+<li>Jenkins的自動建制，因為Gitlab的port改過了，但是沒有去修改其他服務的對應port，所以CD自動壞掉。</li>
+</ul>
+</article><section class="article labels"><a class="tag" href=/tags/devopt/>DevOpt</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/"><span class="iconfont icon-article"></span>Kobo Nickel Menu的用法</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">Insidehand</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section></body>
+
+</html>

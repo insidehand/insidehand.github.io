@@ -6,17 +6,37 @@
     <description>Recent content on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 11 Nov 2021 16:07:08 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate>
     
         <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Drafts</title>
+      <link>/drafts/</link>
+      <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
+      
+      <guid>/drafts/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Posts</title>
       <link>/posts/</link>
-      <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
+      <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
       
       <guid>/posts/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Memoes</title>
+      <link>/memo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/memo/</guid>
       <description></description>
       
     </item>
