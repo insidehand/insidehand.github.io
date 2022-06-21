@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&amp;gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;amp;&amp;amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」" />
+<meta name="keywords" content=", Swift, Dependency, Global Variable" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/" />
+
+
+    <title>
+        
+            另外一種方式的依賴控制 :: Insidehand  — A simple theme for Hugo
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="另外一種方式的依賴控制">
+<meta itemprop="description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;&amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」"><meta itemprop="datePublished" content="2021-10-11T17:41:32+08:00" />
+<meta itemprop="dateModified" content="2021-10-11T17:41:32+08:00" />
+<meta itemprop="wordCount" content="536"><meta itemprop="image" content="/102"/>
+<meta itemprop="keywords" content="Swift,Dependency,Global Variable," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/102"/>
+
+<meta name="twitter:title" content="另外一種方式的依賴控制"/>
+<meta name="twitter:description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;&amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」"/>
+
+
+
+
+    <meta property="og:title" content="另外一種方式的依賴控制" />
+<meta property="og:description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;&amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/" /><meta property="og:image" content="/102"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-11T17:41:32+08:00" />
+<meta property="article:modified_time" content="2021-10-11T17:41:32+08:00" /><meta property="og:site_name" content="Insidehand" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2021-10-11 17:41:32 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">inside my hand</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/">另外一種方式的依賴控制</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h2 id="什麼是依賴為什麼要管理">什麼是依賴，為什麼要管理？</h2>
+<blockquote>
+<p>任何你不能控制的物件，都是隱藏的依賴</p>
+</blockquote>
+<p>具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。</p>
+<p>要管理依賴的理由在於給測試一個介入的途徑。</p>
+<p>例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">SantaClausTracker</span> {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">isWorking</span>() -&gt; Bool {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> today = Date()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> month = Calendar.current.components(.month, today)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> day = Calendar.current.components(.day, today)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> month == <span style="color:#ae81ff">12</span> <span style="color:#f92672">&amp;&amp;</span> day == <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>顯然，要這個方法回傳<code>true</code>的話，就只能在聖誕節當天進行測試。
+其他日子回傳都是<code>false</code>。</p>
+<p>這個方法裡面有兩個依賴，一個是<code>Date()</code>，另一個則是<code>Calendar.current</code>。
+如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）</p>
+<p>傳統的方法有三：</p>
+<ol>
+<li>建構子注入</li>
+<li>屬性注入</li>
+<li>方法參數注入</li>
+</ol>
+<p>名稱應該足以描述相對應的行為，就不多贅述了。</p>
+<p>換言之，在程式碼中，只要是<code>使用</code>的物件，都要記得可以替換。
+舉個例子</p>
+<pre tabindex="0"><code>(X
+func somefunction() {
+    Date() 
+}
+
+(O
+func somefunction(date: Date) {
+    date 
+}
+
+(X
+func somefunction() {
+    URLSession.share
+}
+
+(🔺
+func somefunction(session: URLSession) {
+    session
+}
+</code></pre><p>那麼，顯然會出現的問題就是「<strong>依賴要怎麼來</strong>」</p>
+<p>例如說一個App畫面堆疊是這樣</p>
+<p><del>先不討論畫面層級太深的問題</del>這可以看一個精彩的影片「<a href="https://www.ted.com/talks/david_pogue_simplicity_sells">至簡暢銷</a>」</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+View1 --&gt; View2 --&gt; View3 --&gt; View4
+</code></pre><p>今天View4有呼叫API的需要，View2 , 3沒有。
+要present View4只能夠過View3（MVC）或是View3的Coordinator（MVVM C）
+勢必View2, 3都必須要攜帶一個用不到的物件。</p>
+<p>當今天底層越多，依賴拆分的越細，就中間的層級就容易要傳遞一些用不到的物件。</p>
+<p><strong>久了就不容易維護，不容易維護就等於隱藏的Bug</strong></p>
+<p>以前寫過類似的程式碼，中間傳遞的參數多了，就需要使用DTO來打包，多一層又顯得冗余。</p>
+<p>這時候就看到一個突破天際的想法<a href="https://vimeo.com/291588126">How to control the World</a></p>
+<p><strong>強烈建議看影片</strong></p>
+<p><strong>強烈建議看影片</strong></p>
+<p><strong>強烈建議看影片</strong></p>
+<p>先來看看實作，把需要的依賴宣告在一個struct中</p>
+<pre tabindex="0"><code>struct World {
+  var date = { Date() }
+}
+</code></pre><blockquote>
+<p>這邊要注意的是並不是透過「方法」來取值，例如說
+<code>func getDate() -&gt; Date { ... }</code>
+因為方法的實作是不可異動的，本質上還是依賴，只是把依賴集中到一個地方管理。</p>
+<p>也不是直接是一個Date屬性
+因為當你存取Current.date時，每次取的都是不一樣的值
+如果想要每次都取得同一個時間的話，就做不到這個需求</p>
+<p>當然這邊也可以把這個<code>struct</code>改寫成<code>protocol</code>，然後實作不同的物件來提供不同的測試需要，不過那就是另外一回事了。</p>
+</blockquote>
+<p>說回正題，當你宣告了這樣的<code>struct</code>，你還需要一個<strong>全域</strong>的<strong>變數</strong></p>
+<pre tabindex="0"><code>var Current = World()
+</code></pre><blockquote>
+<p>這是一個<code>Singleton</code>！<del>皮諾可，這個直接電死</del></p>
+</blockquote>
+<p>別急，這時候這個設計神的地方來了。</p>
+<p>用上面的範例來實作的話就會變這樣</p>
+<pre tabindex="0"><code>struct SantaClusTracker {
+  
+  func isWorking() -&gt; Bool {
+    //暫時先改一個，baby step
+    let today = Current.date()
+    let month = Calendar.current.components(.month, today)
+    let day = Calendar.current.components(.day, today)
+    return month == 12 &amp;&amp; day == 25
+  }
+
+}
+</code></pre><p>因為<code>Current</code>是一個<code>var</code>，所以裡面的屬性是可以異動的。
+因為<code>date</code>是一個<code>回傳Date的function</code>，所以實作內容也是可以異動的</p>
+<p>今天需要測試的時候，可以直接對<code>Current</code>設值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">test_Date_Is_Christmas_SantaClausTracker_isWorking_should_return_true</span>() <span style="color:#66d9ef">throws</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* 3A原則，具體可以參考91的文章或是聽他的課！獲益良多 */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Arrange</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> target = SantaClausTracker()
+</span></span><span style="display:flex;"><span>  Current.date = { 
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> formatter = DateFormatter()
+</span></span><span style="display:flex;"><span>     formatter.dateFormat = <span style="color:#e6db74">&#34;yyyy/MM/dd&#34;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> formatter.date(string: <span style="color:#e6db74">&#34;2021/12/25&#34;</span>)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Action</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> actual = target.isWorking()
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Assert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> expect = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  XCTAssertEqual(actual, expect)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如此，就算是在其他日子，也能檢查在聖誕節的時候是不是會回傳<code>true</code></p>
+<p>這邊先討論幾個問題</p>
+<ol>
+<li>Singleton不是不好，為什麼要用？</li>
+<li>為什麼不用介面隔開？</li>
+<li>全域變數很危險，不應該用不是嗎？</li>
+</ol>
+<h3 id="singleton不是不好為什麼要用">Singleton不是不好，為什麼要用？</h3>
+<p>Singleton並不是不好，不好的話Apple還到處放不是很奇怪？</p>
+<p><code>URLSession.shared</code></p>
+<p><code>UserDefaults.standard</code></p>
+<p><code>FileManager.default</code></p>
+<p>Singleton的問題在於它是一個實體型別，無法被抽象化。也就是無法在測試中被替換。當你今天在程式碼中放了<code>URLSession.shared</code>以後，就註定了他一定會去走真實的網路（用intercepter擋掉另當別論），而沒辦法用<code>MockURLSession</code>來進行替換</p>
+<h3 id="為什麼不用介面隔開">為什麼不用介面隔開？</h3>
+<p>在看這個影片之前，我也是用<code>protocol</code>來進行區隔，這也有一個大神的文章可以參考<a href="https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k">歡迎來到真實世界</a></p>
+<p>先來談談如果用介面隔開URLSession，要做多少動作？</p>
+<ol>
+<li>製作一個介面<code>URLSessionProtocol</code>，方法簽章要跟URLSession中要呼叫的方法一致</li>
+<li>讓URLSession擴充<code>URLSessionProtocol</code>，因為方法已經存在，所以不用另外實作。</li>
+<li>製作一個測試在用的物件<code>MockURLSession</code>，實作介面<code>URLSessionProtocol</code>，裡面不涉及網路存取，直接回傳值。</li>
+<li>將原本程式碼呼叫<code>URLSession.shared</code>的地方全部抽換掉</li>
+<li>在測試中將<code>MockURLSession</code>注入到測試目標中</li>
+</ol>
+<p>首先，這個做法對程式碼改動幅度比較大，當早期沒做，後面要抽換的時候改動幅度就會很大，也是存在風險。</p>
+<p>其次，如果介面裡面的方法開始變多以後，一個新的Mock物件實作起來不容易。</p>
+<blockquote>
+<p>例如說一個資料庫存取介面，有四個方法CRUD</p>
+<p>那麼建立一個新的Mock物件就要實作四個方法。</p>
+<p>而一個正常的介面方法都不止四個</p>
+</blockquote>
+<h3 id="全域變數很危險不應該用不是嗎">全域變數很危險，不應該用不是嗎？</h3>
+<p>全域變數的危險之處在於「<strong>你不知道什麼時候被改動</strong>」</p>
+<p>誠然，設定為變數是存在風險的，但是不應該把<code>Current</code>當成是一個傳遞、暫存參數的地方。而是一個依賴保管區（Production時）、依賴注入區（Develop時）</p>
+<p>說回這個方法</p>
+<p>如果今天要測試使用者登入「<strong>成功</strong>」與「<strong>失敗</strong>」的情境</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">UserAPIClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">login</span>(account: String, password: String, complectionHandler: @escaping (Bool) -&gt; Void ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> url = URL(string: <span style="color:#e6db74">&#34;API Path&#34;</span>)<span style="color:#f92672">!</span> <span style="color:#75715e">// &lt;-- 這裡一定run time error</span>
+</span></span><span style="display:flex;"><span>        URLSession.shared.dataTask(with: url) { data, <span style="color:#66d9ef">_</span>, <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>            complectionHandler(data == <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView</span>: View {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    @State <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> loginResult: Bool = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> body: some View {
+</span></span><span style="display:flex;"><span>        Text(<span style="color:#e6db74">&#34;Login </span><span style="color:#e6db74">\(</span>loginResult ? <span style="color:#e6db74">&#34;Success&#34;</span> : <span style="color:#e6db74">&#34;Failure&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            .onAppear {
+</span></span><span style="display:flex;"><span>                UserAPIClient().login(account: <span style="color:#e6db74">&#34;account&#34;</span>, password: <span style="color:#e6db74">&#34;password&#34;</span>) { result <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>                    loginResult = result
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>UserAPIClient</code>有一個一定會在run time炸掉的地方，那就是<code>URL(string: &quot;API Path&quot;)!</code></p>
+<p>假想這是Server暫時不可用，或是網路斷線的情境吧。</p>
+<p>那這種時候就不用測試了嗎？沒錯！<del>後台修好再叫我</del></p>
+<p>當然不可能，所以這時候就需要脫離實際環境來測試功能是否正常。</p>
+<p>用<code>protocol</code>的方式來進行脫鉤是這樣實作的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">//1. 定義協議</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">UserAPIClientProtocol</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">login</span>(account: String, password: String, complectionHandler: @escaping (Bool) -&gt; Void )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//2. 讓原本的物件擴充這個協議</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">UserAPIClient</span>: UserAPIClientProtocol { }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//3. 建立測試物件，因為測試情境有「成功」「失敗」，所以回傳值用建構注入</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">MockUserAPIClient</span>: UserAPIClientProtocol {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> loginResult: Bool
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">login</span>(account: String, password: String, complectionHandler: @escaping (Bool) -&gt; Void ) {
+</span></span><span style="display:flex;"><span>      complectionHandler(loginResult)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//4. 將原本的型別用介面抽換（呼叫的時候要注入）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView</span>: View {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> userAPIClient: UserAPIClientProtocol
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    @State <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> loginResult: Bool = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> body: some View {
+</span></span><span style="display:flex;"><span>        Text(<span style="color:#e6db74">&#34;Login </span><span style="color:#e6db74">\(</span>loginResult ? <span style="color:#e6db74">&#34;Success&#34;</span> : <span style="color:#e6db74">&#34;Failure&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            .onAppear {
+</span></span><span style="display:flex;"><span>                userAPIClient.login(account: <span style="color:#e6db74">&#34;acc&#34;</span>, password: <span style="color:#e6db74">&#34;pass&#34;</span>) { result <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>                    loginResult = result
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//5. 修改呼叫端</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView_Previews</span>: PreviewProvider {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> previews: some View {
+</span></span><span style="display:flex;"><span>        ContentView(userAPIClient: MockUserAPIClient(loginResult: <span style="color:#66d9ef">true</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果用World來控制的話，是這個樣子的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">UserAPI</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> login = UserAPIClient().login(account:password:complectionHandler:)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">World</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> userAPI = UserAPI()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> Current = World()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView</span>: View {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    @State <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> loginResult: Bool = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> body: some View {
+</span></span><span style="display:flex;"><span>        Text(<span style="color:#e6db74">&#34;Login </span><span style="color:#e6db74">\(</span>loginResult ? <span style="color:#e6db74">&#34;Success&#34;</span> : <span style="color:#e6db74">&#34;Failure&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            .onAppear {
+</span></span><span style="display:flex;"><span>                Current.userAPI.login(<span style="color:#e6db74">&#34;account&#34;</span>, <span style="color:#e6db74">&#34;password&#34;</span>) { result <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>                    loginResult = result
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//修改呼叫端</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView_Previews</span>: PreviewProvider {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> previews: some View {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//正常不會在這邊修改，這邊只是懶得把資料切乾淨所以放著舉例一下</span>
+</span></span><span style="display:flex;"><span>        Current.userAPI.login = { <span style="color:#66d9ef">_</span>, <span style="color:#66d9ef">_</span>, callback <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>            callback(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ContentView()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>看起來有點差異，但是好像又差異不大？
+當你再遇到這樣的需求時</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+View1 --&gt; View2 --&gt; View3 --&gt; View4
+</code></pre><p>View2, 3就不需要攜帶<code>UserAPIClient</code>跑來跑去了</p>
+<p><strong>最重要的是</strong>
+當你的測試情境需要不同的回傳值時，不再需要像上面的<code>MockUserAPIClient</code>一樣透過各種注入，考慮各種測試情境要呼叫方法時的通用性，而是可以直接針對特定方法改寫方法實作內容。</p>
+<h2 id="參考文章">參考文章：</h2>
+<p><a href="https://vimeo.com/291588126">https://vimeo.com/291588126</a></p>
+<p><a href="https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k">https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k</a></p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="/tags/swift/">Swift</a></span>
+        <span class="tag"><a href="/tags/dependency/">Dependency</a></span>
+        <span class="tag"><a href="/tags/global-variable/">Global Variable</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        536 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021-10-11 17:41
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6&amp;caption=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6&amp;canonicalUrl=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6&amp;body=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f&amp;media=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f;description=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f&amp;title=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6&amp;summary=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6&amp;source=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f&amp;resubmit=true&amp;title=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f;title=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6%20%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f&amp;t=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%e5%8f%a6%e5%a4%96%e4%b8%80%e7%a8%ae%e6%96%b9%e5%bc%8f%e7%9a%84%e4%be%9d%e8%b3%b4%e6%8e%a7%e5%88%b6&amp;url=%2fposts%2f2021-10-11-%25E5%258F%25A6%25E5%25A4%2596%25E4%25B8%2580%25E7%25A8%25AE%25E6%2596%25B9%25E5%25BC%258F%25E7%259A%2584%25E4%25BE%259D%25E8%25B3%25B4%25E6%258E%25A7%25E5%2588%25B6%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="/posts/2021-11-09-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">如何快速找到Simulator的Document位置</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/">
+                    <span class="button__text">關於GCD的一些筆記-1</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

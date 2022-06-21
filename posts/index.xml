@@ -1,116 +1,861 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Posts on Insidehand</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on Insidehand</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate>
-    
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Insidehand</title>
+        <link>/posts/</link>
+        <description>Recent content in Posts on Insidehand</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>新公司應該要注意的開發觀念</title>
-      <link>/posts/%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</link>
-      <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
-      
-      <guid>/posts/%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</guid>
-      <description>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子 花了一段時間以後，突然有所體悟。 在老闆、主管、工程師都是新手的情況下， 在一</description>
-      
-    </item>
-    
-    <item>
-      <title>Kobo Nickel Menu的用法</title>
-      <link>/posts/kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</link>
-      <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
-      
-      <guid>/posts/kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
-      <description>如果要用kobo來看txt或是從calibre導入書籍有諸多不便， 有聽說其他閱讀軟體可以抓但是有點懶得弄。 後來看到大神的blog，有統整了怎</description>
-      
-    </item>
-    
-    <item>
-      <title>Git常用命令筆記</title>
-      <link>/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</link>
-      <pubDate>Wed, 10 Nov 2021 23:47:08 +0800</pubDate>
-      
-      <guid>/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</guid>
-      <description>Git常用命令筆記</description>
-      
-    </item>
-    
-    <item>
-      <title>Template</title>
-      <link>/posts/template/</link>
-      <pubDate>Wed, 10 Nov 2021 23:47:08 +0800</pubDate>
-      
-      <guid>/posts/template/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/posts/apps/</link>
-      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
-      
-      <guid>/posts/apps/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>如何快速找到Simulator的Document位置</title>
-      <link>/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</link>
-      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
-      
-      <guid>/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</guid>
-      <description>&lt;h1 id=&#34;如何快速找到simulator的document位置&#34;&gt;如何快速找到Simulator的Document位置&lt;/h1&gt;
+        
+        <item>
+            <title>新公司應該要注意的開發觀念</title>
+            <link>/posts/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</link>
+            <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
+            
+            <guid>/posts/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</guid>
+            <description>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子
+花了一段時間以後，突然有所體悟。
+在老闆、主管、工程師都是新手的情況下，
+在一個公司是新創、員工是新手、老闆不懂技術狀況下
+一起合作下去是有一定程度上的難處的。
+這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。
+不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。
+關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。
+但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。
+所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。
+直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。
+當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。
+舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。
+這在大公司可以，但是在小公司不行。
+因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。
+小公司一旦賭錯，整個公司都會直接陪進去。
+至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。
+關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。
+這部分都統稱為「文件」
+文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」
+舉個「沒用」的例子
+// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。
+開發過程中留下的文件也一樣。
+寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。
+開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。
+關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。
+至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。
+套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。
+程式碼有幾個注意點：
+註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」</description>
+            <content type="html"><![CDATA[<p>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子</p>
+<p>花了一段時間以後，突然有所體悟。</p>
+<p>在老闆、主管、工程師都是新手的情況下，</p>
+<p><del>在一個公司是新創、員工是新手、老闆不懂技術狀況下</del></p>
+<p>一起合作下去是有一定程度上的難處的。</p>
+<p>這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。
+也希望這些資料可以對其他人產生幫助。</p>
+<p>不過這邊都是以工程師的角度出發，
+對於一個資方要怎麼面對勞方我就沒輒了啊。</p>
+<h2 id="關於產品">關於產品</h2>
+<p>工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。
+能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。</p>
+<p>但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。
+工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。</p>
+<p>所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。</p>
+<p>直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。</p>
+<p>當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。
+有些規劃還是要由工程師來完成的。</p>
+<p>舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。
+包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。</p>
+<p>這在大公司可以，但是在小公司不行。</p>
+<p>因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。</p>
+<p>小公司一旦賭錯，整個公司都會直接陪進去。</p>
+<p>至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。</p>
+<hr>
+<h2 id="關於文件">關於文件</h2>
+<p>所有產品、功能在具現化的過程都是不斷地溝通討論。
+產品在具現化的過程中必須要留下一些資料。
+基本的就是研究數據、使用情境、開發環境。</p>
+<p>這部分都統稱為「文件」</p>
+<p>文件的撰寫與程式碼的註解基本保持一個原則：
+「不要告訴我What，告訴我Why。」</p>
+<p>舉個「沒用」的例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色</span>
+</span></span><span style="display:flex;"><span>view.background = someCondition ? .black : .blue
+</span></span></code></pre></div><p>這種註解，不寫會更好。因為程式碼就能看得出來。
+程式碼看不出來的是：「為什麼是藍色跟黑色」。</p>
+<p>開發過程中留下的文件也一樣。</p>
+<p>寫下「<strong>為什麼這樣寫</strong>」比起「<strong>這裡寫了什麼</strong>」更為重要。</p>
+<blockquote>
+<p>開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。
+但至少這功能想表達什麼要寫個文件。</p>
+</blockquote>
+<h2 id="關於程式碼">關於程式碼</h2>
+<p>對於程式碼來說，一定要有一套<code>Coding Style</code>的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。</p>
+<p>至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。</p>
+<p>套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。</p>
+<p>程式碼有幾個注意點：</p>
+<ul>
+<li>註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。</li>
+<li>IDE自動產生的註解記得拿掉，例如說前人有很多的<code>TODO: //Auto generate method stub</code>留在那邊，不知道為什麼。</li>
+<li>不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。</li>
+<li>變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西</li>
+<li>不要在程式碼裡面留下常數，全部都請拿去定義。
+<ul>
+<li>3.14請定義成pi</li>
+<li>errorCode請定義成有意義的名稱</li>
+</ul>
+</li>
+</ul>
+<h2 id="關於版本控制">關於版本控制</h2>
+<p>版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」</p>
+<p>這個概念必須要擴張到所有的產品、文件、記錄上。</p>
+<p>版本控制，重要的是控制，而並非版本。</p>
+<p>這邊說的版控並不是「放到版控系統」這麼簡單的事情。</p>
+<p>而是應該具有<strong>透過現行的資訊，判斷出當前使用的版本</strong>的能力。</p>
+<p>例如：</p>
+<ul>
+<li>測試<code>production code</code>中的某個bug，應該從主幹上取得最新的版本來進行測試。</li>
+<li>要測試<code>release code</code>相關功能，應該從對應的分支取得最新版本來測試。</li>
+<li>客戶反映了問題，應該要能透過客戶的版本號來檢查問題是否被處理過。</li>
+</ul>
+<p>版本控制有幾個要點：</p>
+<ul>
+<li>沒有用的程式（功能、分支、文件、資料夾、etc.）就不要留，但是刪除的節點記得留下說明。</li>
+<li>上版的程式碼一定要有tag</li>
+<li>不要取自己的名字當成分支名稱，毫無意義。</li>
+<li>git flow要就好好做，不要污染develop。占著茅坑不拉屎。</li>
+</ul>
+<blockquote>
+<p>韌體、前端、移動端、後端、資料庫schema一定要有對應，
+而對應只能靠版本號碼，版本號碼只能靠版控或文件。</p>
+</blockquote>
+<p>後面想到再寫吧。</p>
+<p>一樣舉個例子：</p>
+<p>這家公司的<strong>所有，對，是所有</strong>。所有的東西都沒有版控。
+但是這公司的版控並不具備相關的能力，或者說，工程師並沒有相對應的概念。</p>
+<p>上線的Server程式可能在develop分支、某個feature分支、兩三個版本前的主幹節點都有可能；開發中的硬體可能具備某些功能，也可能不具備，可能修了某些問題，也可能沒修復。<del>族繁不及備載</del></p>
+<h2 id="其他一些觀察到的狀況">其他一些觀察到的狀況</h2>
+<ul>
+<li>
+<p>資料庫的使用者、帳號、密碼請設計規範一點，不要寫一堆用戶與資料卻都沒有用到。</p>
+</li>
+<li>
+<p>對於不熟悉的東西不要亂改，去隨便設定防火牆或是更換預設IP, Port, etc.的設定。</p>
+</li>
+</ul>
+<blockquote>
+<p>如果為了安全性要進行修改，就把整套的功能都研究完再來處理。</p>
+</blockquote>
+<p>情境：</p>
+<ul>
+<li>遇到電信公司改IP，結果無法登入遠端機器。最後發現不只在管理區有擋，還在遠端機器內部寫死允許連線的IP。而且沒有留下文件</li>
+<li>Jenkins的自動建制，因為Gitlab的port改過了，但是沒有去修改其他服務的對應port，所以CD自動壞掉。</li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Kobo Nickel Menu的用法</title>
+            <link>/posts/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+            <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
+            
+            <guid>/posts/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+            <description>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
+有聽說其他閱讀軟體可以抓但是有點懶得弄。
+後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
+Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
+但是傳資料還是一個痛點。
+經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
+基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
+安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
+流程概略是這樣：
+安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
+進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
+建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
+這邊列一些我覺得比較實用的
+# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &amp;#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&amp;#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;amp;&amp;amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.</description>
+            <content type="html"><![CDATA[<p>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，</p>
+<p>有聽說其他閱讀軟體可以抓但是有點懶得弄。</p>
+<p>後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。</p>
+<p>Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。</p>
+<p><strong>但是傳資料還是一個痛點。</strong></p>
+<p>經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是<code>Nickel Menu</code>
+這就是本篇的重點。</p>
+<p>基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。
+<a href="https://chiahsien.github.io/post/alternative-kobo-e-reader-koreader-and-plato/">安裝第三方閱讀器</a></p>
+<p>安裝完以後右下角會出現一個<code>Nickel Menu</code>的功能選項，裡面的選項是可以自訂的。下面會說明</p>
+<p>流程概略是這樣：</p>
+<ol>
+<li>安裝第三方閱讀器</li>
+<li>打開KOReader</li>
+<li>在KOReader中打開SSH Server</li>
+<li>連線進Kobo，進到<code>/mnt/onboard/.adds/nm</code>資料夾</li>
+<li>建立一個檔案，檔名自訂，不要加上副檔名<del>不確定加了會怎麼樣，可以自行嘗試，概不負責啊</del></li>
+<li>加入想要的命令</li>
+</ol>
+<p>整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講</p>
+<p>進到<code>/mnt/onboard/.adds/nm</code>這邊後，裡面基本上會有一個doc檔，
+裡面就是文件說明。</p>
+<p>建議可以用<code>cp</code>複製一份以後，直接用<code>vi</code>或是<code>nano</code>來編輯。
+下面有很多的範例可供參考</p>
+<p>這邊列一些我覺得比較實用的</p>
+<pre tabindex="0"><code># Reboot
+menu_item               :main :Reboot :power :reboot
+
+# Refresh library
+menu_item               :main :Import books       :nickel_misc        :rescan_books_full
+
+# Force Wifi On/Off
+menu_item               :main :Force Wi-Fi On (toggle)       :nickel_setting        :toggle:force_wifi
+
+# Toggle Telnet
+menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet :/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&#34;
+  chain_success:skip:5
+    chain_failure                      :cmd_spawn          :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; }
+    chain_success                      :cmd_spawn          :quiet :exec /usr/bin/tcpsvd -E 0.0.0.0 2023 /usr/sbin/telnetd -i -l /bin/login
+    chain_success                      :dbg_toast          :Started Telnet server on port 2023
+    chain_failure                      :dbg_toast          :Error starting Telnet server on port 2023
+    chain_always:skip:-1
+  chain_success                        :dbg_toast          :Stopped Telnet server on port 2023
+
+# Open FTP
+menu_item               :main    :FTP                :cmd_spawn          :quiet:/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 1021&#34; || true &amp;&amp; exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard
+  chain_success                        :dbg_toast          :Started FTP server for KOBOeReader partition on port 1021.
+
+# Show IP
+menu_item               :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk &#39;/inet addr/{print substr($2,6)}&#39;
+</code></pre><h2 id="mac端基本設定">mac端基本設定</h2>
+<p>這邊是用macOS，但是基於安全性macOS已經移除了<code>telnet</code>這個套件
+所以要先安裝<code>telnet</code>，這邊推薦用<code>inetutils</code>，裡面就包含了<code>telnet, FTP</code>等</p>
+<p>安裝語法：
+<code>brew install inetutils</code></p>
+<p>安裝完成後就可以用 <code>telnet kobo-reader-ip</code>連線進Kobo了
+帳號是<code>root</code>，沒有密碼。
+因為是<code>root</code>，各種操作請自行小心！</p>
+<p><a href="https://pgaskin.net/NickelMenu/">Official site</a></p>
+<p><a href="https://tylpk.blogspot.com/2021/07/nickelmenu.html">參考連結</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Git常用命令筆記</title>
+            <link>/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</link>
+            <pubDate>Wed, 10 Nov 2021 23:47:08 +0800</pubDate>
+            
+            <guid>/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</guid>
+            <description>Git常用命令筆記</description>
+            <content type="html"><![CDATA[<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">基本命令</a>
+<ul>
+<li><a href="#stash">stash</a></li>
+<li><a href="#clean">clean</a></li>
+</ul>
+</li>
+<li><a href="#%E6%87%89%E7%94%A8%E7%AF%87">應用篇</a>
+<ul>
+<li><a href="#%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D">重新命名</a></li>
+</ul>
+</li>
+</ul>
+<p>老實說，Git很好用，但是有很多突發狀況下，Git的命令常常會想不太起來或是忘記怎麼用。</p>
+<p>這邊有印象就寫個筆記</p>
+<h1 id="基本命令">基本命令</h1>
+<h3 id="stash">stash</h3>
+<p>如果今天突然有問題要修改，但是你現在的code又還不能commit
+那麼就適合用<code>stash</code>來保存這些異動</p>
+<p>基本命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存當前所有異動</span>
+</span></span><span style="display:flex;"><span>git stash save
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 讀取stash i</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 請善用自動補完，i代表第幾個stash，不是真的命令</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 這兩個命令基本上是一樣的，所以寫在一起</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 差別在於pop取得異動後，會直接刪掉stash中的備份，而apply不會</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 所以如果你只是想「取出來看看」，建議用apply</span>
+</span></span><span style="display:flex;"><span>git stash pop stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+</span></span><span style="display:flex;"><span>git stash apply stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 列出所有的stash</span>
+</span></span><span style="display:flex;"><span>git stash list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 拋棄stash i</span>
+</span></span><span style="display:flex;"><span>git stash drop stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 顯示stash i有哪些檔案有異動</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果要更精細的看異動內容，就加上 -p 這個變數</span>
+</span></span><span style="display:flex;"><span>git stash show stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
+</span></span></code></pre></div><p>常用命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 用來保存當前所有的異動，message為這個stash的說明，或著說註解。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在 git stash list 的時候會看得到</span>
+</span></span><span style="display:flex;"><span>git stash save -m <span style="color:#e6db74">&#39;message&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 互動式的stash，如果只要stash部分異動，那麼就可以用這個命令。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 這會把有異動的檔案找出來，然後分片段詢問要不要保留</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 基本上的git add --patch 的用法一樣</span>
+</span></span><span style="display:flex;"><span>git stash save --patch 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 當你只想保留特定檔案，但是不想用add --patch的話</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可以直接用 -- 檔案路徑</span>
+</span></span><span style="display:flex;"><span>git stash -- project/module/file.xxx
+</span></span></code></pre></div><h3 id="clean">clean</h3>
+<p>針對那些沒有被版控的檔案，如果老是要一個一個刪就會很煩躁</p>
+<p>這個沒啥好筆記的，直接把可用變數列出來好了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--dry-run      -n  -- only show what would and what would not be removed
+</span></span><span style="display:flex;"><span>--exclude      -e  -- skip files matching specified pattern
+</span></span><span style="display:flex;"><span>--force        -f  -- required when clean.requireForce is true <span style="color:#f92672">(</span>default<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>--interactive  -i  -- show what would be <span style="color:#66d9ef">done</span> and clean files interactively
+</span></span><span style="display:flex;"><span>--quiet        -q  -- don<span style="color:#960050;background-color:#1e0010">&#39;</span>t print names of files removed
+</span></span><span style="display:flex;"><span>-X                 -- remove only ignored files
+</span></span><span style="display:flex;"><span>-d                 -- also remove untracked directories
+</span></span><span style="display:flex;"><span>-x                 -- also remove ignored files
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 強制刪除所有untracked files，而且連資料夾也會刪除</span>
+</span></span><span style="display:flex;"><span>git clean -f -d
+</span></span></code></pre></div><hr>
+<hr>
+<h1 id="應用篇">應用篇</h1>
+<hr>
+<hr>
+<h3 id="重新命名">重新命名</h3>
+<pre tabindex="0"><code>// 重新命名分支
+git branch -m &lt;oldname&gt; &lt;newname&gt;
+
+// 重新命名當前分支
+git branch -m &lt;newname&gt;
+</code></pre><p><a href="https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch">reference</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title></title>
+            <link>/posts/apps/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/</guid>
+            <description></description>
+            <content type="html"><![CDATA[]]></content>
+        </item>
+        
+        <item>
+            <title>如何快速找到Simulator的Document位置</title>
+            <link>/posts/2021-11-09-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/2021-11-09-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</guid>
+            <description>&lt;h1 id=&#34;如何快速找到simulator的document位置&#34;&gt;如何快速找到Simulator的Document位置&lt;/h1&gt;
 </description>
-      
-    </item>
-    
-    <item>
-      <title>另外一種方式的依賴控制</title>
-      <link>/posts/%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</link>
-      <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
-      
-      <guid>/posts/%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</guid>
-      <description>什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴 具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。 要管理依賴的理由</description>
-      
-    </item>
-    
-    <item>
-      <title>關於GCD的一些筆記-1</title>
-      <link>/posts/gcd%E7%AD%86%E8%A8%98-01/</link>
-      <pubDate>Mon, 29 Jun 2020 19:18:33 +0800</pubDate>
-      
-      <guid>/posts/gcd%E7%AD%86%E8%A8%98-01/</guid>
-      <description>關於GCD的一些筆記</description>
-      
-    </item>
-    
-    <item>
-      <title>SSH 基本設定</title>
-      <link>/posts/ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</link>
-      <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
-      
-      <guid>/posts/ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</guid>
-      <description>ssh到GitHub的時候，使用私鑰進行驗證</description>
-      
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>/posts/hello-world/</link>
-      <pubDate>Sun, 28 Jun 2020 16:06:07 +0800</pubDate>
-      
-      <guid>/posts/hello-world/</guid>
-      <description>Hello Hugo</description>
-      
-    </item>
-    
-  </channel>
+            <content type="html"><![CDATA[<p>如題，使用模擬器開發的時候，如果想要快速的從Finder或Terminal中直接存取App的資料夾的話
+最快的方法就是用<code>lldb</code>的命令</p>
+<p><code>po NSHomeDirectory()</code></p>
+<p>只要在模擬器使用期間直接暫停<code>（cmd + ctrl + y）</code>，讓<code>lldb</code>可以下命令</p>
+<p>就可以直接輸入上面的命令，對應的位置就會顯示出來了</p>
+<p><a href="https://stackoverflow.com/questions/1108076/where-does-the-iphone-simulator-store-its-data">reference</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>另外一種方式的依賴控制</title>
+            <link>/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</link>
+            <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
+            
+            <guid>/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</guid>
+            <description>什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&amp;gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;amp;&amp;amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」</description>
+            <content type="html"><![CDATA[<h2 id="什麼是依賴為什麼要管理">什麼是依賴，為什麼要管理？</h2>
+<blockquote>
+<p>任何你不能控制的物件，都是隱藏的依賴</p>
+</blockquote>
+<p>具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。</p>
+<p>要管理依賴的理由在於給測試一個介入的途徑。</p>
+<p>例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">SantaClausTracker</span> {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">isWorking</span>() -&gt; Bool {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> today = Date()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> month = Calendar.current.components(.month, today)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> day = Calendar.current.components(.day, today)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> month == <span style="color:#ae81ff">12</span> <span style="color:#f92672">&amp;&amp;</span> day == <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>顯然，要這個方法回傳<code>true</code>的話，就只能在聖誕節當天進行測試。
+其他日子回傳都是<code>false</code>。</p>
+<p>這個方法裡面有兩個依賴，一個是<code>Date()</code>，另一個則是<code>Calendar.current</code>。
+如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）</p>
+<p>傳統的方法有三：</p>
+<ol>
+<li>建構子注入</li>
+<li>屬性注入</li>
+<li>方法參數注入</li>
+</ol>
+<p>名稱應該足以描述相對應的行為，就不多贅述了。</p>
+<p>換言之，在程式碼中，只要是<code>使用</code>的物件，都要記得可以替換。
+舉個例子</p>
+<pre tabindex="0"><code>(X
+func somefunction() {
+    Date() 
+}
+
+(O
+func somefunction(date: Date) {
+    date 
+}
+
+(X
+func somefunction() {
+    URLSession.share
+}
+
+(🔺
+func somefunction(session: URLSession) {
+    session
+}
+</code></pre><p>那麼，顯然會出現的問題就是「<strong>依賴要怎麼來</strong>」</p>
+<p>例如說一個App畫面堆疊是這樣</p>
+<p><del>先不討論畫面層級太深的問題</del>這可以看一個精彩的影片「<a href="https://www.ted.com/talks/david_pogue_simplicity_sells">至簡暢銷</a>」</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+View1 --&gt; View2 --&gt; View3 --&gt; View4
+</code></pre><p>今天View4有呼叫API的需要，View2 , 3沒有。
+要present View4只能夠過View3（MVC）或是View3的Coordinator（MVVM C）
+勢必View2, 3都必須要攜帶一個用不到的物件。</p>
+<p>當今天底層越多，依賴拆分的越細，就中間的層級就容易要傳遞一些用不到的物件。</p>
+<p><strong>久了就不容易維護，不容易維護就等於隱藏的Bug</strong></p>
+<p>以前寫過類似的程式碼，中間傳遞的參數多了，就需要使用DTO來打包，多一層又顯得冗余。</p>
+<p>這時候就看到一個突破天際的想法<a href="https://vimeo.com/291588126">How to control the World</a></p>
+<p><strong>強烈建議看影片</strong></p>
+<p><strong>強烈建議看影片</strong></p>
+<p><strong>強烈建議看影片</strong></p>
+<p>先來看看實作，把需要的依賴宣告在一個struct中</p>
+<pre tabindex="0"><code>struct World {
+  var date = { Date() }
+}
+</code></pre><blockquote>
+<p>這邊要注意的是並不是透過「方法」來取值，例如說
+<code>func getDate() -&gt; Date { ... }</code>
+因為方法的實作是不可異動的，本質上還是依賴，只是把依賴集中到一個地方管理。</p>
+<p>也不是直接是一個Date屬性
+因為當你存取Current.date時，每次取的都是不一樣的值
+如果想要每次都取得同一個時間的話，就做不到這個需求</p>
+<p>當然這邊也可以把這個<code>struct</code>改寫成<code>protocol</code>，然後實作不同的物件來提供不同的測試需要，不過那就是另外一回事了。</p>
+</blockquote>
+<p>說回正題，當你宣告了這樣的<code>struct</code>，你還需要一個<strong>全域</strong>的<strong>變數</strong></p>
+<pre tabindex="0"><code>var Current = World()
+</code></pre><blockquote>
+<p>這是一個<code>Singleton</code>！<del>皮諾可，這個直接電死</del></p>
+</blockquote>
+<p>別急，這時候這個設計神的地方來了。</p>
+<p>用上面的範例來實作的話就會變這樣</p>
+<pre tabindex="0"><code>struct SantaClusTracker {
+  
+  func isWorking() -&gt; Bool {
+    //暫時先改一個，baby step
+    let today = Current.date()
+    let month = Calendar.current.components(.month, today)
+    let day = Calendar.current.components(.day, today)
+    return month == 12 &amp;&amp; day == 25
+  }
+
+}
+</code></pre><p>因為<code>Current</code>是一個<code>var</code>，所以裡面的屬性是可以異動的。
+因為<code>date</code>是一個<code>回傳Date的function</code>，所以實作內容也是可以異動的</p>
+<p>今天需要測試的時候，可以直接對<code>Current</code>設值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">test_Date_Is_Christmas_SantaClausTracker_isWorking_should_return_true</span>() <span style="color:#66d9ef">throws</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* 3A原則，具體可以參考91的文章或是聽他的課！獲益良多 */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Arrange</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> target = SantaClausTracker()
+</span></span><span style="display:flex;"><span>  Current.date = { 
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> formatter = DateFormatter()
+</span></span><span style="display:flex;"><span>     formatter.dateFormat = <span style="color:#e6db74">&#34;yyyy/MM/dd&#34;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> formatter.date(string: <span style="color:#e6db74">&#34;2021/12/25&#34;</span>)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Action</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> actual = target.isWorking()
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Assert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> expect = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  XCTAssertEqual(actual, expect)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如此，就算是在其他日子，也能檢查在聖誕節的時候是不是會回傳<code>true</code></p>
+<p>這邊先討論幾個問題</p>
+<ol>
+<li>Singleton不是不好，為什麼要用？</li>
+<li>為什麼不用介面隔開？</li>
+<li>全域變數很危險，不應該用不是嗎？</li>
+</ol>
+<h3 id="singleton不是不好為什麼要用">Singleton不是不好，為什麼要用？</h3>
+<p>Singleton並不是不好，不好的話Apple還到處放不是很奇怪？</p>
+<p><code>URLSession.shared</code></p>
+<p><code>UserDefaults.standard</code></p>
+<p><code>FileManager.default</code></p>
+<p>Singleton的問題在於它是一個實體型別，無法被抽象化。也就是無法在測試中被替換。當你今天在程式碼中放了<code>URLSession.shared</code>以後，就註定了他一定會去走真實的網路（用intercepter擋掉另當別論），而沒辦法用<code>MockURLSession</code>來進行替換</p>
+<h3 id="為什麼不用介面隔開">為什麼不用介面隔開？</h3>
+<p>在看這個影片之前，我也是用<code>protocol</code>來進行區隔，這也有一個大神的文章可以參考<a href="https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k">歡迎來到真實世界</a></p>
+<p>先來談談如果用介面隔開URLSession，要做多少動作？</p>
+<ol>
+<li>製作一個介面<code>URLSessionProtocol</code>，方法簽章要跟URLSession中要呼叫的方法一致</li>
+<li>讓URLSession擴充<code>URLSessionProtocol</code>，因為方法已經存在，所以不用另外實作。</li>
+<li>製作一個測試在用的物件<code>MockURLSession</code>，實作介面<code>URLSessionProtocol</code>，裡面不涉及網路存取，直接回傳值。</li>
+<li>將原本程式碼呼叫<code>URLSession.shared</code>的地方全部抽換掉</li>
+<li>在測試中將<code>MockURLSession</code>注入到測試目標中</li>
+</ol>
+<p>首先，這個做法對程式碼改動幅度比較大，當早期沒做，後面要抽換的時候改動幅度就會很大，也是存在風險。</p>
+<p>其次，如果介面裡面的方法開始變多以後，一個新的Mock物件實作起來不容易。</p>
+<blockquote>
+<p>例如說一個資料庫存取介面，有四個方法CRUD</p>
+<p>那麼建立一個新的Mock物件就要實作四個方法。</p>
+<p>而一個正常的介面方法都不止四個</p>
+</blockquote>
+<h3 id="全域變數很危險不應該用不是嗎">全域變數很危險，不應該用不是嗎？</h3>
+<p>全域變數的危險之處在於「<strong>你不知道什麼時候被改動</strong>」</p>
+<p>誠然，設定為變數是存在風險的，但是不應該把<code>Current</code>當成是一個傳遞、暫存參數的地方。而是一個依賴保管區（Production時）、依賴注入區（Develop時）</p>
+<p>說回這個方法</p>
+<p>如果今天要測試使用者登入「<strong>成功</strong>」與「<strong>失敗</strong>」的情境</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">UserAPIClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">login</span>(account: String, password: String, complectionHandler: @escaping (Bool) -&gt; Void ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> url = URL(string: <span style="color:#e6db74">&#34;API Path&#34;</span>)<span style="color:#f92672">!</span> <span style="color:#75715e">// &lt;-- 這裡一定run time error</span>
+</span></span><span style="display:flex;"><span>        URLSession.shared.dataTask(with: url) { data, <span style="color:#66d9ef">_</span>, <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>            complectionHandler(data == <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView</span>: View {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    @State <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> loginResult: Bool = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> body: some View {
+</span></span><span style="display:flex;"><span>        Text(<span style="color:#e6db74">&#34;Login </span><span style="color:#e6db74">\(</span>loginResult ? <span style="color:#e6db74">&#34;Success&#34;</span> : <span style="color:#e6db74">&#34;Failure&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            .onAppear {
+</span></span><span style="display:flex;"><span>                UserAPIClient().login(account: <span style="color:#e6db74">&#34;account&#34;</span>, password: <span style="color:#e6db74">&#34;password&#34;</span>) { result <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>                    loginResult = result
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>UserAPIClient</code>有一個一定會在run time炸掉的地方，那就是<code>URL(string: &quot;API Path&quot;)!</code></p>
+<p>假想這是Server暫時不可用，或是網路斷線的情境吧。</p>
+<p>那這種時候就不用測試了嗎？沒錯！<del>後台修好再叫我</del></p>
+<p>當然不可能，所以這時候就需要脫離實際環境來測試功能是否正常。</p>
+<p>用<code>protocol</code>的方式來進行脫鉤是這樣實作的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">//1. 定義協議</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">UserAPIClientProtocol</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">login</span>(account: String, password: String, complectionHandler: @escaping (Bool) -&gt; Void )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//2. 讓原本的物件擴充這個協議</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">UserAPIClient</span>: UserAPIClientProtocol { }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//3. 建立測試物件，因為測試情境有「成功」「失敗」，所以回傳值用建構注入</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">MockUserAPIClient</span>: UserAPIClientProtocol {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> loginResult: Bool
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">login</span>(account: String, password: String, complectionHandler: @escaping (Bool) -&gt; Void ) {
+</span></span><span style="display:flex;"><span>      complectionHandler(loginResult)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//4. 將原本的型別用介面抽換（呼叫的時候要注入）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView</span>: View {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> userAPIClient: UserAPIClientProtocol
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    @State <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> loginResult: Bool = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> body: some View {
+</span></span><span style="display:flex;"><span>        Text(<span style="color:#e6db74">&#34;Login </span><span style="color:#e6db74">\(</span>loginResult ? <span style="color:#e6db74">&#34;Success&#34;</span> : <span style="color:#e6db74">&#34;Failure&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            .onAppear {
+</span></span><span style="display:flex;"><span>                userAPIClient.login(account: <span style="color:#e6db74">&#34;acc&#34;</span>, password: <span style="color:#e6db74">&#34;pass&#34;</span>) { result <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>                    loginResult = result
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//5. 修改呼叫端</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView_Previews</span>: PreviewProvider {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> previews: some View {
+</span></span><span style="display:flex;"><span>        ContentView(userAPIClient: MockUserAPIClient(loginResult: <span style="color:#66d9ef">true</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果用World來控制的話，是這個樣子的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">UserAPI</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> login = UserAPIClient().login(account:password:complectionHandler:)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">World</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> userAPI = UserAPI()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> Current = World()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView</span>: View {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    @State <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> loginResult: Bool = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> body: some View {
+</span></span><span style="display:flex;"><span>        Text(<span style="color:#e6db74">&#34;Login </span><span style="color:#e6db74">\(</span>loginResult ? <span style="color:#e6db74">&#34;Success&#34;</span> : <span style="color:#e6db74">&#34;Failure&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            .onAppear {
+</span></span><span style="display:flex;"><span>                Current.userAPI.login(<span style="color:#e6db74">&#34;account&#34;</span>, <span style="color:#e6db74">&#34;password&#34;</span>) { result <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>                    loginResult = result
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//修改呼叫端</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ContentView_Previews</span>: PreviewProvider {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> previews: some View {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//正常不會在這邊修改，這邊只是懶得把資料切乾淨所以放著舉例一下</span>
+</span></span><span style="display:flex;"><span>        Current.userAPI.login = { <span style="color:#66d9ef">_</span>, <span style="color:#66d9ef">_</span>, callback <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>            callback(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ContentView()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>看起來有點差異，但是好像又差異不大？
+當你再遇到這樣的需求時</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+View1 --&gt; View2 --&gt; View3 --&gt; View4
+</code></pre><p>View2, 3就不需要攜帶<code>UserAPIClient</code>跑來跑去了</p>
+<p><strong>最重要的是</strong>
+當你的測試情境需要不同的回傳值時，不再需要像上面的<code>MockUserAPIClient</code>一樣透過各種注入，考慮各種測試情境要呼叫方法時的通用性，而是可以直接針對特定方法改寫方法實作內容。</p>
+<h2 id="參考文章">參考文章：</h2>
+<p><a href="https://vimeo.com/291588126">https://vimeo.com/291588126</a></p>
+<p><a href="https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k">https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>關於GCD的一些筆記-1</title>
+            <link>/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/</link>
+            <pubDate>Mon, 29 Jun 2020 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/</guid>
+            <description>關於GCD的一些筆記</description>
+            <content type="html"><![CDATA[<h2 id="關於gcd">關於GCD</h2>
+<p>什麼是GCD？GCD的全名為<strong>Grand Central Dispatch</strong></p>
+<p>基本上就是執行緒管理中心。用比較不嚴謹的敘述來說的話，它就是幫助你處理多執行緒的管理器。
+利用GCD，可以很方便地操控各種需要多執行緒的情境</p>
+<h2 id="gcd的運作原理">GCD的運作原理</h2>
+<blockquote>
+<p>這邊姑且先不討論程式面的東西，先從抽象一點的地方來看。</p>
+</blockquote>
+<p>基本上來說，GCD掌控了Queue，而Queue包含了Work Item，最後WorkItem就是要執行的Closure</p>
+<h3 id="queue">Queue</h3>
+<p>Queue可以被翻成「佇列」，但是看了翻譯還是不知道是什麼意思。</p>
+<p>可以想像成是去看電影的時候排隊的人潮，隊伍本身就是<strong>Queue</strong>。</p>
+<p>先排進去的人，就可以先買票。這就是 <strong>FIFO ( First In First Out )</strong> 的概念。</p>
+<p>Queue裡面放的是<strong>WorkItem</strong>，用買票的例子來解釋的話，就是<strong>你要買哪場的票</strong>這件事。</p>
+<p>Queue又有分<strong>Serial</strong>跟<strong>Concurrent</strong>兩種</p>
+<p><strong>Serial</strong>：就是一次只執行一個WorkItem，在這個WorkItem還沒執行完之前，不會取下一個來執行。</p>
+<p><strong>Concurrent</strong>：自然就是相對於Serial，當第一個WorkItem被取出後，並不會等這個WorkItem被執行完，就接著取出下一個WorkItem，一直到這個Queue中所有WorkItem被拿出來執行為止（或是你吃光了所有系統可分配的Thread，也會被暫停）</p>
+<hr>
+<p>講完了Queue的類型，再來就是Queue要<strong>怎麼執行WorkItem</strong></p>
+<p>這部分就分為 <strong>Sync（同步）<strong>跟</strong>Async（非同步）</strong> 兩種</p>
+<p><strong>Sync</strong>：</p>
+<p>當前的Queue會被擋住，不能往下執行，等待WorkItem被執行完以後，才會繼續往下執行。在這個時間點中只有一個Queue可以運作。</p>
+<p>所以在用sync方法的時候一定要非常小心一個重點</p>
+<p><strong>如果當前的執行中的Queue是Serial，而且你又要拿來做sync的動作的話，就會造成Deadlock</strong></p>
+<p>舉個例子，下面這段程式如果用Main Queue來執行，就永遠不會執行到<code>print</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>DispatchQueue.main.sync {
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;never execute here&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>發生的原因很簡單，因為當系統執行到<code>DispatchQueue.main.sync</code>這段的時候，系統就知道「阿，要塞住當前的Queue」也就是MainQueue，然後又叫MainQueue去做事。但是這時候Main Queue已經被塞住了，又怎麼能去print呢？</p>
+<p><strong>Async</strong>：非同步代表的是它<strong>不會塞住當前的執行緒</strong>
+所以當Queue用非同步去執行WorkItem的時候，系統會開一條新的Thread去執行這個WorkItem，然後就繼續往下執行。</p>
+<p>非同步程式可以保證當前的Thread執行不會被卡住，因為都會開一個新的Thread去執行WorkItem。但是非同步程式常常會遇到的就是他不會有返回值，所以很容易出現<code>Callback Hell</code>的狀況。不過這不是本篇要講的重點，後面寫<code>PromiseKit</code>或<code>RxSwift</code>的時候再說。</p>
+<p>舉幾個例子，這可以直接貼到Playground裡面來執行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">syncDemo</span>() {
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something before sync&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    DispatchQueue.global().sync {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0.</span>..<span style="color:#ae81ff">5</span> { print(<span style="color:#e6db74">&#34;sync&#34;</span>) }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something after sync&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>syncDemo()
+</span></span></code></pre></div><p>結果是比較顯而易見的，就跟程式執行順序一致。</p>
+<pre tabindex="0"><code>do something before sync
+sync
+sync
+sync
+sync
+sync
+sync
+do something after sync
+</code></pre><p>那麼用差不多的架構，只不過把sync換成async的話，會怎麼樣的？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">asyncDemo</span>() {
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something before async&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    DispatchQueue.global().async {       <span style="color:#75715e">// &lt;-- 注意這裡是async</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0.</span>..<span style="color:#ae81ff">5</span> { print(<span style="color:#e6db74">&#34;async&#34;</span>) }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something after async&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncDemo()
+</span></span></code></pre></div><p>這邊就差很多了。</p>
+<p>因為是另外開執行緒去做事，所以跟看到的結果就會有明顯差異</p>
+<pre tabindex="0"><code>do something before async
+do something after async
+async
+async
+async
+async
+async
+async
+</code></pre><p>所以關於怎麼挑選自己要用的Queue，就可以從這四個裡面去兜出來。</p>
+<p>具體的挑選就看自己的情境來決定。</p>
+<p>本來還要寫一些DispatchGroup、訊號機等筆記的，但是寫的有點煩了。</p>
+<blockquote>
+<p>要改的東西太多了，那麼就改天吧。</p>
+</blockquote>
+]]></content>
+        </item>
+        
+        <item>
+            <title>SSH 基本設定</title>
+            <link>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</link>
+            <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
+            
+            <guid>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</guid>
+            <description>ssh到GitHub的時候，使用私鑰進行驗證</description>
+            <content type="html"><![CDATA[<p>最近電腦爆了，懷疑應該是副廠的線造成的問題，</p>
+<p>看樣子東西真的不能買便宜的（？</p>
+<p>剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;</p>
+<p>之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。</p>
+<blockquote>
+<p>身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。</p>
+</blockquote>
+<p>正文開始</p>
+<hr>
+<h2 id="ssh到github的時候使用私鑰進行驗證">ssh到GitHub的時候，使用私鑰進行驗證</h2>
+<p>具體步驟大概分為</p>
+<ol>
+<li><a href="#%E7%94%A2%E7%94%9Frsa%E7%9A%84%E5%85%AC%E7%A7%81%E9%91%B0">產生rsa的公私鑰</a></li>
+<li><a href="#%E8%A8%AD%E5%AE%9Assh%E7%9A%84config">設定ssh的config</a> （optional）</li>
+<li><a href="#%E7%99%BB%E5%85%A5Github%E4%B8%A6%E4%B8%94%E5%8A%A0%E5%85%A5%E5%89%9B%E5%89%9B%E7%94%A2%E7%94%9F%E7%9A%84%E5%85%AC%E9%91%B0">登入Github並且加入剛剛產生的公鑰</a> （手動）</li>
+<li><a href="#%E6%B8%AC%E8%A9%A6%E9%80%A3%E7%B7%9A">測試連線</a></li>
+</ol>
+<hr>
+<h3 id="產生rsa的公私鑰">產生rsa的公私鑰</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen
+</span></span></code></pre></div><p>過程中會問兩個問題</p>
+<ol>
+<li>產生的公私鑰要放的位置</li>
+<li>設定密碼 ( passphrase )</li>
+</ol>
+<p>公私鑰的位置如果直接按Return的話，就會存在預設的位置。</p>
+<p>預設位置為：<code>/Users/username/.ssh/id_rsa</code></p>
+<blockquote>
+<p>這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;</p>
+</blockquote>
+<p>不然也可以自行輸入要存放的位置，例如：</p>
+<p><code>/Users/username/.ssh/rsa-for-github</code></p>
+<blockquote>
+<p>不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字</p>
+</blockquote>
+<p>密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。</p>
+<p>如果輸入密碼的話就每次使用ssh連接時都需要打密碼。</p>
+<p>這部分我就沒特別研究了，有需要的請自行研究。</p>
+<p>完成以後會產生一組公私鑰檔案，例如</p>
+<p><code>rsa-for-github.pub</code> and <code>rsa-for-github</code></p>
+<blockquote>
+<p>沒有<code>.pub</code>的檔案就是私鑰，請好好保管。</p>
+</blockquote>
+<hr>
+<h3 id="設定ssh的config">設定ssh的config</h3>
+<p>如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧</p>
+<p>用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，</p>
+<p>減少私鑰遺失後全部都被攻破的風險。</p>
+<p>缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。</p>
+<p>因為預設的ssh會去讀<code>id_rsa</code>作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。</p>
+<p>基本上我常用的大概就幾個</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Host         <span style="color:#75715e"># 用來連線的 alias 名稱</span>
+</span></span><span style="display:flex;"><span>HostName     <span style="color:#75715e"># host domain 或 ip</span>
+</span></span><span style="display:flex;"><span>Port         <span style="color:#75715e"># host 的 SSH port</span>
+</span></span><span style="display:flex;"><span>IdentityFile <span style="color:#75715e"># 私鑰位置</span>
+</span></span><span style="display:flex;"><span>User         <span style="color:#75715e"># 登入帳號</span>
+</span></span></code></pre></div><p>舉幾個例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Github</span>
+</span></span><span style="display:flex;"><span>Host github.com
+</span></span><span style="display:flex;"><span>HostName github.com
+</span></span><span style="display:flex;"><span>IdentityFile ~/.ssh/rsa_for_github
+</span></span><span style="display:flex;"><span>User git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Raspberry</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 因為我有買樹莓派回來玩，如果不用這樣登入的話，每次都是要打帳號密碼，很煩。</span>
+</span></span><span style="display:flex;"><span>Host raspbian
+</span></span><span style="display:flex;"><span>HostName 192.168.1.123
+</span></span><span style="display:flex;"><span>IdentityFile ~/.ssh/rsa_for_rpi
+</span></span><span style="display:flex;"><span>User pi
+</span></span></code></pre></div><hr>
+<h3 id="登入github並且加入剛剛產生的公鑰">登入Github並且加入剛剛產生的公鑰</h3>
+<p>可以先用<code>cat</code>指令來顯示公鑰內容，然後再把公鑰貼到Github的SSH Key欄位中</p>
+<p><img src="/github-setting-ssh-step-1.png" alt="image"></p>
+<p><img src="/github-setting-ssh-step-2.png" alt="image"></p>
+<p><img src="/github-setting-ssh-step-3.png" alt="image"></p>
+<p>這邊比較簡單就放三張圖自己研究一下就夠了。</p>
+<p>這邊補充一下，如果要用命令將公鑰加入到目標server中的話（例如樹莓派）可以用以下的命令來執行。</p>
+<p>不確定能不能用命令把公鑰加入到Github中，這部分沒特別研究。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 語法：</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id user@host
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果不是用預設的名稱，就要加入參數 i，用來指定IdentityFile</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub user@host
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 範例</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id pi@192.168.1.123
+</span></span><span style="display:flex;"><span>ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub pi@192.168.1.123
+</span></span></code></pre></div><hr>
+<h3 id="測試連線">測試連線</h3>
+<p>根據Github的<a href="https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection">線上文件</a>，只要透過下面這行命令即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ssh -T git@github.com
+</span></span></code></pre></div><p>只要最後出現的是下面這樣就算成功了，至於沒出現的話，就看看有哪些地方做錯了吧。</p>
+<pre tabindex="0"><code>&gt; Hi username! You&#39;ve successfully authenticated, but GitHub does not
+&gt; provide shell access.
+</code></pre><h2 id="參考網頁">參考網頁</h2>
+<p><a href="">https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/</a></p>
+<p><a href="">https://xenby.com/b/220-教學-產生ssh-key並且透過key進行免密碼登入</a></p>
+<p><a href="">https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Hello World</title>
+            <link>/posts/2020-06-28-hello-world/</link>
+            <pubDate>Sun, 28 Jun 2020 16:06:07 +0800</pubDate>
+            
+            <guid>/posts/2020-06-28-hello-world/</guid>
+            <description>Hello Hugo</description>
+            <content type="html"><![CDATA[]]></content>
+        </item>
+        
+    </channel>
 </rss>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="關於GCD的一些筆記" />
+<meta name="keywords" content=", iOS, GCD" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/" />
+
+
+    <title>
+        
+            關於GCD的一些筆記-1 :: Insidehand  — A simple theme for Hugo
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="關於GCD的一些筆記-1">
+<meta itemprop="description" content="關於GCD的一些筆記"><meta itemprop="datePublished" content="2020-06-29T19:18:33+08:00" />
+<meta itemprop="dateModified" content="2020-06-29T19:18:33+08:00" />
+<meta itemprop="wordCount" content="134"><meta itemprop="image" content="/102"/>
+<meta itemprop="keywords" content="iOS,GCD," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/102"/>
+
+<meta name="twitter:title" content="關於GCD的一些筆記-1"/>
+<meta name="twitter:description" content="關於GCD的一些筆記"/>
+
+
+
+
+    <meta property="og:title" content="關於GCD的一些筆記-1" />
+<meta property="og:description" content="關於GCD的一些筆記" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/" /><meta property="og:image" content="/102"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-29T19:18:33+08:00" />
+<meta property="article:modified_time" content="2020-06-29T19:18:33+08:00" /><meta property="og:site_name" content="Insidehand" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-06-29 19:18:33 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">inside my hand</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/">關於GCD的一些筆記-1</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h2 id="關於gcd">關於GCD</h2>
+<p>什麼是GCD？GCD的全名為<strong>Grand Central Dispatch</strong></p>
+<p>基本上就是執行緒管理中心。用比較不嚴謹的敘述來說的話，它就是幫助你處理多執行緒的管理器。
+利用GCD，可以很方便地操控各種需要多執行緒的情境</p>
+<h2 id="gcd的運作原理">GCD的運作原理</h2>
+<blockquote>
+<p>這邊姑且先不討論程式面的東西，先從抽象一點的地方來看。</p>
+</blockquote>
+<p>基本上來說，GCD掌控了Queue，而Queue包含了Work Item，最後WorkItem就是要執行的Closure</p>
+<h3 id="queue">Queue</h3>
+<p>Queue可以被翻成「佇列」，但是看了翻譯還是不知道是什麼意思。</p>
+<p>可以想像成是去看電影的時候排隊的人潮，隊伍本身就是<strong>Queue</strong>。</p>
+<p>先排進去的人，就可以先買票。這就是 <strong>FIFO ( First In First Out )</strong> 的概念。</p>
+<p>Queue裡面放的是<strong>WorkItem</strong>，用買票的例子來解釋的話，就是<strong>你要買哪場的票</strong>這件事。</p>
+<p>Queue又有分<strong>Serial</strong>跟<strong>Concurrent</strong>兩種</p>
+<p><strong>Serial</strong>：就是一次只執行一個WorkItem，在這個WorkItem還沒執行完之前，不會取下一個來執行。</p>
+<p><strong>Concurrent</strong>：自然就是相對於Serial，當第一個WorkItem被取出後，並不會等這個WorkItem被執行完，就接著取出下一個WorkItem，一直到這個Queue中所有WorkItem被拿出來執行為止（或是你吃光了所有系統可分配的Thread，也會被暫停）</p>
+<hr>
+<p>講完了Queue的類型，再來就是Queue要<strong>怎麼執行WorkItem</strong></p>
+<p>這部分就分為 <strong>Sync（同步）<strong>跟</strong>Async（非同步）</strong> 兩種</p>
+<p><strong>Sync</strong>：</p>
+<p>當前的Queue會被擋住，不能往下執行，等待WorkItem被執行完以後，才會繼續往下執行。在這個時間點中只有一個Queue可以運作。</p>
+<p>所以在用sync方法的時候一定要非常小心一個重點</p>
+<p><strong>如果當前的執行中的Queue是Serial，而且你又要拿來做sync的動作的話，就會造成Deadlock</strong></p>
+<p>舉個例子，下面這段程式如果用Main Queue來執行，就永遠不會執行到<code>print</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>DispatchQueue.main.sync {
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;never execute here&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>發生的原因很簡單，因為當系統執行到<code>DispatchQueue.main.sync</code>這段的時候，系統就知道「阿，要塞住當前的Queue」也就是MainQueue，然後又叫MainQueue去做事。但是這時候Main Queue已經被塞住了，又怎麼能去print呢？</p>
+<p><strong>Async</strong>：非同步代表的是它<strong>不會塞住當前的執行緒</strong>
+所以當Queue用非同步去執行WorkItem的時候，系統會開一條新的Thread去執行這個WorkItem，然後就繼續往下執行。</p>
+<p>非同步程式可以保證當前的Thread執行不會被卡住，因為都會開一個新的Thread去執行WorkItem。但是非同步程式常常會遇到的就是他不會有返回值，所以很容易出現<code>Callback Hell</code>的狀況。不過這不是本篇要講的重點，後面寫<code>PromiseKit</code>或<code>RxSwift</code>的時候再說。</p>
+<p>舉幾個例子，這可以直接貼到Playground裡面來執行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">syncDemo</span>() {
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something before sync&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    DispatchQueue.global().sync {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0.</span>..<span style="color:#ae81ff">5</span> { print(<span style="color:#e6db74">&#34;sync&#34;</span>) }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something after sync&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>syncDemo()
+</span></span></code></pre></div><p>結果是比較顯而易見的，就跟程式執行順序一致。</p>
+<pre tabindex="0"><code>do something before sync
+sync
+sync
+sync
+sync
+sync
+sync
+do something after sync
+</code></pre><p>那麼用差不多的架構，只不過把sync換成async的話，會怎麼樣的？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">asyncDemo</span>() {
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something before async&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    DispatchQueue.global().async {       <span style="color:#75715e">// &lt;-- 注意這裡是async</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0.</span>..<span style="color:#ae81ff">5</span> { print(<span style="color:#e6db74">&#34;async&#34;</span>) }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;do something after async&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncDemo()
+</span></span></code></pre></div><p>這邊就差很多了。</p>
+<p>因為是另外開執行緒去做事，所以跟看到的結果就會有明顯差異</p>
+<pre tabindex="0"><code>do something before async
+do something after async
+async
+async
+async
+async
+async
+async
+</code></pre><p>所以關於怎麼挑選自己要用的Queue，就可以從這四個裡面去兜出來。</p>
+<p>具體的挑選就看自己的情境來決定。</p>
+<p>本來還要寫一些DispatchGroup、訊號機等筆記的，但是寫的有點煩了。</p>
+<blockquote>
+<p>要改的東西太多了，那麼就改天吧。</p>
+</blockquote>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="/tags/ios/">iOS</a></span>
+        <span class="tag"><a href="/tags/gcd/">GCD</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        134 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-06-29 19:18
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1&amp;caption=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1&amp;canonicalUrl=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1&amp;body=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f&amp;media=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f;description=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f&amp;title=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1&amp;summary=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1&amp;source=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f&amp;resubmit=true&amp;title=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f;title=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1%20%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f&amp;t=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%e9%97%9c%e6%96%bcGCD%e7%9a%84%e4%b8%80%e4%ba%9b%e7%ad%86%e8%a8%98-1&amp;url=%2fposts%2f2020-06-29-gcd%25E7%25AD%2586%25E8%25A8%2598-01%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">另外一種方式的依賴控制</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/">
+                    <span class="button__text">SSH 基本設定</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

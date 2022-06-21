@@ -1,24 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>kobo on Insidehand</title>
     <link>/tags/kobo/</link>
     <description>Recent content in kobo on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 11 Nov 2021 16:07:08 +0800</lastBuildDate>
-    
-        <atom:link href="/tags/kobo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 11 Nov 2021 16:07:08 +0800</lastBuildDate><atom:link href="/tags/kobo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kobo Nickel Menu的用法</title>
-      <link>/posts/kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+      <link>/posts/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</link>
       <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
       
-      <guid>/posts/kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
-      <description>如果要用kobo來看txt或是從calibre導入書籍有諸多不便， 有聽說其他閱讀軟體可以抓但是有點懶得弄。 後來看到大神的blog，有統整了怎</description>
-      
+      <guid>/posts/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <description>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
+有聽說其他閱讀軟體可以抓但是有點懶得弄。
+後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
+Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
+但是傳資料還是一個痛點。
+經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
+基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
+安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
+流程概略是這樣：
+安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
+進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
+建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
+這邊列一些我覺得比較實用的
+# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &amp;#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&amp;#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;amp;&amp;amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.</description>
     </item>
     
   </channel>

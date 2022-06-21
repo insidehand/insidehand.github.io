@@ -1,24 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ssh on Insidehand</title>
     <link>/tags/ssh/</link>
     <description>Recent content in ssh on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 28 Jun 2020 18:34:47 +0800</lastBuildDate>
-    
-        <atom:link href="/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 28 Jun 2020 18:34:47 +0800</lastBuildDate><atom:link href="/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SSH 基本設定</title>
-      <link>/posts/ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</link>
+      <link>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</link>
       <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
       
-      <guid>/posts/ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</guid>
+      <guid>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</guid>
       <description>ssh到GitHub的時候，使用私鑰進行驗證</description>
-      
     </item>
     
   </channel>

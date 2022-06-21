@@ -1,25 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Insidehand</title>
-    <link>/posts/apps/requestflow/</link>
-    <description>Recent content on Insidehand</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
-    
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Insidehand</title>
+        <link>/posts/apps/requestflow/</link>
+        <description>Recent content on Insidehand</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
         <atom:link href="/posts/apps/requestflow/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Requestflow Support</title>
-      <link>/posts/apps/requestflow/privacy_policy/</link>
-      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
-      
-      <guid>/posts/apps/requestflow/privacy_policy/</guid>
-      <description>Requestflow support</description>
-      
-    </item>
-    
-  </channel>
+        
+        <item>
+            <title>Requestflow Support</title>
+            <link>/posts/apps/requestflow/privacy_policy/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/requestflow/privacy_policy/</guid>
+            <description>Requestflow support</description>
+            <content type="html"><![CDATA[<h1 id="requestflow">Requestflow</h1>
+<h2 id="隱私權政策">隱私權政策</h2>
+<p><strong>Requestflow</strong> 是一個純粹的網路測試工具</p>
+<p>由<strong>Requestflow</strong>所產生的資料會被儲存在app本地或是iCloud之中。</p>
+<p>無論是儲存在哪裡，這些資料都只會被你所使用。</p>
+<p><strong>Requestflow</strong>並不會搜集或使用你的任何資訊。</p>
+<p>由於許多網站的設計並不相同，送出的資訊可能會造成資料缺失，請小心的處理你要送出的資訊。任何使用本軟體所造成的損害，Requestflow概不負責。</p>
+]]></content>
+        </item>
+        
+    </channel>
 </rss>

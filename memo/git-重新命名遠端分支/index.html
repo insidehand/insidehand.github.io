@@ -1,11 +1,144 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title"></h1></section><article class="article markdown-body"><h1 id="git-rename-remote-branch">Git rename remote branch</h1>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &amp;ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過
+Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName " />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/" />
+
+
+    <title>
+        
+             :: Insidehand  — A simple theme for Hugo
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過
+Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName ">
+
+<meta itemprop="wordCount" content="32"><meta itemprop="image" content="/102"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/102"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過
+Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName "/>
+
+
+
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過
+Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/" /><meta property="og:image" content="/102"/><meta property="article:section" content="memo" />
+
+<meta property="og:site_name" content="Insidehand" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">inside my hand</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/"></a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h1 id="git-rename-remote-branch">Git rename remote branch</h1>
 <ol>
 <li>Git checkout -b localBranchname origin/remoteBranchName</li>
 <li>Git push origin &ndash;delete remoteBranchName</li>
@@ -17,12 +150,36 @@
 <li>Git push origin : remoteBranchName newBranchName</li>
 <li>Git push origin -u newBranchName</li>
 </ol>
-</article></div>
-<div class="article bottom"><section class="article navigation"></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">Insidehand</p>
-    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p>
-</div></section></body>
 
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
 </html>

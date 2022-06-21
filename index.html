@@ -1,21 +1,153 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Insidehand</title><link rel="stylesheet" href="/css/core.min.4f9033ab7c3cd76c549c46456b7b316174dfd5f0c35d4a499145b7cc3d4591088a9e9cbad553bdbef09fba207d9671bb.css" integrity="sha384-T5Azq3w812xUnEZFa3sxYXTf1fDDXUpJkUW3zD1FkQiKnpy61VO9vvCfuiB9lnG7"><link rel="alternate" type="application/rss+xml" href="/index.xml" title="Insidehand" /><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Insidehand" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Insidehand</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a></nav></div></span></div></section><section id="content"><ul class="note list"><li class="item"><a class="note" href="/drafts/markdown%E8%AA%9E%E6%B3%95%E7%AD%86%E8%A8%98/">
-            <p class="note title">Markdown語法筆記</p><p class="note date">2022-06-19</p><p class="note content">基本語法就跳過了， 這邊想記錄一下一些進階的 要寫呈現```的話，就用四個反引號包起來</p></a></li><li class="item"><a class="note" href="/drafts/raspberrypi/">
-            <p class="note title">RaspberryPi</p><p class="note date">2022-04-17</p><p class="note content">修改樹莓派預設使用者 1. 打開ssh 2. 設定root的密碼 3. 修改/etc/ssh/sshd_config 1. #PermitRootLogin prohibit-password 2. PermitRootLogin yes 4. sudo service ssh restart &gt;&gt;&gt; Login as root 5. usermod -l &lt;new_user&gt; pi 6.<span class="mldr">&mldr;</span></p></a></li><li class="item"><a class="note" href="/drafts/xcode-shortcut-note/">
-            <p class="note title">Xcode shortcut note</p><p class="note date">2021-12-23</p><p class="note content">Useful Xcode shortcut make finger stay on keyboard</p></a><p class="note labels"><a class="tag" href="/tags/xcode/">Xcode</a></p></li><li class="item"><a class="note" href="/drafts/data-model/">
-            <p class="note title"></p><p class="note content">JSON 開發觀念 不要用underline之類的方式來作為JSON的key 如果有多個底線相關的key，就應該考慮用object封裝起來。 { &#34;SomeKeyTitle&#34;: &#34;Value&#34;, &#34;SomeKeyNote&#34;: { &#34;SomeKeyArray&#34;:<span class="mldr">&mldr;</span></p></a></li><li class="item"><a class="note" href="/drafts/gitbook%E6%9E%B6%E8%A8%AD%E9%81%8E%E7%A8%8B/">
-            <p class="note title"></p><p class="note content">Gitbook架設 Part 1 根據目前查到的資料，似乎線上版有一些微微妙妙的問題， 所以這邊打算採用自己架設的做法。 因為文件都散落在各個MD檔之中，想<span class="mldr">&mldr;</span></p></a></li></ul><div class="pagination">
-    <ul><li><a class="active" href="/">1</a></li><li><a class="" href="/page/2/">2</a></li><li><a class="" href="/page/3/">3</a></li></ul>
-</div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">Insidehand</p>
-    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p>
-</div></section></body>
+<html lang="en">
+    <head>
+	<meta name="generator" content="Hugo 0.101.0" />
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Just note something." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/" />
 
+
+    <title>
+        
+            Insidehand  — A simple theme for Hugo 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Insidehand">
+<meta itemprop="description" content="My new homepage or blog">
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/102"/>
+
+<meta name="twitter:title" content="Insidehand"/>
+<meta name="twitter:description" content="My new homepage or blog"/>
+
+
+
+
+    <meta property="og:title" content="Insidehand" />
+<meta property="og:description" content="My new homepage or blog" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" /><meta property="og:image" content="/102"/><meta property="og:site_name" content="Insidehand" />
+
+
+
+
+
+
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Insidehand" />
+
+
+
+
+
+
+
+    </head>
+
+    
+    <body class="">
+
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">inside my hand</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main aria-role="main">
+        <div>
+            
+
+            <h1>Insidehand</h1>
+
+            
+    <p>Just note something.</p>
+                <div>
+                    &nbsp; <a href="https://insidehand.github.io" target="_blank" rel="noopener" title="Hugo"><svg role="img" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Hugo</title><path d="M11.754 0a3.998 3.998 0 00-2.049.596L3.33 4.532a4.252 4.252 0 00-2.017 3.615v8.03c0 1.473.79 2.838 2.067 3.574l6.486 3.733a3.88 3.88 0 003.835.018l7.043-3.966a3.817 3.817 0 001.943-3.323V7.752a3.57 3.57 0 00-1.774-3.084L13.817.541a3.998 3.998 0 00-2.063-.54zm.022 1.674c.413-.006.828.1 1.2.315l7.095 4.127c.584.34.941.96.94 1.635v8.462c0 .774-.414 1.484-1.089 1.864l-7.042 3.966a2.199 2.199 0 01-2.179-.01l-6.485-3.734a2.447 2.447 0 01-1.228-2.123v-8.03c0-.893.461-1.72 1.221-2.19l6.376-3.935a2.323 2.323 0 011.19-.347zm-4.7 3.844V18.37h2.69v-5.62h4.46v5.62h2.696V5.518h-2.696v4.681h-4.46V5.518Z"/></svg></a> &nbsp;&nbsp; <a href="https://www.github.com/insidehand" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a> &nbsp;&nbsp; <a href="mailto:insidehand@gmail.com" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a> &nbsp;
+                </div>
+        </div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
 </html>

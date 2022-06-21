@@ -1,25 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Insidehand</title>
-    <link>/posts/apps/looplayer/</link>
-    <description>Recent content on Insidehand</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
-    
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Insidehand</title>
+        <link>/posts/apps/looplayer/</link>
+        <description>Recent content on Insidehand</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
         <atom:link href="/posts/apps/looplayer/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>LooPlayer privacy term</title>
-      <link>/posts/apps/looplayer/privacy_policy/</link>
-      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
-      
-      <guid>/posts/apps/looplayer/privacy_policy/</guid>
-      <description>LooPlayer support</description>
-      
-    </item>
-    
-  </channel>
+        
+        <item>
+            <title>LooPlayer privacy term</title>
+            <link>/posts/apps/looplayer/privacy_policy/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/looplayer/privacy_policy/</guid>
+            <description>LooPlayer support</description>
+            <content type="html"><![CDATA[<h1 id="looplayer">LooPlayer</h1>
+<h2 id="隱私權政策">隱私權政策</h2>
+<p><strong>LooPlayer</strong> 是一個簡單的循環播放筆記軟體</p>
+<p>由<strong>LooPlayer</strong>所產生的資料會被儲存在app本地或是iCloud之中。</p>
+<p>無論是儲存在哪裡，這些資料都只會被你所使用。</p>
+<p><strong>LooPlayer</strong>並不會搜集或使用你的任何資訊。</p>
+]]></content>
+        </item>
+        
+    </channel>
 </rss>
