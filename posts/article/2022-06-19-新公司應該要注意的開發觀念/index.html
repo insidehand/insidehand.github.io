@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>新公司應該要注意的開發觀念 | Insidehand</title>
+<meta name="keywords" content="DevOpt">
+<meta name="description" content="最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子
+花了一段時間以後，突然有所體悟。
+在老闆、主管、工程師都是新手的情況下，
+在一個公司是新創、員工是新手、老闆不懂技術狀況下
+一起合作下去是有一定程度上的難處的。
+這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。
+不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。
+關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。
+但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。
+所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。
+直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。
+當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。
+舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。
+這在大公司可以，但是在小公司不行。
+因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。
+小公司一旦賭錯，整個公司都會直接陪進去。
+至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。
+關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。
+這部分都統稱為「文件」
+文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」
+舉個「沒用」的例子
+// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。
+開發過程中留下的文件也一樣。
+寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。
+開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。
+關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。
+至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。
+套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。
+程式碼有幾個注意點：
+註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(&#43;&#43;&#43;&#43;)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="新公司應該要注意的開發觀念" />
+<meta property="og:description" content="最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子
+花了一段時間以後，突然有所體悟。
+在老闆、主管、工程師都是新手的情況下，
+在一個公司是新創、員工是新手、老闆不懂技術狀況下
+一起合作下去是有一定程度上的難處的。
+這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。
+不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。
+關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。
+但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。
+所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。
+直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。
+當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。
+舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。
+這在大公司可以，但是在小公司不行。
+因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。
+小公司一旦賭錯，整個公司都會直接陪進去。
+至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。
+關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。
+這部分都統稱為「文件」
+文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」
+舉個「沒用」的例子
+// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。
+開發過程中留下的文件也一樣。
+寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。
+開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。
+關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。
+至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。
+套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。
+程式碼有幾個注意點：
+註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(&#43;&#43;&#43;&#43;)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-19T17:41:32&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-19T17:41:32&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="新公司應該要注意的開發觀念"/>
+<meta name="twitter:description" content="最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子
+花了一段時間以後，突然有所體悟。
+在老闆、主管、工程師都是新手的情況下，
+在一個公司是新創、員工是新手、老闆不懂技術狀況下
+一起合作下去是有一定程度上的難處的。
+這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。
+不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。
+關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。
+但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。
+所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。
+直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。
+當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。
+舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。
+這在大公司可以，但是在小公司不行。
+因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。
+小公司一旦賭錯，整個公司都會直接陪進去。
+至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。
+關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。
+這部分都統稱為「文件」
+文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」
+舉個「沒用」的例子
+// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。
+開發過程中留下的文件也一樣。
+寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。
+開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。
+關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。
+至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。
+套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。
+程式碼有幾個注意點：
+註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(&#43;&#43;&#43;&#43;)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "新公司應該要注意的開發觀念",
+      "item": "/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "新公司應該要注意的開發觀念",
+  "name": "新公司應該要注意的開發觀念",
+  "description": "最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子\n花了一段時間以後，突然有所體悟。\n在老闆、主管、工程師都是新手的情況下，\n在一個公司是新創、員工是新手、老闆不懂技術狀況下\n一起合作下去是有一定程度上的難處的。\n這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。\n不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。\n關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。\n但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。\n所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。\n直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。\n當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。\n舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。\n這在大公司可以，但是在小公司不行。\n因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。\n小公司一旦賭錯，整個公司都會直接陪進去。\n至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。\n關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。\n這部分都統稱為「文件」\n文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」\n舉個「沒用」的例子\n// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。\n開發過程中留下的文件也一樣。\n寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。\n開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。\n關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。\n至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。\n套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。\n程式碼有幾個注意點：\n註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」",
+  "keywords": [
+    "DevOpt"
+  ],
+  "articleBody": "最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子\n花了一段時間以後，突然有所體悟。\n在老闆、主管、工程師都是新手的情況下，\n在一個公司是新創、員工是新手、老闆不懂技術狀況下\n一起合作下去是有一定程度上的難處的。\n這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。\n不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。\n關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。\n但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。\n所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。\n直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。\n當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。\n舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。\n這在大公司可以，但是在小公司不行。\n因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。\n小公司一旦賭錯，整個公司都會直接陪進去。\n至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。\n關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。\n這部分都統稱為「文件」\n文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」\n舉個「沒用」的例子\n// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。\n開發過程中留下的文件也一樣。\n寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。\n開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。\n關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。\n至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。\n套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。\n程式碼有幾個注意點：\n註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」\n這個概念必須要擴張到所有的產品、文件、記錄上。\n版本控制，重要的是控制，而並非版本。\n這邊說的版控並不是「放到版控系統」這麼簡單的事情。\n而是應該具有透過現行的資訊，判斷出當前使用的版本的能力。\n例如：\n測試production code中的某個bug，應該從主幹上取得最新的版本來進行測試。 要測試release code相關功能，應該從對應的分支取得最新版本來測試。 客戶反映了問題，應該要能透過客戶的版本號來檢查問題是否被處理過。 版本控制有幾個要點：\n沒有用的程式（功能、分支、文件、資料夾、etc.）就不要留，但是刪除的節點記得留下說明。 上版的程式碼一定要有tag 不要取自己的名字當成分支名稱，毫無意義。 git flow要就好好做，不要污染develop。占著茅坑不拉屎。 韌體、前端、移動端、後端、資料庫schema一定要有對應， 而對應只能靠版本號碼，版本號碼只能靠版控或文件。\n後面想到再寫吧。\n一樣舉個例子：\n這家公司的所有，對，是所有。所有的東西都沒有版控。 但是這公司的版控並不具備相關的能力，或者說，工程師並沒有相對應的概念。\n上線的Server程式可能在develop分支、某個feature分支、兩三個版本前的主幹節點都有可能；開發中的硬體可能具備某些功能，也可能不具備，可能修了某些問題，也可能沒修復。族繁不及備載\n其他一些觀察到的狀況 資料庫的使用者、帳號、密碼請設計規範一點，不要寫一堆用戶與資料卻都沒有用到。\n對於不熟悉的東西不要亂改，去隨便設定防火牆或是更換預設IP, Port, etc.的設定。\n如果為了安全性要進行修改，就把整套的功能都研究完再來處理。\n情境：\n遇到電信公司改IP，結果無法登入遠端機器。最後發現不只在管理區有擋，還在遠端機器內部寫死允許連線的IP。而且沒有留下文件 Jenkins的自動建制，因為Gitlab的port改過了，但是沒有去修改其他服務的對應port，所以CD自動壞掉。 ",
+  "wordCount" : "102",
+  "inLanguage": "en",
+  "datePublished": "2022-06-19T17:41:32+08:00",
+  "dateModified": "2022-06-19T17:41:32+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Insidehand",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Insidehand (Alt + H)">Insidehand</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="/tw/" title="Taiwanese"
+                            aria-label="Taiwanese">Tw</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search/" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="/">Home</a></div>
+    <h1 class="post-title">
+      新公司應該要注意的開發觀念
+    </h1>
+    <div class="post-meta"><span title='2022-06-19 17:41:32 +0800 CST'>June 19, 2022</span>&nbsp;·&nbsp;1 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%97%9c%e6%96%bc%e7%94%a2%e5%93%81" aria-label="關於產品">關於產品</a></li>
+                <li>
+                    <a href="#%e9%97%9c%e6%96%bc%e6%96%87%e4%bb%b6" aria-label="關於文件">關於文件</a></li>
+                <li>
+                    <a href="#%e9%97%9c%e6%96%bc%e7%a8%8b%e5%bc%8f%e7%a2%bc" aria-label="關於程式碼">關於程式碼</a></li>
+                <li>
+                    <a href="#%e9%97%9c%e6%96%bc%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" aria-label="關於版本控制">關於版本控制</a></li>
+                <li>
+                    <a href="#%e5%85%b6%e4%bb%96%e4%b8%80%e4%ba%9b%e8%a7%80%e5%af%9f%e5%88%b0%e7%9a%84%e7%8b%80%e6%b3%81" aria-label="其他一些觀察到的狀況">其他一些觀察到的狀況</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子</p>
+<p>花了一段時間以後，突然有所體悟。</p>
+<p>在老闆、主管、工程師都是新手的情況下，</p>
+<p><del>在一個公司是新創、員工是新手、老闆不懂技術狀況下</del></p>
+<p>一起合作下去是有一定程度上的難處的。</p>
+<p>這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。
+也希望這些資料可以對其他人產生幫助。</p>
+<p>不過這邊都是以工程師的角度出發，
+對於一個資方要怎麼面對勞方我就沒輒了啊。</p>
+<h2 id="關於產品">關於產品<a hidden class="anchor" aria-hidden="true" href="#關於產品">#</a></h2>
+<p>工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。
+能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。</p>
+<p>但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。
+工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。</p>
+<p>所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。</p>
+<p>直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。</p>
+<p>當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。
+有些規劃還是要由工程師來完成的。</p>
+<p>舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。
+包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。</p>
+<p>這在大公司可以，但是在小公司不行。</p>
+<p>因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。</p>
+<p>小公司一旦賭錯，整個公司都會直接陪進去。</p>
+<p>至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。</p>
+<hr>
+<h2 id="關於文件">關於文件<a hidden class="anchor" aria-hidden="true" href="#關於文件">#</a></h2>
+<p>所有產品、功能在具現化的過程都是不斷地溝通討論。
+產品在具現化的過程中必須要留下一些資料。
+基本的就是研究數據、使用情境、開發環境。</p>
+<p>這部分都統稱為「文件」</p>
+<p>文件的撰寫與程式碼的註解基本保持一個原則：
+「不要告訴我What，告訴我Why。」</p>
+<p>舉個「沒用」的例子</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色</span>
+</span></span><span class="line"><span class="cl"><span class="n">view</span><span class="p">.</span><span class="n">background</span> <span class="p">=</span> <span class="n">someCondition</span> <span class="p">?</span> <span class="p">.</span><span class="n">black</span> <span class="p">:</span> <span class="p">.</span><span class="n">blue</span>
+</span></span></code></pre></div><p>這種註解，不寫會更好。因為程式碼就能看得出來。
+程式碼看不出來的是：「為什麼是藍色跟黑色」。</p>
+<p>開發過程中留下的文件也一樣。</p>
+<p>寫下「<strong>為什麼這樣寫</strong>」比起「<strong>這裡寫了什麼</strong>」更為重要。</p>
+<blockquote>
+<p>開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。
+但至少這功能想表達什麼要寫個文件。</p>
+</blockquote>
+<h2 id="關於程式碼">關於程式碼<a hidden class="anchor" aria-hidden="true" href="#關於程式碼">#</a></h2>
+<p>對於程式碼來說，一定要有一套<code>Coding Style</code>的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。</p>
+<p>至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。</p>
+<p>套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。</p>
+<p>程式碼有幾個注意點：</p>
+<ul>
+<li>註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。</li>
+<li>IDE自動產生的註解記得拿掉，例如說前人有很多的<code>TODO: //Auto generate method stub</code>留在那邊，不知道為什麼。</li>
+<li>不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。</li>
+<li>變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西</li>
+<li>不要在程式碼裡面留下常數，全部都請拿去定義。
+<ul>
+<li>3.14請定義成pi</li>
+<li>errorCode請定義成有意義的名稱</li>
+</ul>
+</li>
+</ul>
+<h2 id="關於版本控制">關於版本控制<a hidden class="anchor" aria-hidden="true" href="#關於版本控制">#</a></h2>
+<p>版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」</p>
+<p>這個概念必須要擴張到所有的產品、文件、記錄上。</p>
+<p>版本控制，重要的是控制，而並非版本。</p>
+<p>這邊說的版控並不是「放到版控系統」這麼簡單的事情。</p>
+<p>而是應該具有<strong>透過現行的資訊，判斷出當前使用的版本</strong>的能力。</p>
+<p>例如：</p>
+<ul>
+<li>測試<code>production code</code>中的某個bug，應該從主幹上取得最新的版本來進行測試。</li>
+<li>要測試<code>release code</code>相關功能，應該從對應的分支取得最新版本來測試。</li>
+<li>客戶反映了問題，應該要能透過客戶的版本號來檢查問題是否被處理過。</li>
+</ul>
+<p>版本控制有幾個要點：</p>
+<ul>
+<li>沒有用的程式（功能、分支、文件、資料夾、etc.）就不要留，但是刪除的節點記得留下說明。</li>
+<li>上版的程式碼一定要有tag</li>
+<li>不要取自己的名字當成分支名稱，毫無意義。</li>
+<li>git flow要就好好做，不要污染develop。占著茅坑不拉屎。</li>
+</ul>
+<blockquote>
+<p>韌體、前端、移動端、後端、資料庫schema一定要有對應，
+而對應只能靠版本號碼，版本號碼只能靠版控或文件。</p>
+</blockquote>
+<p>後面想到再寫吧。</p>
+<p>一樣舉個例子：</p>
+<p>這家公司的<strong>所有，對，是所有</strong>。所有的東西都沒有版控。
+但是這公司的版控並不具備相關的能力，或者說，工程師並沒有相對應的概念。</p>
+<p>上線的Server程式可能在develop分支、某個feature分支、兩三個版本前的主幹節點都有可能；開發中的硬體可能具備某些功能，也可能不具備，可能修了某些問題，也可能沒修復。<del>族繁不及備載</del></p>
+<h2 id="其他一些觀察到的狀況">其他一些觀察到的狀況<a hidden class="anchor" aria-hidden="true" href="#其他一些觀察到的狀況">#</a></h2>
+<ul>
+<li>
+<p>資料庫的使用者、帳號、密碼請設計規範一點，不要寫一堆用戶與資料卻都沒有用到。</p>
+</li>
+<li>
+<p>對於不熟悉的東西不要亂改，去隨便設定防火牆或是更換預設IP, Port, etc.的設定。</p>
+</li>
+</ul>
+<blockquote>
+<p>如果為了安全性要進行修改，就把整套的功能都研究完再來處理。</p>
+</blockquote>
+<p>情境：</p>
+<ul>
+<li>遇到電信公司改IP，結果無法登入遠端機器。最後發現不只在管理區有擋，還在遠端機器內部寫死允許連線的IP。而且沒有留下文件</li>
+<li>Jenkins的自動建制，因為Gitlab的port改過了，但是沒有去修改其他服務的對應port，所以CD自動壞掉。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/devopt/">DevOpt</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Insidehand</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

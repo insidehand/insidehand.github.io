@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>關於GCD的一些筆記-1 | Insidehand</title>
+<meta name="keywords" content="iOS, GCD">
+<meta name="description" content="關於GCD的一些筆記">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="關於GCD的一些筆記-1" />
+<meta property="og:description" content="關於GCD的一些筆記" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-29T19:18:33&#43;08:00" />
+<meta property="article:modified_time" content="2020-06-29T19:18:33&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="關於GCD的一些筆記-1"/>
+<meta name="twitter:description" content="關於GCD的一些筆記"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "關於GCD的一些筆記-1",
+      "item": "/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "關於GCD的一些筆記-1",
+  "name": "關於GCD的一些筆記-1",
+  "description": "關於GCD的一些筆記",
+  "keywords": [
+    "iOS", "GCD"
+  ],
+  "articleBody": "關於GCD 什麼是GCD？GCD的全名為Grand Central Dispatch\n基本上就是執行緒管理中心。用比較不嚴謹的敘述來說的話，它就是幫助你處理多執行緒的管理器。 利用GCD，可以很方便地操控各種需要多執行緒的情境\nGCD的運作原理 這邊姑且先不討論程式面的東西，先從抽象一點的地方來看。\n基本上來說，GCD掌控了Queue，而Queue包含了Work Item，最後WorkItem就是要執行的Closure\nQueue Queue可以被翻成「佇列」，但是看了翻譯還是不知道是什麼意思。\n可以想像成是去看電影的時候排隊的人潮，隊伍本身就是Queue。\n先排進去的人，就可以先買票。這就是 FIFO ( First In First Out ) 的概念。\nQueue裡面放的是WorkItem，用買票的例子來解釋的話，就是你要買哪場的票這件事。\nQueue又有分Serial跟Concurrent兩種\nSerial：就是一次只執行一個WorkItem，在這個WorkItem還沒執行完之前，不會取下一個來執行。\nConcurrent：自然就是相對於Serial，當第一個WorkItem被取出後，並不會等這個WorkItem被執行完，就接著取出下一個WorkItem，一直到這個Queue中所有WorkItem被拿出來執行為止（或是你吃光了所有系統可分配的Thread，也會被暫停）\n講完了Queue的類型，再來就是Queue要怎麼執行WorkItem\n這部分就分為 Sync（同步）跟Async（非同步） 兩種\nSync：\n當前的Queue會被擋住，不能往下執行，等待WorkItem被執行完以後，才會繼續往下執行。在這個時間點中只有一個Queue可以運作。\n所以在用sync方法的時候一定要非常小心一個重點\n如果當前的執行中的Queue是Serial，而且你又要拿來做sync的動作的話，就會造成Deadlock\n舉個例子，下面這段程式如果用Main Queue來執行，就永遠不會執行到print\nDispatchQueue.main.sync { print(\"never execute here\") } 發生的原因很簡單，因為當系統執行到DispatchQueue.main.sync這段的時候，系統就知道「阿，要塞住當前的Queue」也就是MainQueue，然後又叫MainQueue去做事。但是這時候Main Queue已經被塞住了，又怎麼能去print呢？\nAsync：非同步代表的是它不會塞住當前的執行緒 所以當Queue用非同步去執行WorkItem的時候，系統會開一條新的Thread去執行這個WorkItem，然後就繼續往下執行。\n非同步程式可以保證當前的Thread執行不會被卡住，因為都會開一個新的Thread去執行WorkItem。但是非同步程式常常會遇到的就是他不會有返回值，所以很容易出現Callback Hell的狀況。不過這不是本篇要講的重點，後面寫PromiseKit或RxSwift的時候再說。\n舉幾個例子，這可以直接貼到Playground裡面來執行\nfunc syncDemo() { print(\"do something before sync\") DispatchQueue.global().sync { for _ in 0...5 { print(\"sync\") } } print(\"do something after sync\") } syncDemo() 結果是比較顯而易見的，就跟程式執行順序一致。\ndo something before sync sync sync sync sync sync sync do something after sync 那麼用差不多的架構，只不過把sync換成async的話，會怎麼樣的？\nfunc asyncDemo() { print(\"do something before async\") DispatchQueue.global().async { // \u003c-- 注意這裡是async for _ in 0...5 { print(\"async\") } } print(\"do something after async\") } asyncDemo() 這邊就差很多了。\n因為是另外開執行緒去做事，所以跟看到的結果就會有明顯差異\ndo something before async do something after async async async async async async async 所以關於怎麼挑選自己要用的Queue，就可以從這四個裡面去兜出來。\n具體的挑選就看自己的情境來決定。\n本來還要寫一些DispatchGroup、訊號機等筆記的，但是寫的有點煩了。\n要改的東西太多了，那麼就改天吧。\n",
+  "wordCount" : "134",
+  "inLanguage": "en",
+  "datePublished": "2020-06-29T19:18:33+08:00",
+  "dateModified": "2020-06-29T19:18:33+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Insidehand",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Insidehand (Alt + H)">Insidehand</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="/tw/" title="Taiwanese"
+                            aria-label="Taiwanese">Tw</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search/" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="/">Home</a></div>
+    <h1 class="post-title">
+      關於GCD的一些筆記-1
+    </h1>
+    <div class="post-meta"><span title='2020-06-29 19:18:33 +0800 CST'>June 29, 2020</span>&nbsp;·&nbsp;1 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%97%9c%e6%96%bcgcd" aria-label="關於GCD">關於GCD</a></li>
+                <li>
+                    <a href="#gcd%e7%9a%84%e9%81%8b%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="GCD的運作原理">GCD的運作原理</a><ul>
+                        
+                <li>
+                    <a href="#queue" aria-label="Queue">Queue</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="關於gcd">關於GCD<a hidden class="anchor" aria-hidden="true" href="#關於gcd">#</a></h2>
+<p>什麼是GCD？GCD的全名為<strong>Grand Central Dispatch</strong></p>
+<p>基本上就是執行緒管理中心。用比較不嚴謹的敘述來說的話，它就是幫助你處理多執行緒的管理器。
+利用GCD，可以很方便地操控各種需要多執行緒的情境</p>
+<h2 id="gcd的運作原理">GCD的運作原理<a hidden class="anchor" aria-hidden="true" href="#gcd的運作原理">#</a></h2>
+<blockquote>
+<p>這邊姑且先不討論程式面的東西，先從抽象一點的地方來看。</p>
+</blockquote>
+<p>基本上來說，GCD掌控了Queue，而Queue包含了Work Item，最後WorkItem就是要執行的Closure</p>
+<h3 id="queue">Queue<a hidden class="anchor" aria-hidden="true" href="#queue">#</a></h3>
+<p>Queue可以被翻成「佇列」，但是看了翻譯還是不知道是什麼意思。</p>
+<p>可以想像成是去看電影的時候排隊的人潮，隊伍本身就是<strong>Queue</strong>。</p>
+<p>先排進去的人，就可以先買票。這就是 <strong>FIFO ( First In First Out )</strong> 的概念。</p>
+<p>Queue裡面放的是<strong>WorkItem</strong>，用買票的例子來解釋的話，就是<strong>你要買哪場的票</strong>這件事。</p>
+<p>Queue又有分<strong>Serial</strong>跟<strong>Concurrent</strong>兩種</p>
+<p><strong>Serial</strong>：就是一次只執行一個WorkItem，在這個WorkItem還沒執行完之前，不會取下一個來執行。</p>
+<p><strong>Concurrent</strong>：自然就是相對於Serial，當第一個WorkItem被取出後，並不會等這個WorkItem被執行完，就接著取出下一個WorkItem，一直到這個Queue中所有WorkItem被拿出來執行為止（或是你吃光了所有系統可分配的Thread，也會被暫停）</p>
+<hr>
+<p>講完了Queue的類型，再來就是Queue要<strong>怎麼執行WorkItem</strong></p>
+<p>這部分就分為 <strong>Sync（同步）<strong>跟</strong>Async（非同步）</strong> 兩種</p>
+<p><strong>Sync</strong>：</p>
+<p>當前的Queue會被擋住，不能往下執行，等待WorkItem被執行完以後，才會繼續往下執行。在這個時間點中只有一個Queue可以運作。</p>
+<p>所以在用sync方法的時候一定要非常小心一個重點</p>
+<p><strong>如果當前的執行中的Queue是Serial，而且你又要拿來做sync的動作的話，就會造成Deadlock</strong></p>
+<p>舉個例子，下面這段程式如果用Main Queue來執行，就永遠不會執行到<code>print</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="bp">print</span><span class="p">(</span><span class="s">&#34;never execute here&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>發生的原因很簡單，因為當系統執行到<code>DispatchQueue.main.sync</code>這段的時候，系統就知道「阿，要塞住當前的Queue」也就是MainQueue，然後又叫MainQueue去做事。但是這時候Main Queue已經被塞住了，又怎麼能去print呢？</p>
+<p><strong>Async</strong>：非同步代表的是它<strong>不會塞住當前的執行緒</strong>
+所以當Queue用非同步去執行WorkItem的時候，系統會開一條新的Thread去執行這個WorkItem，然後就繼續往下執行。</p>
+<p>非同步程式可以保證當前的Thread執行不會被卡住，因為都會開一個新的Thread去執行WorkItem。但是非同步程式常常會遇到的就是他不會有返回值，所以很容易出現<code>Callback Hell</code>的狀況。不過這不是本篇要講的重點，後面寫<code>PromiseKit</code>或<code>RxSwift</code>的時候再說。</p>
+<p>舉幾個例子，這可以直接貼到Playground裡面來執行</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">syncDemo</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;do something before sync&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">global</span><span class="p">().</span><span class="n">sync</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">5</span> <span class="p">{</span> <span class="bp">print</span><span class="p">(</span><span class="s">&#34;sync&#34;</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;do something after sync&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">syncDemo</span><span class="p">()</span>
+</span></span></code></pre></div><p>結果是比較顯而易見的，就跟程式執行順序一致。</p>
+<pre tabindex="0"><code>do something before sync
+sync
+sync
+sync
+sync
+sync
+sync
+do something after sync
+</code></pre><p>那麼用差不多的架構，只不過把sync換成async的話，會怎麼樣的？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">asyncDemo</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;do something before async&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">global</span><span class="p">().</span><span class="n">async</span> <span class="p">{</span>       <span class="c1">// &lt;-- 注意這裡是async</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">5</span> <span class="p">{</span> <span class="bp">print</span><span class="p">(</span><span class="s">&#34;async&#34;</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;do something after async&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">asyncDemo</span><span class="p">()</span>
+</span></span></code></pre></div><p>這邊就差很多了。</p>
+<p>因為是另外開執行緒去做事，所以跟看到的結果就會有明顯差異</p>
+<pre tabindex="0"><code>do something before async
+do something after async
+async
+async
+async
+async
+async
+async
+</code></pre><p>所以關於怎麼挑選自己要用的Queue，就可以從這四個裡面去兜出來。</p>
+<p>具體的挑選就看自己的情境來決定。</p>
+<p>本來還要寫一些DispatchGroup、訊號機等筆記的，但是寫的有點煩了。</p>
+<blockquote>
+<p>要改的東西太多了，那麼就改天吧。</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/ios/">iOS</a></li>
+      <li><a href="/tags/gcd/">GCD</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Insidehand</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

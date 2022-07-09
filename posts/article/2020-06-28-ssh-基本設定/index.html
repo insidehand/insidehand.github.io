@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>SSH 基本設定 | Insidehand</title>
+<meta name="keywords" content="ssh">
+<meta name="description" content="ssh到GitHub的時候，使用私鑰進行驗證">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="SSH 基本設定" />
+<meta property="og:description" content="ssh到GitHub的時候，使用私鑰進行驗證" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-28T18:34:47&#43;08:00" />
+<meta property="article:modified_time" content="2020-06-28T18:34:47&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SSH 基本設定"/>
+<meta name="twitter:description" content="ssh到GitHub的時候，使用私鑰進行驗證"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "SSH 基本設定",
+      "item": "/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SSH 基本設定",
+  "name": "SSH 基本設定",
+  "description": "ssh到GitHub的時候，使用私鑰進行驗證",
+  "keywords": [
+    "ssh"
+  ],
+  "articleBody": "最近電腦爆了，懷疑應該是副廠的線造成的問題，\n看樣子東西真的不能買便宜的（？\n剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了…\n之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。\n身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。\n正文開始\nssh到GitHub的時候，使用私鑰進行驗證 具體步驟大概分為\n產生rsa的公私鑰 設定ssh的config （optional） 登入Github並且加入剛剛產生的公鑰 （手動） 測試連線 產生rsa的公私鑰 ssh-keygen 過程中會問兩個問題\n產生的公私鑰要放的位置 設定密碼 ( passphrase ) 公私鑰的位置如果直接按Return的話，就會存在預設的位置。\n預設位置為：/Users/username/.ssh/id_rsa\n這邊的username請自行修改成你的帳號，不是真的路徑喔…\n不然也可以自行輸入要存放的位置，例如：\n/Users/username/.ssh/rsa-for-github\n不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字\n密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。\n如果輸入密碼的話就每次使用ssh連接時都需要打密碼。\n這部分我就沒特別研究了，有需要的請自行研究。\n完成以後會產生一組公私鑰檔案，例如\nrsa-for-github.pub and rsa-for-github\n沒有.pub的檔案就是私鑰，請好好保管。\n設定ssh的config 如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧\n用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，\n減少私鑰遺失後全部都被攻破的風險。\n缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。\n因為預設的ssh會去讀id_rsa作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。\n基本上我常用的大概就幾個\nHost # 用來連線的 alias 名稱 HostName # host domain 或 ip Port # host 的 SSH port IdentityFile # 私鑰位置 User # 登入帳號 舉幾個例子：\n# Github Host github.com HostName github.com IdentityFile ~/.ssh/rsa_for_github User git # Raspberry # 因為我有買樹莓派回來玩，如果不用這樣登入的話，每次都是要打帳號密碼，很煩。 Host raspbian HostName 192.168.1.123 IdentityFile ~/.ssh/rsa_for_rpi User pi 登入Github並且加入剛剛產生的公鑰 可以先用cat指令來顯示公鑰內容，然後再把公鑰貼到Github的SSH Key欄位中\n這邊比較簡單就放三張圖自己研究一下就夠了。\n這邊補充一下，如果要用命令將公鑰加入到目標server中的話（例如樹莓派）可以用以下的命令來執行。\n不確定能不能用命令把公鑰加入到Github中，這部分沒特別研究。\n# 語法： ssh-copy-id user@host # 如果不是用預設的名稱，就要加入參數 i，用來指定IdentityFile ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub user@host # 範例 ssh-copy-id pi@192.168.1.123 ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub pi@192.168.1.123 測試連線 根據Github的線上文件，只要透過下面這行命令即可\nssh -T git@github.com 只要最後出現的是下面這樣就算成功了，至於沒出現的話，就看看有哪些地方做錯了吧。\n\u003e Hi username! You've successfully authenticated, but GitHub does not \u003e provide shell access. 參考網頁 https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/\nhttps://xenby.com/b/220-教學-產生ssh-key並且透過key進行免密碼登入\nhttps://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection\n",
+  "wordCount" : "138",
+  "inLanguage": "en",
+  "datePublished": "2020-06-28T18:34:47+08:00",
+  "dateModified": "2020-06-28T18:34:47+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Insidehand",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Insidehand (Alt + H)">Insidehand</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="/tw/" title="Taiwanese"
+                            aria-label="Taiwanese">Tw</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search/" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="/">Home</a></div>
+    <h1 class="post-title">
+      SSH 基本設定
+    </h1>
+    <div class="post-meta"><span title='2020-06-28 18:34:47 +0800 CST'>June 28, 2020</span>&nbsp;·&nbsp;1 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#ssh%e5%88%b0github%e7%9a%84%e6%99%82%e5%80%99%e4%bd%bf%e7%94%a8%e7%a7%81%e9%91%b0%e9%80%b2%e8%a1%8c%e9%a9%97%e8%ad%89" aria-label="ssh到GitHub的時候，使用私鑰進行驗證">ssh到GitHub的時候，使用私鑰進行驗證</a><ul>
+                        
+                <li>
+                    <a href="#%e7%94%a2%e7%94%9frsa%e7%9a%84%e5%85%ac%e7%a7%81%e9%91%b0" aria-label="產生rsa的公私鑰">產生rsa的公私鑰</a></li>
+                <li>
+                    <a href="#%e8%a8%ad%e5%ae%9assh%e7%9a%84config" aria-label="設定ssh的config">設定ssh的config</a></li>
+                <li>
+                    <a href="#%e7%99%bb%e5%85%a5github%e4%b8%a6%e4%b8%94%e5%8a%a0%e5%85%a5%e5%89%9b%e5%89%9b%e7%94%a2%e7%94%9f%e7%9a%84%e5%85%ac%e9%91%b0" aria-label="登入Github並且加入剛剛產生的公鑰">登入Github並且加入剛剛產生的公鑰</a></li>
+                <li>
+                    <a href="#%e6%b8%ac%e8%a9%a6%e9%80%a3%e7%b7%9a" aria-label="測試連線">測試連線</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8f%83%e8%80%83%e7%b6%b2%e9%a0%81" aria-label="參考網頁">參考網頁</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>最近電腦爆了，懷疑應該是副廠的線造成的問題，</p>
+<p>看樣子東西真的不能買便宜的（？</p>
+<p>剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;</p>
+<p>之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。</p>
+<blockquote>
+<p>身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。</p>
+</blockquote>
+<p>正文開始</p>
+<hr>
+<h2 id="ssh到github的時候使用私鑰進行驗證">ssh到GitHub的時候，使用私鑰進行驗證<a hidden class="anchor" aria-hidden="true" href="#ssh到github的時候使用私鑰進行驗證">#</a></h2>
+<p>具體步驟大概分為</p>
+<ol>
+<li><a href="#%E7%94%A2%E7%94%9Frsa%E7%9A%84%E5%85%AC%E7%A7%81%E9%91%B0">產生rsa的公私鑰</a></li>
+<li><a href="#%E8%A8%AD%E5%AE%9Assh%E7%9A%84config">設定ssh的config</a> （optional）</li>
+<li><a href="#%E7%99%BB%E5%85%A5Github%E4%B8%A6%E4%B8%94%E5%8A%A0%E5%85%A5%E5%89%9B%E5%89%9B%E7%94%A2%E7%94%9F%E7%9A%84%E5%85%AC%E9%91%B0">登入Github並且加入剛剛產生的公鑰</a> （手動）</li>
+<li><a href="#%E6%B8%AC%E8%A9%A6%E9%80%A3%E7%B7%9A">測試連線</a></li>
+</ol>
+<hr>
+<h3 id="產生rsa的公私鑰">產生rsa的公私鑰<a hidden class="anchor" aria-hidden="true" href="#產生rsa的公私鑰">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh-keygen
+</span></span></code></pre></div><p>過程中會問兩個問題</p>
+<ol>
+<li>產生的公私鑰要放的位置</li>
+<li>設定密碼 ( passphrase )</li>
+</ol>
+<p>公私鑰的位置如果直接按Return的話，就會存在預設的位置。</p>
+<p>預設位置為：<code>/Users/username/.ssh/id_rsa</code></p>
+<blockquote>
+<p>這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;</p>
+</blockquote>
+<p>不然也可以自行輸入要存放的位置，例如：</p>
+<p><code>/Users/username/.ssh/rsa-for-github</code></p>
+<blockquote>
+<p>不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字</p>
+</blockquote>
+<p>密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。</p>
+<p>如果輸入密碼的話就每次使用ssh連接時都需要打密碼。</p>
+<p>這部分我就沒特別研究了，有需要的請自行研究。</p>
+<p>完成以後會產生一組公私鑰檔案，例如</p>
+<p><code>rsa-for-github.pub</code> and <code>rsa-for-github</code></p>
+<blockquote>
+<p>沒有<code>.pub</code>的檔案就是私鑰，請好好保管。</p>
+</blockquote>
+<hr>
+<h3 id="設定ssh的config">設定ssh的config<a hidden class="anchor" aria-hidden="true" href="#設定ssh的config">#</a></h3>
+<p>如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧</p>
+<p>用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，</p>
+<p>減少私鑰遺失後全部都被攻破的風險。</p>
+<p>缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。</p>
+<p>因為預設的ssh會去讀<code>id_rsa</code>作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。</p>
+<p>基本上我常用的大概就幾個</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Host         <span class="c1"># 用來連線的 alias 名稱</span>
+</span></span><span class="line"><span class="cl">HostName     <span class="c1"># host domain 或 ip</span>
+</span></span><span class="line"><span class="cl">Port         <span class="c1"># host 的 SSH port</span>
+</span></span><span class="line"><span class="cl">IdentityFile <span class="c1"># 私鑰位置</span>
+</span></span><span class="line"><span class="cl">User         <span class="c1"># 登入帳號</span>
+</span></span></code></pre></div><p>舉幾個例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Github</span>
+</span></span><span class="line"><span class="cl">Host github.com
+</span></span><span class="line"><span class="cl">HostName github.com
+</span></span><span class="line"><span class="cl">IdentityFile ~/.ssh/rsa_for_github
+</span></span><span class="line"><span class="cl">User git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Raspberry</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 因為我有買樹莓派回來玩，如果不用這樣登入的話，每次都是要打帳號密碼，很煩。</span>
+</span></span><span class="line"><span class="cl">Host raspbian
+</span></span><span class="line"><span class="cl">HostName 192.168.1.123
+</span></span><span class="line"><span class="cl">IdentityFile ~/.ssh/rsa_for_rpi
+</span></span><span class="line"><span class="cl">User pi
+</span></span></code></pre></div><hr>
+<h3 id="登入github並且加入剛剛產生的公鑰">登入Github並且加入剛剛產生的公鑰<a hidden class="anchor" aria-hidden="true" href="#登入github並且加入剛剛產生的公鑰">#</a></h3>
+<p>可以先用<code>cat</code>指令來顯示公鑰內容，然後再把公鑰貼到Github的SSH Key欄位中</p>
+<p><img loading="lazy" src="/github-setting-ssh-step-1.png" alt="image"  />
+</p>
+<p><img loading="lazy" src="/github-setting-ssh-step-2.png" alt="image"  />
+</p>
+<p><img loading="lazy" src="/github-setting-ssh-step-3.png" alt="image"  />
+</p>
+<p>這邊比較簡單就放三張圖自己研究一下就夠了。</p>
+<p>這邊補充一下，如果要用命令將公鑰加入到目標server中的話（例如樹莓派）可以用以下的命令來執行。</p>
+<p>不確定能不能用命令把公鑰加入到Github中，這部分沒特別研究。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 語法：</span>
+</span></span><span class="line"><span class="cl">ssh-copy-id user@host
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果不是用預設的名稱，就要加入參數 i，用來指定IdentityFile</span>
+</span></span><span class="line"><span class="cl">ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub user@host
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 範例</span>
+</span></span><span class="line"><span class="cl">ssh-copy-id pi@192.168.1.123
+</span></span><span class="line"><span class="cl">ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub pi@192.168.1.123
+</span></span></code></pre></div><hr>
+<h3 id="測試連線">測試連線<a hidden class="anchor" aria-hidden="true" href="#測試連線">#</a></h3>
+<p>根據Github的<a href="https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection">線上文件</a>，只要透過下面這行命令即可</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh -T git@github.com
+</span></span></code></pre></div><p>只要最後出現的是下面這樣就算成功了，至於沒出現的話，就看看有哪些地方做錯了吧。</p>
+<pre tabindex="0"><code>&gt; Hi username! You&#39;ve successfully authenticated, but GitHub does not
+&gt; provide shell access.
+</code></pre><h2 id="參考網頁">參考網頁<a hidden class="anchor" aria-hidden="true" href="#參考網頁">#</a></h2>
+<p><a href="">https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/</a></p>
+<p><a href="">https://xenby.com/b/220-教學-產生ssh-key並且透過key進行免密碼登入</a></p>
+<p><a href="">https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/ssh/">ssh</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Insidehand</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Kobo Nickel Menu的用法 | Insidehand</title>
+<meta name="keywords" content="kobo">
+<meta name="description" content="如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
+有聽說其他閱讀軟體可以抓但是有點懶得弄。
+後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
+Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
+但是傳資料還是一個痛點。
+經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
+基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
+安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
+流程概略是這樣：
+安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
+進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
+建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
+這邊列一些我覺得比較實用的
+# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Kobo Nickel Menu的用法" />
+<meta property="og:description" content="如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
+有聽說其他閱讀軟體可以抓但是有點懶得弄。
+後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
+Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
+但是傳資料還是一個痛點。
+經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
+基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
+安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
+流程概略是這樣：
+安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
+進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
+建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
+這邊列一些我覺得比較實用的
+# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-11T16:07:08&#43;08:00" />
+<meta property="article:modified_time" content="2021-11-11T16:07:08&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kobo Nickel Menu的用法"/>
+<meta name="twitter:description" content="如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
+有聽說其他閱讀軟體可以抓但是有點懶得弄。
+後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
+Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
+但是傳資料還是一個痛點。
+經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
+基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
+安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
+流程概略是這樣：
+安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
+進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
+建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
+這邊列一些我覺得比較實用的
+# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Kobo Nickel Menu的用法",
+      "item": "/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kobo Nickel Menu的用法",
+  "name": "Kobo Nickel Menu的用法",
+  "description": "如果要用kobo來看txt或是從calibre導入書籍有諸多不便，\n有聽說其他閱讀軟體可以抓但是有點懶得弄。\n後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。\nKoreader\u0008功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。\n但是傳資料還是一個痛點。\n經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。\n基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器\n安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明\n流程概略是這樣：\n安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講\n進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。\n建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考\n這邊列一些我覺得比較實用的\n# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f \u0026#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023\u0026#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts \u0026amp;\u0026amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.",
+  "keywords": [
+    "kobo"
+  ],
+  "articleBody": "如果要用kobo來看txt或是從calibre導入書籍有諸多不便，\n有聽說其他閱讀軟體可以抓但是有點懶得弄。\n後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。\nKoreader\u0008功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。\n但是傳資料還是一個痛點。\n經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。\n基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器\n安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明\n流程概略是這樣：\n安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講\n進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。\n建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考\n這邊列一些我覺得比較實用的\n# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f \"^/usr/bin/tcpsvd -E 0.0.0.0 2023\" chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts \u0026\u0026 /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.0.0.0 2023 /usr/sbin/telnetd -i -l /bin/login chain_success :dbg_toast :Started Telnet server on port 2023 chain_failure :dbg_toast :Error starting Telnet server on port 2023 chain_always:skip:-1 chain_success :dbg_toast :Stopped Telnet server on port 2023 # Open FTP menu_item :main :FTP :cmd_spawn :quiet:/usr/bin/pkill -f \"^/usr/bin/tcpsvd -E 0.0.0.0 1021\" || true \u0026\u0026 exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard chain_success :dbg_toast :Started FTP server for KOBOeReader partition on port 1021. # Show IP menu_item :main :IP Address :cmd_output :500:/sbin/ifconfig | /usr/bin/awk '/inet addr/{print substr($2,6)}' mac端基本設定 這邊是用macOS，但是基於安全性macOS已經移除了telnet這個套件 所以要先安裝telnet，這邊推薦用inetutils，裡面就包含了telnet, FTP等\n安裝語法： brew install inetutils\n安裝完成後就可以用 telnet kobo-reader-ip連線進Kobo了 帳號是root，沒有密碼。 因為是root，各種操作請自行小心！\nOfficial site\n參考連結\n",
+  "wordCount" : "197",
+  "inLanguage": "en",
+  "datePublished": "2021-11-11T16:07:08+08:00",
+  "dateModified": "2021-11-11T16:07:08+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Insidehand",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Insidehand (Alt + H)">Insidehand</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="/tw/" title="Taiwanese"
+                            aria-label="Taiwanese">Tw</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search/" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="/">Home</a></div>
+    <h1 class="post-title">
+      Kobo Nickel Menu的用法
+    </h1>
+    <div class="post-meta"><span title='2021-11-11 16:07:08 +0800 CST'>November 11, 2021</span>&nbsp;·&nbsp;1 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#mac%e7%ab%af%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a" aria-label="mac端基本設定">mac端基本設定</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，</p>
+<p>有聽說其他閱讀軟體可以抓但是有點懶得弄。</p>
+<p>後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。</p>
+<p>Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。</p>
+<p><strong>但是傳資料還是一個痛點。</strong></p>
+<p>經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是<code>Nickel Menu</code>
+這就是本篇的重點。</p>
+<p>基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。
+<a href="https://chiahsien.github.io/post/alternative-kobo-e-reader-koreader-and-plato/">安裝第三方閱讀器</a></p>
+<p>安裝完以後右下角會出現一個<code>Nickel Menu</code>的功能選項，裡面的選項是可以自訂的。下面會說明</p>
+<p>流程概略是這樣：</p>
+<ol>
+<li>安裝第三方閱讀器</li>
+<li>打開KOReader</li>
+<li>在KOReader中打開SSH Server</li>
+<li>連線進Kobo，進到<code>/mnt/onboard/.adds/nm</code>資料夾</li>
+<li>建立一個檔案，檔名自訂，不要加上副檔名<del>不確定加了會怎麼樣，可以自行嘗試，概不負責啊</del></li>
+<li>加入想要的命令</li>
+</ol>
+<p>整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講</p>
+<p>進到<code>/mnt/onboard/.adds/nm</code>這邊後，裡面基本上會有一個doc檔，
+裡面就是文件說明。</p>
+<p>建議可以用<code>cp</code>複製一份以後，直接用<code>vi</code>或是<code>nano</code>來編輯。
+下面有很多的範例可供參考</p>
+<p>這邊列一些我覺得比較實用的</p>
+<pre tabindex="0"><code># Reboot
+menu_item               :main :Reboot :power :reboot
+
+# Refresh library
+menu_item               :main :Import books       :nickel_misc        :rescan_books_full
+
+# Force Wifi On/Off
+menu_item               :main :Force Wi-Fi On (toggle)       :nickel_setting        :toggle:force_wifi
+
+# Toggle Telnet
+menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet :/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&#34;
+  chain_success:skip:5
+    chain_failure                      :cmd_spawn          :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;&amp; /bin/mount -t devpts devpts /dev/pts; }
+    chain_success                      :cmd_spawn          :quiet :exec /usr/bin/tcpsvd -E 0.0.0.0 2023 /usr/sbin/telnetd -i -l /bin/login
+    chain_success                      :dbg_toast          :Started Telnet server on port 2023
+    chain_failure                      :dbg_toast          :Error starting Telnet server on port 2023
+    chain_always:skip:-1
+  chain_success                        :dbg_toast          :Stopped Telnet server on port 2023
+
+# Open FTP
+menu_item               :main    :FTP                :cmd_spawn          :quiet:/usr/bin/pkill -f &#34;^/usr/bin/tcpsvd -E 0.0.0.0 1021&#34; || true &amp;&amp; exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard
+  chain_success                        :dbg_toast          :Started FTP server for KOBOeReader partition on port 1021.
+
+# Show IP
+menu_item               :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk &#39;/inet addr/{print substr($2,6)}&#39;
+</code></pre><h2 id="mac端基本設定">mac端基本設定<a hidden class="anchor" aria-hidden="true" href="#mac端基本設定">#</a></h2>
+<p>這邊是用macOS，但是基於安全性macOS已經移除了<code>telnet</code>這個套件
+所以要先安裝<code>telnet</code>，這邊推薦用<code>inetutils</code>，裡面就包含了<code>telnet, FTP</code>等</p>
+<p>安裝語法：
+<code>brew install inetutils</code></p>
+<p>安裝完成後就可以用 <code>telnet kobo-reader-ip</code>連線進Kobo了
+帳號是<code>root</code>，沒有密碼。
+因為是<code>root</code>，各種操作請自行小心！</p>
+<p><a href="https://pgaskin.net/NickelMenu/">Official site</a></p>
+<p><a href="https://tylpk.blogspot.com/2021/07/nickelmenu.html">參考連結</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/kobo/">kobo</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Insidehand</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

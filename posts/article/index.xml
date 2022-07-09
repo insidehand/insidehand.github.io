@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>文章 on Insidehand</title>
+    <link>/posts/article/</link>
+    <description>Recent content in 文章 on Insidehand</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate><atom:link href="/posts/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新公司應該要注意的開發觀念</title>
+      <link>/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</link>
+      <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
+      
+      <guid>/posts/article/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</guid>
+      <description>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子
+花了一段時間以後，突然有所體悟。
+在老闆、主管、工程師都是新手的情況下，
+在一個公司是新創、員工是新手、老闆不懂技術狀況下
+一起合作下去是有一定程度上的難處的。
+這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。
+不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。
+關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。
+但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。
+所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。
+直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。
+當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。
+舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。
+這在大公司可以，但是在小公司不行。
+因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。
+小公司一旦賭錯，整個公司都會直接陪進去。
+至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。
+關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。
+這部分都統稱為「文件」
+文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」
+舉個「沒用」的例子
+// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。
+開發過程中留下的文件也一樣。
+寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。
+開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。
+關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。
+至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。
+套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。
+程式碼有幾個注意點：
+註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」</description>
+    </item>
+    
+    <item>
+      <title>Kobo Nickel Menu的用法</title>
+      <link>/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
+      
+      <guid>/posts/article/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <description>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
+有聽說其他閱讀軟體可以抓但是有點懶得弄。
+後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
+Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
+但是傳資料還是一個痛點。
+經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
+基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
+安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
+流程概略是這樣：
+安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
+進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
+建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
+這邊列一些我覺得比較實用的
+# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &amp;#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&amp;#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;amp;&amp;amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.</description>
+    </item>
+    
+    <item>
+      <title>Git常用命令筆記</title>
+      <link>/posts/article/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</link>
+      <pubDate>Wed, 10 Nov 2021 23:47:08 +0800</pubDate>
+      
+      <guid>/posts/article/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</guid>
+      <description>Git常用命令筆記</description>
+    </item>
+    
+    <item>
+      <title>如何快速找到Simulator的Document位置</title>
+      <link>/posts/article/2021-11-09-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+      
+      <guid>/posts/article/2021-11-09-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</guid>
+      <description>&lt;h1 id=&#34;如何快速找到simulator的document位置&#34;&gt;如何快速找到Simulator的Document位置&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>另外一種方式的依賴控制</title>
+      <link>/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
+      
+      <guid>/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</guid>
+      <description>什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&amp;gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;amp;&amp;amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」</description>
+    </item>
+    
+    <item>
+      <title>關於GCD的一些筆記-1</title>
+      <link>/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/</link>
+      <pubDate>Mon, 29 Jun 2020 19:18:33 +0800</pubDate>
+      
+      <guid>/posts/article/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/</guid>
+      <description>關於GCD的一些筆記</description>
+    </item>
+    
+    <item>
+      <title>SSH 基本設定</title>
+      <link>/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</link>
+      <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
+      
+      <guid>/posts/article/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</guid>
+      <description>ssh到GitHub的時候，使用私鑰進行驗證</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>/posts/article/2020-06-28-hello-world/</link>
+      <pubDate>Sun, 28 Jun 2020 16:06:07 +0800</pubDate>
+      
+      <guid>/posts/article/2020-06-28-hello-world/</guid>
+      <description>Hello Hugo</description>
+    </item>
+    
+  </channel>
+</rss>

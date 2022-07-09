@@ -78,7 +78,6 @@ struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let 
 
 
 
-
     <meta property="og:title" content="另外一種方式的依賴控制" />
 <meta property="og:description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
 具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
@@ -623,33 +622,17 @@ View1 --&gt; View2 --&gt; View3 --&gt; View4
 
 
     
-      
-        <div id="comments">
-          <div id="disqus_thread"></div>
-<script type="application/javascript">
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "insidehand-github-io" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
-      
-    
 
     
+
+    <script src="https://utteranc.es/client.js"
+        repo="insidehand/insidehand.github.io"
+        issue-term="pathname"
+        label="✨💬✨"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+    </script>
 
   </main>
 

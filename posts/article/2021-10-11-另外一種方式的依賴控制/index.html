@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>另外一種方式的依賴控制 | Insidehand</title>
+<meta name="keywords" content="Swift, Dependency, Global Variable">
+<meta name="description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;&amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="另外一種方式的依賴控制" />
+<meta property="og:description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;&amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-11T17:41:32&#43;08:00" />
+<meta property="article:modified_time" content="2021-10-11T17:41:32&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="另外一種方式的依賴控制"/>
+<meta name="twitter:description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
+具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
+要管理依賴的理由在於給測試一個介入的途徑。
+例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
+struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;&amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
+這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
+傳統的方法有三：
+建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
+換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
+(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "另外一種方式的依賴控制",
+      "item": "/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "另外一種方式的依賴控制",
+  "name": "另外一種方式的依賴控制",
+  "description": "什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴\n具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。\n要管理依賴的理由在於給測試一個介入的途徑。\n例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。\nstruct SantaClausTracker { func isWorking() -\u0026gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 \u0026amp;\u0026amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。\n這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）\n傳統的方法有三：\n建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。\n換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子\n(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」",
+  "keywords": [
+    "Swift", "Dependency", "Global Variable"
+  ],
+  "articleBody": "什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴\n具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。\n要管理依賴的理由在於給測試一個介入的途徑。\n例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。\nstruct SantaClausTracker { func isWorking() -\u003e Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 \u0026\u0026 day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。\n這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）\n傳統的方法有三：\n建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。\n換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子\n(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」\n例如說一個App畫面堆疊是這樣\n先不討論畫面層級太深的問題這可以看一個精彩的影片「至簡暢銷」\ngraph LR View1 --\u003e View2 --\u003e View3 --\u003e View4 今天View4有呼叫API的需要，View2 , 3沒有。 要present View4只能夠過View3（MVC）或是View3的Coordinator（MVVM C） 勢必View2, 3都必須要攜帶一個用不到的物件。\n當今天底層越多，依賴拆分的越細，就中間的層級就容易要傳遞一些用不到的物件。\n久了就不容易維護，不容易維護就等於隱藏的Bug\n以前寫過類似的程式碼，中間傳遞的參數多了，就需要使用DTO來打包，多一層又顯得冗余。\n這時候就看到一個突破天際的想法How to control the World\n強烈建議看影片\n強烈建議看影片\n強烈建議看影片\n先來看看實作，把需要的依賴宣告在一個struct中\nstruct World { var date = { Date() } } 這邊要注意的是並不是透過「方法」來取值，例如說 func getDate() -\u003e Date { ... } 因為方法的實作是不可異動的，本質上還是依賴，只是把依賴集中到一個地方管理。\n也不是直接是一個Date屬性 因為當你存取Current.date時，每次取的都是不一樣的值 如果想要每次都取得同一個時間的話，就做不到這個需求\n當然這邊也可以把這個struct改寫成protocol，然後實作不同的物件來提供不同的測試需要，不過那就是另外一回事了。\n說回正題，當你宣告了這樣的struct，你還需要一個全域的變數\nvar Current = World() 這是一個Singleton！皮諾可，這個直接電死\n別急，這時候這個設計神的地方來了。\n用上面的範例來實作的話就會變這樣\nstruct SantaClusTracker { func isWorking() -\u003e Bool { //暫時先改一個，baby step let today = Current.date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 \u0026\u0026 day == 25 } } 因為Current是一個var，所以裡面的屬性是可以異動的。 因為date是一個回傳Date的function，所以實作內容也是可以異動的\n今天需要測試的時候，可以直接對Current設值。\nfunc test_Date_Is_Christmas_SantaClausTracker_isWorking_should_return_true() throws { /* 3A原則，具體可以參考91的文章或是聽他的課！獲益良多 */ //Arrange let target = SantaClausTracker() Current.date = { let formatter = DateFormatter() formatter.dateFormat = \"yyyy/MM/dd\" return formatter.date(string: \"2021/12/25\")! } //Action let actual = target.isWorking() //Assert let expect = true XCTAssertEqual(actual, expect) } 如此，就算是在其他日子，也能檢查在聖誕節的時候是不是會回傳true\n這邊先討論幾個問題\nSingleton不是不好，為什麼要用？ 為什麼不用介面隔開？ 全域變數很危險，不應該用不是嗎？ Singleton不是不好，為什麼要用？ Singleton並不是不好，不好的話Apple還到處放不是很奇怪？\nURLSession.shared\nUserDefaults.standard\nFileManager.default\nSingleton的問題在於它是一個實體型別，無法被抽象化。也就是無法在測試中被替換。當你今天在程式碼中放了URLSession.shared以後，就註定了他一定會去走真實的網路（用intercepter擋掉另當別論），而沒辦法用MockURLSession來進行替換\n為什麼不用介面隔開？ 在看這個影片之前，我也是用protocol來進行區隔，這也有一個大神的文章可以參考歡迎來到真實世界\n先來談談如果用介面隔開URLSession，要做多少動作？\n製作一個介面URLSessionProtocol，方法簽章要跟URLSession中要呼叫的方法一致 讓URLSession擴充URLSessionProtocol，因為方法已經存在，所以不用另外實作。 製作一個測試在用的物件MockURLSession，實作介面URLSessionProtocol，裡面不涉及網路存取，直接回傳值。 將原本程式碼呼叫URLSession.shared的地方全部抽換掉 在測試中將MockURLSession注入到測試目標中 首先，這個做法對程式碼改動幅度比較大，當早期沒做，後面要抽換的時候改動幅度就會很大，也是存在風險。\n其次，如果介面裡面的方法開始變多以後，一個新的Mock物件實作起來不容易。\n例如說一個資料庫存取介面，有四個方法CRUD\n那麼建立一個新的Mock物件就要實作四個方法。\n而一個正常的介面方法都不止四個\n全域變數很危險，不應該用不是嗎？ 全域變數的危險之處在於「你不知道什麼時候被改動」\n誠然，設定為變數是存在風險的，但是不應該把Current當成是一個傳遞、暫存參數的地方。而是一個依賴保管區（Production時）、依賴注入區（Develop時）\n說回這個方法\n如果今天要測試使用者登入「成功」與「失敗」的情境\nstruct UserAPIClient { func login(account: String, password: String, complectionHandler: @escaping (Bool) -\u003e Void ) { let url = URL(string: \"API Path\")! // \u003c-- 這裡一定run time error URLSession.shared.dataTask(with: url) { data, _, _ in complectionHandler(data == nil) } } } struct ContentView: View { @State private var loginResult: Bool = false var body: some View { Text(\"Login \\(loginResult ? \"Success\" : \"Failure\")\") .onAppear { UserAPIClient().login(account: \"account\", password: \"password\") { result in loginResult = result } } } } UserAPIClient有一個一定會在run time炸掉的地方，那就是URL(string: \"API Path\")!\n假想這是Server暫時不可用，或是網路斷線的情境吧。\n那這種時候就不用測試了嗎？沒錯！後台修好再叫我\n當然不可能，所以這時候就需要脫離實際環境來測試功能是否正常。\n用protocol的方式來進行脫鉤是這樣實作的\n//1. 定義協議 protocol UserAPIClientProtocol { func login(account: String, password: String, complectionHandler: @escaping (Bool) -\u003e Void ) } //2. 讓原本的物件擴充這個協議 extension UserAPIClient: UserAPIClientProtocol { } //3. 建立測試物件，因為測試情境有「成功」「失敗」，所以回傳值用建構注入 struct MockUserAPIClient: UserAPIClientProtocol { var loginResult: Bool func login(account: String, password: String, complectionHandler: @escaping (Bool) -\u003e Void ) { complectionHandler(loginResult) } } //4. 將原本的型別用介面抽換（呼叫的時候要注入） struct ContentView: View { var userAPIClient: UserAPIClientProtocol @State private var loginResult: Bool = false var body: some View { Text(\"Login \\(loginResult ? \"Success\" : \"Failure\")\") .onAppear { userAPIClient.login(account: \"acc\", password: \"pass\") { result in loginResult = result } } } } //5. 修改呼叫端 struct ContentView_Previews: PreviewProvider { static var previews: some View { ContentView(userAPIClient: MockUserAPIClient(loginResult: true)) } } 如果用World來控制的話，是這個樣子的\nstruct UserAPI { var login = UserAPIClient().login(account:password:complectionHandler:) } struct World { var userAPI = UserAPI() } var Current = World() struct ContentView: View { @State private var loginResult: Bool = false var body: some View { Text(\"Login \\(loginResult ? \"Success\" : \"Failure\")\") .onAppear { Current.userAPI.login(\"account\", \"password\") { result in loginResult = result } } } } //修改呼叫端 struct ContentView_Previews: PreviewProvider { static var previews: some View { //正常不會在這邊修改，這邊只是懶得把資料切乾淨所以放著舉例一下 Current.userAPI.login = { _, _, callback in callback(true) } return ContentView() } } 看起來有點差異，但是好像又差異不大？ 當你再遇到這樣的需求時\ngraph LR View1 --\u003e View2 --\u003e View3 --\u003e View4 View2, 3就不需要攜帶UserAPIClient跑來跑去了\n最重要的是 當你的測試情境需要不同的回傳值時，不再需要像上面的MockUserAPIClient一樣透過各種注入，考慮各種測試情境要呼叫方法時的通用性，而是可以直接針對特定方法改寫方法實作內容。\n參考文章： https://vimeo.com/291588126\nhttps://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k\n",
+  "wordCount" : "536",
+  "inLanguage": "en",
+  "datePublished": "2021-10-11T17:41:32+08:00",
+  "dateModified": "2021-10-11T17:41:32+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/article/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Insidehand",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Insidehand (Alt + H)">Insidehand</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="/tw/" title="Taiwanese"
+                            aria-label="Taiwanese">Tw</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search/" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="/">Home</a></div>
+    <h1 class="post-title">
+      另外一種方式的依賴控制
+    </h1>
+    <div class="post-meta"><span title='2021-10-11 17:41:32 +0800 CST'>October 11, 2021</span>&nbsp;·&nbsp;3 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%bb%80%e9%ba%bc%e6%98%af%e4%be%9d%e8%b3%b4%e7%82%ba%e4%bb%80%e9%ba%bc%e8%a6%81%e7%ae%a1%e7%90%86" aria-label="什麼是依賴，為什麼要管理？">什麼是依賴，為什麼要管理？</a><ul>
+                        
+                <li>
+                    <a href="#singleton%e4%b8%8d%e6%98%af%e4%b8%8d%e5%a5%bd%e7%82%ba%e4%bb%80%e9%ba%bc%e8%a6%81%e7%94%a8" aria-label="Singleton不是不好，為什麼要用？">Singleton不是不好，為什麼要用？</a></li>
+                <li>
+                    <a href="#%e7%82%ba%e4%bb%80%e9%ba%bc%e4%b8%8d%e7%94%a8%e4%bb%8b%e9%9d%a2%e9%9a%94%e9%96%8b" aria-label="為什麼不用介面隔開？">為什麼不用介面隔開？</a></li>
+                <li>
+                    <a href="#%e5%85%a8%e5%9f%9f%e8%ae%8a%e6%95%b8%e5%be%88%e5%8d%b1%e9%9a%aa%e4%b8%8d%e6%87%89%e8%a9%b2%e7%94%a8%e4%b8%8d%e6%98%af%e5%97%8e" aria-label="全域變數很危險，不應該用不是嗎？">全域變數很危險，不應該用不是嗎？</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8f%83%e8%80%83%e6%96%87%e7%ab%a0" aria-label="參考文章：">參考文章：</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="什麼是依賴為什麼要管理">什麼是依賴，為什麼要管理？<a hidden class="anchor" aria-hidden="true" href="#什麼是依賴為什麼要管理">#</a></h2>
+<blockquote>
+<p>任何你不能控制的物件，都是隱藏的依賴</p>
+</blockquote>
+<p>具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。</p>
+<p>要管理依賴的理由在於給測試一個介入的途徑。</p>
+<p>例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">SantaClausTracker</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">isWorking</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">today</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">month</span> <span class="p">=</span> <span class="n">Calendar</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">components</span><span class="p">(.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">day</span> <span class="p">=</span> <span class="n">Calendar</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">components</span><span class="p">(.</span><span class="n">day</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">month</span> <span class="p">==</span> <span class="mi">12</span> <span class="o">&amp;&amp;</span> <span class="n">day</span> <span class="p">==</span> <span class="mi">25</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>顯然，要這個方法回傳<code>true</code>的話，就只能在聖誕節當天進行測試。
+其他日子回傳都是<code>false</code>。</p>
+<p>這個方法裡面有兩個依賴，一個是<code>Date()</code>，另一個則是<code>Calendar.current</code>。
+如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）</p>
+<p>傳統的方法有三：</p>
+<ol>
+<li>建構子注入</li>
+<li>屬性注入</li>
+<li>方法參數注入</li>
+</ol>
+<p>名稱應該足以描述相對應的行為，就不多贅述了。</p>
+<p>換言之，在程式碼中，只要是<code>使用</code>的物件，都要記得可以替換。
+舉個例子</p>
+<pre tabindex="0"><code>(X
+func somefunction() {
+    Date() 
+}
+
+(O
+func somefunction(date: Date) {
+    date 
+}
+
+(X
+func somefunction() {
+    URLSession.share
+}
+
+(🔺
+func somefunction(session: URLSession) {
+    session
+}
+</code></pre><p>那麼，顯然會出現的問題就是「<strong>依賴要怎麼來</strong>」</p>
+<p>例如說一個App畫面堆疊是這樣</p>
+<p><del>先不討論畫面層級太深的問題</del>這可以看一個精彩的影片「<a href="https://www.ted.com/talks/david_pogue_simplicity_sells">至簡暢銷</a>」</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+View1 --&gt; View2 --&gt; View3 --&gt; View4
+</code></pre><p>今天View4有呼叫API的需要，View2 , 3沒有。
+要present View4只能夠過View3（MVC）或是View3的Coordinator（MVVM C）
+勢必View2, 3都必須要攜帶一個用不到的物件。</p>
+<p>當今天底層越多，依賴拆分的越細，就中間的層級就容易要傳遞一些用不到的物件。</p>
+<p><strong>久了就不容易維護，不容易維護就等於隱藏的Bug</strong></p>
+<p>以前寫過類似的程式碼，中間傳遞的參數多了，就需要使用DTO來打包，多一層又顯得冗余。</p>
+<p>這時候就看到一個突破天際的想法<a href="https://vimeo.com/291588126">How to control the World</a></p>
+<p><strong>強烈建議看影片</strong></p>
+<p><strong>強烈建議看影片</strong></p>
+<p><strong>強烈建議看影片</strong></p>
+<p>先來看看實作，把需要的依賴宣告在一個struct中</p>
+<pre tabindex="0"><code>struct World {
+  var date = { Date() }
+}
+</code></pre><blockquote>
+<p>這邊要注意的是並不是透過「方法」來取值，例如說
+<code>func getDate() -&gt; Date { ... }</code>
+因為方法的實作是不可異動的，本質上還是依賴，只是把依賴集中到一個地方管理。</p>
+<p>也不是直接是一個Date屬性
+因為當你存取Current.date時，每次取的都是不一樣的值
+如果想要每次都取得同一個時間的話，就做不到這個需求</p>
+<p>當然這邊也可以把這個<code>struct</code>改寫成<code>protocol</code>，然後實作不同的物件來提供不同的測試需要，不過那就是另外一回事了。</p>
+</blockquote>
+<p>說回正題，當你宣告了這樣的<code>struct</code>，你還需要一個<strong>全域</strong>的<strong>變數</strong></p>
+<pre tabindex="0"><code>var Current = World()
+</code></pre><blockquote>
+<p>這是一個<code>Singleton</code>！<del>皮諾可，這個直接電死</del></p>
+</blockquote>
+<p>別急，這時候這個設計神的地方來了。</p>
+<p>用上面的範例來實作的話就會變這樣</p>
+<pre tabindex="0"><code>struct SantaClusTracker {
+  
+  func isWorking() -&gt; Bool {
+    //暫時先改一個，baby step
+    let today = Current.date()
+    let month = Calendar.current.components(.month, today)
+    let day = Calendar.current.components(.day, today)
+    return month == 12 &amp;&amp; day == 25
+  }
+
+}
+</code></pre><p>因為<code>Current</code>是一個<code>var</code>，所以裡面的屬性是可以異動的。
+因為<code>date</code>是一個<code>回傳Date的function</code>，所以實作內容也是可以異動的</p>
+<p>今天需要測試的時候，可以直接對<code>Current</code>設值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">test_Date_Is_Christmas_SantaClausTracker_isWorking_should_return_true</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* 3A原則，具體可以參考91的文章或是聽他的課！獲益良多 */</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//Arrange</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">target</span> <span class="p">=</span> <span class="n">SantaClausTracker</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Current</span><span class="p">.</span><span class="n">date</span> <span class="p">=</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">     <span class="kd">let</span> <span class="nv">formatter</span> <span class="p">=</span> <span class="n">DateFormatter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">     <span class="n">formatter</span><span class="p">.</span><span class="n">dateFormat</span> <span class="p">=</span> <span class="s">&#34;yyyy/MM/dd&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">formatter</span><span class="p">.</span><span class="n">date</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&#34;2021/12/25&#34;</span><span class="p">)</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">//Action</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">actual</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">isWorking</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">//Assert</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">expect</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">expect</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>如此，就算是在其他日子，也能檢查在聖誕節的時候是不是會回傳<code>true</code></p>
+<p>這邊先討論幾個問題</p>
+<ol>
+<li>Singleton不是不好，為什麼要用？</li>
+<li>為什麼不用介面隔開？</li>
+<li>全域變數很危險，不應該用不是嗎？</li>
+</ol>
+<h3 id="singleton不是不好為什麼要用">Singleton不是不好，為什麼要用？<a hidden class="anchor" aria-hidden="true" href="#singleton不是不好為什麼要用">#</a></h3>
+<p>Singleton並不是不好，不好的話Apple還到處放不是很奇怪？</p>
+<p><code>URLSession.shared</code></p>
+<p><code>UserDefaults.standard</code></p>
+<p><code>FileManager.default</code></p>
+<p>Singleton的問題在於它是一個實體型別，無法被抽象化。也就是無法在測試中被替換。當你今天在程式碼中放了<code>URLSession.shared</code>以後，就註定了他一定會去走真實的網路（用intercepter擋掉另當別論），而沒辦法用<code>MockURLSession</code>來進行替換</p>
+<h3 id="為什麼不用介面隔開">為什麼不用介面隔開？<a hidden class="anchor" aria-hidden="true" href="#為什麼不用介面隔開">#</a></h3>
+<p>在看這個影片之前，我也是用<code>protocol</code>來進行區隔，這也有一個大神的文章可以參考<a href="https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k">歡迎來到真實世界</a></p>
+<p>先來談談如果用介面隔開URLSession，要做多少動作？</p>
+<ol>
+<li>製作一個介面<code>URLSessionProtocol</code>，方法簽章要跟URLSession中要呼叫的方法一致</li>
+<li>讓URLSession擴充<code>URLSessionProtocol</code>，因為方法已經存在，所以不用另外實作。</li>
+<li>製作一個測試在用的物件<code>MockURLSession</code>，實作介面<code>URLSessionProtocol</code>，裡面不涉及網路存取，直接回傳值。</li>
+<li>將原本程式碼呼叫<code>URLSession.shared</code>的地方全部抽換掉</li>
+<li>在測試中將<code>MockURLSession</code>注入到測試目標中</li>
+</ol>
+<p>首先，這個做法對程式碼改動幅度比較大，當早期沒做，後面要抽換的時候改動幅度就會很大，也是存在風險。</p>
+<p>其次，如果介面裡面的方法開始變多以後，一個新的Mock物件實作起來不容易。</p>
+<blockquote>
+<p>例如說一個資料庫存取介面，有四個方法CRUD</p>
+<p>那麼建立一個新的Mock物件就要實作四個方法。</p>
+<p>而一個正常的介面方法都不止四個</p>
+</blockquote>
+<h3 id="全域變數很危險不應該用不是嗎">全域變數很危險，不應該用不是嗎？<a hidden class="anchor" aria-hidden="true" href="#全域變數很危險不應該用不是嗎">#</a></h3>
+<p>全域變數的危險之處在於「<strong>你不知道什麼時候被改動</strong>」</p>
+<p>誠然，設定為變數是存在風險的，但是不應該把<code>Current</code>當成是一個傳遞、暫存參數的地方。而是一個依賴保管區（Production時）、依賴注入區（Develop時）</p>
+<p>說回這個方法</p>
+<p>如果今天要測試使用者登入「<strong>成功</strong>」與「<strong>失敗</strong>」的情境</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">UserAPIClient</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">complectionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="nb">Bool</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&#34;API Path&#34;</span><span class="p">)</span><span class="o">!</span> <span class="c1">// &lt;-- 這裡一定run time error</span>
+</span></span><span class="line"><span class="cl">        <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="kc">_</span><span class="p">,</span> <span class="kc">_</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">            <span class="n">complectionHandler</span><span class="p">(</span><span class="n">data</span> <span class="p">==</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">loginResult</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span><span class="s">&#34;Login </span><span class="si">\(</span><span class="n">loginResult</span> <span class="p">?</span> <span class="s">&#34;Success&#34;</span> <span class="p">:</span> <span class="s">&#34;Failure&#34;</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">onAppear</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UserAPIClient</span><span class="p">().</span><span class="n">login</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="s">&#34;account&#34;</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="s">&#34;password&#34;</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">loginResult</span> <span class="p">=</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>UserAPIClient</code>有一個一定會在run time炸掉的地方，那就是<code>URL(string: &quot;API Path&quot;)!</code></p>
+<p>假想這是Server暫時不可用，或是網路斷線的情境吧。</p>
+<p>那這種時候就不用測試了嗎？沒錯！<del>後台修好再叫我</del></p>
+<p>當然不可能，所以這時候就需要脫離實際環境來測試功能是否正常。</p>
+<p>用<code>protocol</code>的方式來進行脫鉤是這樣實作的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">//1. 定義協議</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">UserAPIClientProtocol</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">complectionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="nb">Bool</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2. 讓原本的物件擴充這個協議</span>
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">UserAPIClient</span><span class="p">:</span> <span class="n">UserAPIClientProtocol</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 建立測試物件，因為測試情境有「成功」「失敗」，所以回傳值用建構注入</span>
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">MockUserAPIClient</span><span class="p">:</span> <span class="n">UserAPIClientProtocol</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nv">loginResult</span><span class="p">:</span> <span class="nb">Bool</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">complectionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="nb">Bool</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">complectionHandler</span><span class="p">(</span><span class="n">loginResult</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//4. 將原本的型別用介面抽換（呼叫的時候要注入）</span>
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">userAPIClient</span><span class="p">:</span> <span class="n">UserAPIClientProtocol</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">loginResult</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span><span class="s">&#34;Login </span><span class="si">\(</span><span class="n">loginResult</span> <span class="p">?</span> <span class="s">&#34;Success&#34;</span> <span class="p">:</span> <span class="s">&#34;Failure&#34;</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">onAppear</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">userAPIClient</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="s">&#34;acc&#34;</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="s">&#34;pass&#34;</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">loginResult</span> <span class="p">=</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//5. 修改呼叫端</span>
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">ContentView_Previews</span><span class="p">:</span> <span class="n">PreviewProvider</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">previews</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ContentView</span><span class="p">(</span><span class="n">userAPIClient</span><span class="p">:</span> <span class="n">MockUserAPIClient</span><span class="p">(</span><span class="n">loginResult</span><span class="p">:</span> <span class="kc">true</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>如果用World來控制的話，是這個樣子的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">UserAPI</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">login</span> <span class="p">=</span> <span class="n">UserAPIClient</span><span class="p">().</span><span class="n">login</span><span class="p">(</span><span class="n">account</span><span class="p">:</span><span class="n">password</span><span class="p">:</span><span class="n">complectionHandler</span><span class="p">:)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">World</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">userAPI</span> <span class="p">=</span> <span class="n">UserAPI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">Current</span> <span class="p">=</span> <span class="n">World</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">loginResult</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span><span class="s">&#34;Login </span><span class="si">\(</span><span class="n">loginResult</span> <span class="p">?</span> <span class="s">&#34;Success&#34;</span> <span class="p">:</span> <span class="s">&#34;Failure&#34;</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">onAppear</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Current</span><span class="p">.</span><span class="n">userAPI</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="s">&#34;account&#34;</span><span class="p">,</span> <span class="s">&#34;password&#34;</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">loginResult</span> <span class="p">=</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//修改呼叫端</span>
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">ContentView_Previews</span><span class="p">:</span> <span class="n">PreviewProvider</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">previews</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//正常不會在這邊修改，這邊只是懶得把資料切乾淨所以放著舉例一下</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Current</span><span class="p">.</span><span class="n">userAPI</span><span class="p">.</span><span class="n">login</span> <span class="p">=</span> <span class="p">{</span> <span class="kc">_</span><span class="p">,</span> <span class="kc">_</span><span class="p">,</span> <span class="n">callback</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">            <span class="n">callback</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ContentView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>看起來有點差異，但是好像又差異不大？
+當你再遇到這樣的需求時</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+View1 --&gt; View2 --&gt; View3 --&gt; View4
+</code></pre><p>View2, 3就不需要攜帶<code>UserAPIClient</code>跑來跑去了</p>
+<p><strong>最重要的是</strong>
+當你的測試情境需要不同的回傳值時，不再需要像上面的<code>MockUserAPIClient</code>一樣透過各種注入，考慮各種測試情境要呼叫方法時的通用性，而是可以直接針對特定方法改寫方法實作內容。</p>
+<h2 id="參考文章">參考文章：<a hidden class="anchor" aria-hidden="true" href="#參考文章">#</a></h2>
+<p><a href="https://vimeo.com/291588126">https://vimeo.com/291588126</a></p>
+<p><a href="https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k">https://www.codementor.io/koromiko/unit-test-for-networking-ahdpdqr5k</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/swift/">Swift</a></li>
+      <li><a href="/tags/dependency/">Dependency</a></li>
+      <li><a href="/tags/global-variable/">Global Variable</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Insidehand</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
