@@ -5,74 +5,50 @@
     <link>/memo/</link>
     <description>Recent content in Memoes on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><atom:link href="/memo/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <atom:link href="/memo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</guid>
-      <description>Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &amp;ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過
-Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName </description>
+      <description>Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &amp;ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過&#xA;Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName </description>
     </item>
-    
     <item>
       <title></title>
       <link>/memo/git-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/memo/git-command/</guid>
-      <description>Git 主幹名稱 因為SJW的不懈努力，git的主幹名稱從master改成main了
-如果是早期的config還是使用master的命名的話，git會建議你更換名稱。
-更換git預設的主幹名稱
-git config &amp;ndash;global init.defaultBranch &amp;lt;#NewMainBranchName#&amp;gt;
-更換當前主幹/分支名稱
-git branch -m main</description>
+      <description>Git 主幹名稱 因為SJW的不懈努力，git的主幹名稱從master改成main了&#xA;如果是早期的config還是使用master的命名的話，git會建議你更換名稱。&#xA;更換git預設的主幹名稱&#xA;git config &amp;ndash;global init.defaultBranch &amp;lt;#NewMainBranchName#&amp;gt;&#xA;更換當前主幹/分支名稱&#xA;git branch -m main</description>
     </item>
-    
     <item>
       <title></title>
       <link>/memo/git%E4%BD%BF%E7%94%A8personalaccesstoken/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/memo/git%E4%BD%BF%E7%94%A8personalaccesstoken/</guid>
       <description>Git 在Github上設定personal access token 如果要做git clone的時候，要用https下載 這時候要打密碼，如果不記起來的話密碼可能就不能用第二次了。 # 要記憶密碼的話 git config --global credential.helper cache # 如果要清除掉設定的話 git config --global --unset credential.helper </description>
     </item>
-    
     <item>
       <title></title>
       <link>/memo/%E5%B0%8E%E5%85%A5swiftlint/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/memo/%E5%B0%8E%E5%85%A5swiftlint/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>/memo/%E7%94%A8terminal%E5%9F%B7%E8%A1%8Cxcode%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/memo/%E7%94%A8terminal%E5%9F%B7%E8%A1%8Cxcode%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6/</guid>
-      <description>xcodebuild test -project WebScraper.proj -scheme WebScraperTests -destination &amp;ldquo;platform=iOS Simulator,OS=15.1,name=iPhone 8&amp;rdquo; -enable xcodebuild -project WebScraper.xcodeproj -scheme WebScraper -destination &amp;ldquo;platform=iOS Simulator,name=iPhone 8,OS=15.2&amp;rdquo; -enableCodeCoverage YES test
-// view xcresult
-brew install XCTestHtmlReport/xchtmlreport/xchtmlreport </description>
+      <description> PROJECT=xxxx SCHEME=xxxx xcodebuild test \ -project $PROJECT.proj \ -scheme $SCHEME \ -destination &amp;#34;platform=iOS Simulator,OS=15.1,name=iPhone 8&amp;#34; \ -enable xcodebuild \ -project $PROJECT.xcodeproj \ -scheme $SCHEME \ -destination &amp;#34;platform=iOS Simulator,name=iPhone 8,OS=15.2&amp;#34; \ -enableCodeCoverage YES test // view xcresult&#xA;brew install XCTestHtmlReport/xchtmlreport/xchtmlreport </description>
     </item>
-    
     <item>
       <title></title>
       <link>/memo/%E9%97%9C%E6%96%BCssh%E7%99%BB%E5%85%A5%E9%80%99%E5%9B%9E%E4%BA%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/memo/%E9%97%9C%E6%96%BCssh%E7%99%BB%E5%85%A5%E9%80%99%E5%9B%9E%E4%BA%8B/</guid>
-      <description>關於ssh登入這回事 交接資料中有許多東西都是與帳號密碼相關， 但是在交接資料中可以看到帳號密碼是一件非常詭異的事情。
-這就讓我去思考遠端連線到底應該要怎麼做才會是正確的。
-帳號跟密碼只應該由MIS保留，且取得需要有相關授權之類的
-MIS應該負責創建使用者的RSA金鑰
-由MIS負責配發金鑰，讓使用者能夠進行連線或是相關操作。
-當同事離職以後，也應該由MIS負責將對應的金鑰從遠端機器中刪除。</description>
+      <description>關於ssh登入這回事 交接資料中有許多東西都是與帳號密碼相關， 但是在交接資料中可以看到帳號密碼是一件非常詭異的事情。&#xA;這就讓我去思考遠端連線到底應該要怎麼做才會是正確的。&#xA;帳號跟密碼只應該由MIS保留，且取得需要有相關授權之類的&#xA;MIS應該負責創建使用者的RSA金鑰&#xA;由MIS負責配發金鑰，讓使用者能夠進行連線或是相關操作。&#xA;當同事離職以後，也應該由MIS負責將對應的金鑰從遠端機器中刪除。</description>
     </item>
-    
   </channel>
 </rss>

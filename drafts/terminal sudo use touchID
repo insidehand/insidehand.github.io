@@ -1,0 +1,22 @@
+---
+title: "terminal sudo use touchID"
+date: 2022-07-26T22:02:24+08:00
+draft: true
+summary: ""
+tags: ["Terminal"] 
+---
+
+
+## 在terminal 中輸入 sudo時，使用touch ID來驗證、而不是輸入密碼
+
+先切換為`root`身份
+`sudo su -`
+
+編輯`/etc/pam.d/sudo `檔案
+
+加入這行命令到第一行
+`auth       sufficient     pam_tid.so`
+
+使用`wq!`來儲存異動
+
+在新的session中，使用sudo時就會跳出touchID的輸入框了

@@ -23,18 +23,15 @@ struct SantaClausTracker { func isWorking() -&amp;gt; Bool { let today = Date() 
 
     <title>
         
-            另外一種方式的依賴控制 :: Insidehand  — A simple theme for Hugo
+            另外一種方式的依賴控制 :: Insidehand  — Just note something.
         
     </title>
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
-    type="text/css">
 
 
-
-<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+<link rel="stylesheet" href="/main.949191c1dcc9c4a887997048b240354e47152016d821198f89448496ba42e491.css" integrity="sha256-lJGRwdzJxKiHmXBIskA1TkcVIBbYIRmPiUSElrpC5JE=">
 
 
 
@@ -59,12 +56,9 @@ struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let 
 換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
 (X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」"><meta itemprop="datePublished" content="2021-10-11T17:41:32+08:00" />
 <meta itemprop="dateModified" content="2021-10-11T17:41:32+08:00" />
-<meta itemprop="wordCount" content="536"><meta itemprop="image" content="/102"/>
+<meta itemprop="wordCount" content="536">
 <meta itemprop="keywords" content="Swift,Dependency,Global Variable," />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="/102"/>
-
-<meta name="twitter:title" content="另外一種方式的依賴控制"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="另外一種方式的依賴控制"/>
 <meta name="twitter:description" content="什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
 具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
 要管理依賴的理由在於給測試一個介入的途徑。
@@ -90,9 +84,9 @@ struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let 
 換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
 (X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/" /><meta property="og:image" content="/102"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-10-11T17:41:32+08:00" />
-<meta property="article:modified_time" content="2021-10-11T17:41:32+08:00" /><meta property="og:site_name" content="Insidehand" />
+<meta property="article:modified_time" content="2021-10-11T17:41:32+08:00" />
 
 
 
@@ -101,6 +95,7 @@ struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let 
 
 
     <meta property="article:published_time" content="2021-10-11 17:41:32 &#43;0800 CST" />
+
 
 
 
@@ -124,7 +119,8 @@ struct SantaClausTracker { func isWorking() -&gt; Bool { let today = Date() let 
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text">inside my hand</span>
+            <span class="logo__text ">
+                inside my hand</span>
             <span class="logo__cursor" style=
                   "
                    
@@ -234,9 +230,10 @@ func somefunction(session: URLSession) {
 </code></pre><p>那麼，顯然會出現的問題就是「<strong>依賴要怎麼來</strong>」</p>
 <p>例如說一個App畫面堆疊是這樣</p>
 <p><del>先不討論畫面層級太深的問題</del>這可以看一個精彩的影片「<a href="https://www.ted.com/talks/david_pogue_simplicity_sells">至簡暢銷</a>」</p>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
-View1 --&gt; View2 --&gt; View3 --&gt; View4
-</code></pre><p>今天View4有呼叫API的需要，View2 , 3沒有。
+<pre class="mermaid">graph LR
+View1 --> View2 --> View3 --> View4
+</pre>
+<p>今天View4有呼叫API的需要，View2 , 3沒有。
 要present View4只能夠過View3（MVC）或是View3的Coordinator（MVVM C）
 勢必View2, 3都必須要攜帶一個用不到的物件。</p>
 <p>當今天底層越多，依賴拆分的越細，就中間的層級就容易要傳遞一些用不到的物件。</p>
@@ -442,9 +439,10 @@ View1 --&gt; View2 --&gt; View3 --&gt; View4
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>看起來有點差異，但是好像又差異不大？
 當你再遇到這樣的需求時</p>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
-View1 --&gt; View2 --&gt; View3 --&gt; View4
-</code></pre><p>View2, 3就不需要攜帶<code>UserAPIClient</code>跑來跑去了</p>
+<pre class="mermaid">graph LR
+View1 --> View2 --> View3 --> View4
+</pre>
+<p>View2, 3就不需要攜帶<code>UserAPIClient</code>跑來跑去了</p>
 <p><strong>最重要的是</strong>
 當你的測試情境需要不同的回傳值時，不再需要像上面的<code>MockUserAPIClient</code>一樣透過各種注入，考慮各種測試情境要呼叫方法時的通用性，而是可以直接針對特定方法改寫方法實作內容。</p>
 <h2 id="參考文章">參考文章：</h2>
@@ -625,14 +623,7 @@ View1 --&gt; View2 --&gt; View3 --&gt; View4
 
     
 
-    <script src="https://utteranc.es/client.js"
-        repo="insidehand/insidehand.github.io"
-        issue-term="pathname"
-        label="✨💬✨"
-        theme="preferred-color-scheme"
-        crossorigin="anonymous"
-        async>
-    </script>
+    
 
   </main>
 
@@ -651,9 +642,34 @@ View1 --&gt; View2 --&gt; View3 --&gt; View4
 
 
 
-<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+<script type="text/javascript" src="/bundle.min.46e438bd2eca7eb6358c700b40f6f56b22ab0b92503ecc11a2d8e4bcc610b8b4da83e5ea3d3e84fdb5f3c3c765744b9f5bbaf43cf5a027910be07ee39a9c12a1.js" integrity="sha512-RuQ4vS7KfrY1jHALQPb1ayKrC5JQPswRotjkvMYQuLTag&#43;XqPT6E/bXzw8dldEufW7r0PPWgJ5EL4H7jmpwSoQ=="></script>
 
 
+
+
+<script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs";
+    const settings = localStorage.getItem("theme") === "dark" ?
+        {
+            startOnLoad: true,
+            theme: "dark",
+            darkMode: true,
+            themeVariables: {
+                tertiaryColor: "#dee3ed"
+            }
+        }
+        :
+        {
+            startOnLoad: true,
+            theme: "base",
+            darkMode: false,
+            themeVariables: {
+                tertiaryColor: "#dee3ed"
+            }
+        }
+    ;
+    mermaid.initialize(settings);
+</script>
 
     </body>
 </html>

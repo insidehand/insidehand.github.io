@@ -5,152 +5,99 @@
     <link>/drafts/</link>
     <description>Recent content in Drafts on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><atom:link href="/drafts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <atom:link href="/drafts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>/drafts/2022-06-20-%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%87%89%E8%A9%B2%E5%85%B7%E5%82%99%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%8C%96%E6%A6%82%E5%BF%B5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/2022-06-20-%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%87%89%E8%A9%B2%E5%85%B7%E5%82%99%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%8C%96%E6%A6%82%E5%BF%B5/</guid>
       <description>用Aido &amp;amp; Aido baby的例子來說明抽象化的概念</description>
     </item>
-    
+    <item>
+      <title></title>
+      <link>/drafts/2024-01-05-raspberry-pi-usb-gadget/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/drafts/2024-01-05-raspberry-pi-usb-gadget/</guid>
+      <description>https://www.hardill.me.uk/wordpress/2019/11/02/pi4-usb-c-gadget/</description>
+    </item>
+    <item>
+      <title></title>
+      <link>/drafts/2024-01-05-ssh-only-via-rsa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/drafts/2024-01-05-ssh-only-via-rsa/</guid>
+      <description>sudo vim /etc/hosts.allow&#xA;/etc/hosts.allow sshd: 192.168.50. sshd: 101.9.100.254&#xA;sudo vim /etc/hosts.deny&#xA;sudo vim /etc/ssh/sshd_config PubkeyAuthentication yes PasswordAuthentication no&#xA;sudo /etc/init.d/ssh restart</description>
+    </item>
     <item>
       <title></title>
       <link>/drafts/data-model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/data-model/</guid>
-      <description>JSON 開發觀念 不要用underline之類的方式來作為JSON的key
-如果有多個底線相關的key，就應該考慮用object封裝起來。
-{ &amp;#34;SomeKeyTitle&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;SomeKeyNote&amp;#34;: { &amp;#34;SomeKeyArray&amp;#34;: [ { &amp;#34;someKey_node_id&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;someKey_list_id&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey_type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey_time&amp;#34;: &amp;#34;Value&amp;#34;, } ] }, } 改成
-{ &amp;#34;SomeKey&amp;#34;: { &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Notes&amp;#34;: { &amp;#34;Array&amp;#34;: [ { &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34; } } ] } } } 既然一個物件裡面只裝著陣列，那爲什麼不直接抽出來將Value作為陣列？ { &amp;#34;SomeKey&amp;#34;: { &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Notes&amp;#34;: [ { &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34; } }, { xxx } ] } } </description>
+      <description>JSON 開發觀念 不要用underline之類的方式來作為JSON的key&#xA;如果有多個底線相關的key，就應該考慮用object封裝起來。&#xA;{ &amp;#34;SomeKeyTitle&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;SomeKeyNote&amp;#34;: { &amp;#34;SomeKeyArray&amp;#34;: [ { &amp;#34;someKey_node_id&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;someKey_list_id&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey_type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey_time&amp;#34;: &amp;#34;Value&amp;#34;, } ] }, } 改成&#xA;{ &amp;#34;SomeKey&amp;#34;: { &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Notes&amp;#34;: { &amp;#34;Array&amp;#34;: [ { &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34; } } ] } } } 既然一個物件裡面只裝著陣列，那爲什麼不直接抽出來將Value作為陣列？ { &amp;#34;SomeKey&amp;#34;: { &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Notes&amp;#34;: [ { &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34; } }, { xxx } ] } } </description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/gitbook%E6%9E%B6%E8%A8%AD%E9%81%8E%E7%A8%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/gitbook%E6%9E%B6%E8%A8%AD%E9%81%8E%E7%A8%8B/</guid>
-      <description>Gitbook架設 Part 1 根據目前查到的資料，似乎線上版有一些微微妙妙的問題， 所以這邊打算採用自己架設的做法。
-因為文件都散落在各個MD檔之中，想說要找找一個方便地管理工具 有很多東西因為以前比較少碰到，所以也算是粗略做個記錄。
-以下是踩坑過程。
-安裝yarn 要安裝Gitbook的時候，網路上搜尋到的是用npm來安裝。 然後莫名的就搜尋到新的管理工具yarn
-秉持著有新的就用新的原則，就學著用新的工具來安裝看看。
-brew install yarn 然後就是安裝gitbook套件
-yarn global add gitbook gitbook-cli 因為有很多地方都打算導入gitbook來管理文件，所以就選用global
-node 與 nvm 然後按照教學輸入
-gitbook init 之後就就很順利地炸了。error log如下
-warn: no summary file in this book info: create SUMMARY.md TypeError [ERR_INVALID_ARG_TYPE]: The &amp;#34;data&amp;#34; argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Promise 發現是node的版本太新，可以用node -v來檢查當前的node版本。
-於是就開始研究nvm的使用方式。
-nvm: 管理Node版本的工具 使用homebrew來安裝nvm
-brew install nvm 安裝成功後有一些環境變數要設定到.</description>
+      <description>Gitbook架設 Part 1 根據目前查到的資料，似乎線上版有一些微微妙妙的問題， 所以這邊打算採用自己架設的做法。&#xA;因為文件都散落在各個MD檔之中，想說要找找一個方便地管理工具 有很多東西因為以前比較少碰到，所以也算是粗略做個記錄。&#xA;以下是踩坑過程。&#xA;安裝yarn 要安裝Gitbook的時候，網路上搜尋到的是用npm來安裝。 然後莫名的就搜尋到新的管理工具yarn&#xA;秉持著有新的就用新的原則，就學著用新的工具來安裝看看。&#xA;brew install yarn 然後就是安裝gitbook套件&#xA;yarn global add gitbook gitbook-cli 因為有很多地方都打算導入gitbook來管理文件，所以就選用global&#xA;node 與 nvm 然後按照教學輸入&#xA;gitbook init 之後就就很順利地炸了。error log如下&#xA;warn: no summary file in this book info: create SUMMARY.md TypeError [ERR_INVALID_ARG_TYPE]: The &amp;#34;data&amp;#34; argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Promise 發現是node的版本太新，可以用node -v來檢查當前的node版本。&#xA;於是就開始研究nvm的使用方式。&#xA;nvm: 管理Node版本的工具 使用homebrew來安裝nvm&#xA;brew install nvm 安裝成功後有一些環境變數要設定到.</description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/mysql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/mysql/</guid>
       <description>要放權限給使用者（帳號），不然會查不到。 GRANT ALL PRIVILEGES ON databaseName.tableName ( or * ) TO &amp;lsquo;username&amp;rsquo;@&amp;lsquo;host&amp;rsquo;;</description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/nvm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/nvm/</guid>
-      <description>Node &amp;amp; NVM // 檢查線上版本 nvm ls-remote // 安裝node // 安裝特定版本 nvm install v13.14.0 // 安裝穩定版 nvm install stable // 檢查已經安裝過的node列表 nvm ls // 移除node nvm uninstall v14.19.2 // 切換版本 nvm use v13.14.0 NPM yarn
-npm
-package.json
-package-lock.json
-Ref https://medium.com/哆啦實驗室/node-js管理神器nvm-b6acfca44ea5 https://segmentfault.com/a/1190000019037664 https://blog.csdn.net/zheng18237111686/article/details/113878602
-npm http://dreamerslab.com/blog/tw/npm-basic-commands/
-yarn https://segmentfault.com/a/1190000008489881 https://simpleit.rocks/javascript/yarn/how-to-search-packages-using-yarn/ https://yarnpkg.com/cli/init https://ithelp.ithome.com.tw/articles/10191888 https://ithelp.ithome.com.tw/articles/10191745 http://nodejs.cn/learn/the-package-json-guide
-LTS Long Time Support Node https://www.796t.com/post/bG80Ng==.html</description>
+      <description>Node &amp;amp; NVM // 檢查線上版本 nvm ls-remote // 安裝node // 安裝特定版本 nvm install v13.14.0 // 安裝穩定版 nvm install stable // 檢查已經安裝過的node列表 nvm ls // 移除node nvm uninstall v14.19.2 // 切換版本 nvm use v13.14.0 NPM yarn&#xA;npm&#xA;package.json&#xA;package-lock.json&#xA;Ref https://medium.com/哆啦實驗室/node-js管理神器nvm-b6acfca44ea5 https://segmentfault.com/a/1190000019037664 https://blog.csdn.net/zheng18237111686/article/details/113878602&#xA;npm http://dreamerslab.com/blog/tw/npm-basic-commands/&#xA;yarn https://segmentfault.com/a/1190000008489881 https://simpleit.rocks/javascript/yarn/how-to-search-packages-using-yarn/ https://yarnpkg.com/cli/init https://ithelp.ithome.com.tw/articles/10191888 https://ithelp.ithome.com.tw/articles/10191745 http://nodejs.cn/learn/the-package-json-guide&#xA;LTS Long Time Support Node https://www.796t.com/post/bG80Ng==.html</description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/protocol-extension-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/protocol-extension-/</guid>
-      <description>Extension for Protocol 先說結論： 善用protocol來實作一些功能
-Todo: [WWDC talk 連結]
-在傳統的OOP觀念中，基本上要最小化程式碼重複的方法就是透過繼承。
-Swift 是針對 protocol 來設計的 </description>
+      <description>Extension for Protocol 先說結論： 善用protocol來實作一些功能&#xA;Todo: [WWDC talk 連結]&#xA;在傳統的OOP觀念中，基本上要最小化程式碼重複的方法就是透過繼承。&#xA;Swift 是針對 protocol 來設計的 </description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/redux-in-swift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/redux-in-swift/</guid>
-      <description>Redux in SwiftUI 透過泛型來限制型別
-針對sub-view的資料處理 sub-state &amp;amp; sub-action &amp;amp; sub-reducer Store derived View -&amp;gt; sub-view 的 Connector </description>
+      <description>Redux in SwiftUI 透過泛型來限制型別&#xA;針對sub-view的資料處理 sub-state &amp;amp; sub-action &amp;amp; sub-reducer Store derived View -&amp;gt; sub-view 的 Connector </description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/shell-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/shell-command/</guid>
       <description>檢查MacBook的SSD使用狀況 sudo smartctl —all /dev/disk0</description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/swiftui%E7%9A%84identifiable-equable/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/swiftui%E7%9A%84identifiable-equable/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>/drafts/%E4%BD%BF%E7%94%A8%E6%A2%9D%E6%AC%BE-%E8%8B%B1%E6%96%87%E7%89%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/%E4%BD%BF%E7%94%A8%E6%A2%9D%E6%AC%BE-%E8%8B%B1%E6%96%87%E7%89%88/</guid>
-      <description>Terms of Use EnterHealth (following call &amp;ldquo;Eh&amp;rdquo; or &amp;ldquo;we&amp;rdquo;) provide to read and write blood pressure, heart rate, etc. health record from Apple.Inc Health app. (following call &amp;ldquo;Health app&amp;rdquo;)
-All that data will store in Health app
-When you delete record in Eh, we will backup that record in local to make sure you can restore it any time.
-If you don&amp;rsquo;t want to restore this record you can delete permanently.</description>
+      <description>Terms of Use EnterHealth (following call &amp;ldquo;Eh&amp;rdquo; or &amp;ldquo;we&amp;rdquo;) provide to read and write blood pressure, heart rate, etc. health record from Apple.Inc Health app. (following call &amp;ldquo;Health app&amp;rdquo;)&#xA;All that data will store in Health app&#xA;When you delete record in Eh, we will backup that record in local to make sure you can restore it any time.&#xA;If you don&amp;rsquo;t want to restore this record you can delete permanently.</description>
     </item>
-    
-    <item>
-      <title></title>
-      <link>/drafts/%E5%96%84%E7%94%A8protocol%E8%88%87protocol-extension/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/drafts/%E5%96%84%E7%94%A8protocol%E8%88%87protocol-extension/</guid>
-      <description>例如說常在SwiftUI List, ForEach裡面用到的Identifiable， 每次要做比較的時候都要寫一次Equable的等價關係
-如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充
-所有實作了Identifiable的對象都可以直接擴充Equable，而不用再寫同樣的程式碼
-extension Equable where Self: Identifiable { static func == (lhs: Environment, rhs: Environment) -&amp;gt; Bool { lhs.id == rhs.id } } 如果有不一樣的需求，再自己實作一次介面方法就可以了。</description>
-    </item>
-    
     <item>
       <title></title>
       <link>/drafts/%E6%9C%AA%E5%91%BD%E5%90%8D-3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/drafts/%E6%9C%AA%E5%91%BD%E5%90%8D-3/</guid>
-      <description>https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch
-https://en.wikipedia.org/wiki/GraalVM
-https://www.zhihu.com/question/430792464
-https://benjr.tw/98233
-https://www.cnblogs.com/xiaowuzi/p/3485302.html
-https://docs.spring.io/spring-data/jpa/docs/current/reference/html/</description>
+      <description>https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch&#xA;https://en.wikipedia.org/wiki/GraalVM&#xA;https://www.zhihu.com/question/430792464&#xA;https://benjr.tw/98233&#xA;https://www.cnblogs.com/xiaowuzi/p/3485302.html&#xA;https://docs.spring.io/spring-data/jpa/docs/current/reference/html/</description>
     </item>
-    
   </channel>
 </rss>

@@ -5,98 +5,79 @@
     <link>/tags/</link>
     <description>Recent content in Tags on Insidehand</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
+    <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate>
+    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DevOpt</title>
       <link>/tags/devopt/</link>
       <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
-      
       <guid>/tags/devopt/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>kobo</title>
       <link>/tags/kobo/</link>
       <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
-      
       <guid>/tags/kobo/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>git</title>
       <link>/tags/git/</link>
       <pubDate>Wed, 10 Nov 2021 23:47:08 +0800</pubDate>
-      
       <guid>/tags/git/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>iOS</title>
       <link>/tags/ios/</link>
       <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
-      
       <guid>/tags/ios/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Simulator</title>
       <link>/tags/simulator/</link>
       <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
-      
       <guid>/tags/simulator/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Dependency</title>
       <link>/tags/dependency/</link>
       <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
-      
       <guid>/tags/dependency/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Global Variable</title>
       <link>/tags/global-variable/</link>
       <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
-      
       <guid>/tags/global-variable/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Swift</title>
       <link>/tags/swift/</link>
       <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
-      
       <guid>/tags/swift/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>GCD</title>
       <link>/tags/gcd/</link>
       <pubDate>Mon, 29 Jun 2020 19:18:33 +0800</pubDate>
-      
       <guid>/tags/gcd/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ssh</title>
       <link>/tags/ssh/</link>
       <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
-      
       <guid>/tags/ssh/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
