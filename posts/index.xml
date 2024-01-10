@@ -6,8 +6,140 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 20 Jun 2022 14:34:32 +0800</lastBuildDate>
+        <lastBuildDate>Thu, 04 Jan 2024 13:47:08 +0800</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>善用Protocol與Protocol Extension</title>
+            <link>/posts/2024-01-04-protocol-and-extension/</link>
+            <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
+            
+            <guid>/posts/2024-01-04-protocol-and-extension/</guid>
+            <description>例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
+每次要做比較的時候都要寫一次Equatable的等價關係
+如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充
+所有實作了Identifiable的對象都可以直接擴充Equatable，而不用再寫同樣的程式碼
+注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同， 如果開發需要不同的比對方式，請自行修改。切勿照抄。
+舉個例子，如果目前有一個Student，需要進行比對
+classs Student: Equatable, Identifiable { let id = UUID() let name: String } 一般寫完這段程式碼以後，要自己實作Equatable。
+extension Student { static func == (lhs: Student, rhs: Student) -&amp;gt; Bool { lhs.id == rhs.id } } 如此，才能使用==來比對兩個物件是否相等。
+不過，
+如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼
+所以這邊就可以用Protocol Extension來簡化程式碼。
+extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&amp;gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。</description>
+            <content type="html"><![CDATA[<p>例如說常在SwiftUI <code>List</code>, <code>ForEach</code>裡面用到的<code>Identifiable</code>，</p>
+<p>每次要做比較的時候都要寫一次<code>Equatable</code>的等價關係</p>
+<p>如果善用<code>protocol extenion</code>的話，就可以針對大部分的<code>Identifiable</code>做一個通用的擴充</p>
+<p>所有實作了<code>Identifiable</code>的對象都可以直接擴充<code>Equatable</code>，而不用再寫同樣的程式碼</p>
+<blockquote>
+<p>注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同，
+如果開發需要不同的比對方式，請自行修改。切勿照抄。</p>
+</blockquote>
+<p>舉個例子，如果目前有一個<code>Student</code>，需要進行比對</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>classs Student: Equatable, Identifiable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> id = UUID()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> name: String
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>一般寫完這段程式碼以後，要自己實作<code>Equatable</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">Student</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">func</span> == (lhs: Student, rhs: Student) -&gt; Bool {
+</span></span><span style="display:flex;"><span>      lhs.id == rhs.id
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如此，才能使用<code>==</code>來比對兩個物件是否相等。</p>
+<p>不過，</p>
+<p>如果沒有其他情況要特別比對，每次都只是比對<code>id</code>是否相等，那會產生大量的無用程式碼</p>
+<p>所以這邊就可以用<code>Protocol Extension</code>來簡化程式碼。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">Equatable</span> <span style="color:#66d9ef">where</span> <span style="color:#66d9ef">Self</span>: Identifiable {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">func</span> == (lhs: <span style="color:#66d9ef">Self</span>, rhs: <span style="color:#66d9ef">Self</span>) -&gt; Bool {
+</span></span><span style="display:flex;"><span>      lhs.id == rhs.id
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>這樣就可以針對所有實作<code>Equatable</code>與<code>Identifiable</code>的物件進行一個預設的擴充。</p>
+<p>如果有不一樣的需求，再自己實作一次介面方法就可以了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">UIKit</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span>: Equatable, Identifiable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(name: String) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.name = name
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> id = UUID()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> name: String
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> obj1: Student = .<span style="color:#66d9ef">init</span>(name: <span style="color:#e6db74">&#34;1&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> obj2: Student = .<span style="color:#66d9ef">init</span>(name: <span style="color:#e6db74">&#34;1&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">Equatable</span> <span style="color:#66d9ef">where</span> <span style="color:#66d9ef">Self</span>: Identifiable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">func</span> == (lhs: <span style="color:#66d9ef">Self</span>, rhs: <span style="color:#66d9ef">Self</span>) -&gt; Bool {
+</span></span><span style="display:flex;"><span>        lhs.id == rhs.id
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(obj1 == obj2) <span style="color:#75715e">// return false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//extension Student {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    static func == (lhs: Student, rhs: Student) -&gt; Bool {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        lhs.name == rhs.name</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    }</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//print(obj1 == obj2) // return true</span>
+</span></span></code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>在樹莓派4上執行Swift</title>
+            <link>/posts/2024-01-04-swift-on-rpi/</link>
+            <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
+            
+            <guid>/posts/2024-01-04-swift-on-rpi/</guid>
+            <description>之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift
+但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，
+總覺得沒那麼優雅就放棄了這個想法。
+直到最近閒來無事，想說樹莓派上的一些專案好像很久沒動了，就久違的來研究一下有沒有新的東西可以玩。
+這邊就不廢話了直接上腳本
+#!/bin/bash set -e # check if .az directory exists if [ -d &amp;#34;$HOME/.swift&amp;#34; ]; then echo &amp;#34;Swift is already installed&amp;#34; exit 1 fi wget https://download.swift.org/swift-5.9.2-release/ubuntu2004-aarch64/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Unzip swift-5.9.2&amp;#34; tar xzf swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Rename swift-5.9.2 to swift-5.9.2&amp;#34; mv swift-5.9.2-RELEASE-ubuntu20.04-aarch64 swift-5.9.2 echo &amp;#34;Move swift-5.9.2 to .swift&amp;#34; mv swift-5.9.2 &amp;#34;$HOME/.swift/&amp;#34; echo &amp;#34;Remove zip file&amp;#34; rm swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Add swift to path&amp;#34; export PATH=$PATH:$HOME/.</description>
+            <content type="html"><![CDATA[<p>之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift</p>
+<p>但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，</p>
+<p>總覺得沒那麼優雅就放棄了這個想法。</p>
+<p>直到最近閒來無事，想說樹莓派上的一些專案好像很久沒動了，就久違的來研究一下有沒有新的東西可以玩。</p>
+<p>這邊就不廢話了直接上腳本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>set -e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># check if .az directory exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -d <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.swift&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Swift is already installed&#34;</span>
+</span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wget https://download.swift.org/swift-5.9.2-release/ubuntu2004-aarch64/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Unzip swift-5.9.2&#34;</span>
+</span></span><span style="display:flex;"><span>tar xzf swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Rename swift-5.9.2 to swift-5.9.2&#34;</span>
+</span></span><span style="display:flex;"><span>mv swift-5.9.2-RELEASE-ubuntu20.04-aarch64 swift-5.9.2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Move swift-5.9.2 to .swift&#34;</span>
+</span></span><span style="display:flex;"><span>mv swift-5.9.2 <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.swift/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Remove zip file&#34;</span>
+</span></span><span style="display:flex;"><span>rm swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Add swift to path&#34;</span>
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:$HOME/.swift/swift-5.9.2/usr/bin
+</span></span></code></pre></div><p>把內容複製到樹莓派中，並且執行腳本</p>
+<p>就會下載 Swift-5.9 版本到 <code>~/.swift/</code> 這個資料夾中
+並且將路徑加入到 <code>$PATH</code> 中</p>
+<p>這個腳本並不是特別好，這邊只是簡單判定了有沒有安裝過、能跑起來。</p>
+<p>跑起來會不會有bug什麼的還沒進行驗證。</p>
+<p>後續有什麼有趣的 Swift 專案能在 Linux 上執行的話，再寫下一篇吧。</p>
+]]></content>
+        </item>
         
         <item>
             <title>iOS的OTA發布</title>

@@ -7,8 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 11 Oct 2021 17:41:32 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jan 2024 13:47:08 +0800</lastBuildDate>
     <atom:link href="/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>善用Protocol與Protocol Extension</title>
+      <link>/posts/2024-01-04-protocol-and-extension/</link>
+      <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
+      <guid>/posts/2024-01-04-protocol-and-extension/</guid>
+      <description>例如說常在SwiftUI List, ForEach裡面用到的Identifiable，&#xA;每次要做比較的時候都要寫一次Equatable的等價關係&#xA;如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充&#xA;所有實作了Identifiable的對象都可以直接擴充Equatable，而不用再寫同樣的程式碼&#xA;注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同， 如果開發需要不同的比對方式，請自行修改。切勿照抄。&#xA;舉個例子，如果目前有一個Student，需要進行比對&#xA;classs Student: Equatable, Identifiable { let id = UUID() let name: String } 一般寫完這段程式碼以後，要自己實作Equatable。&#xA;extension Student { static func == (lhs: Student, rhs: Student) -&amp;gt; Bool { lhs.id == rhs.id } } 如此，才能使用==來比對兩個物件是否相等。&#xA;不過，&#xA;如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼&#xA;所以這邊就可以用Protocol Extension來簡化程式碼。&#xA;extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&amp;gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。</description>
+    </item>
+    <item>
+      <title>在樹莓派4上執行Swift</title>
+      <link>/posts/2024-01-04-swift-on-rpi/</link>
+      <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
+      <guid>/posts/2024-01-04-swift-on-rpi/</guid>
+      <description>之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift&#xA;但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，&#xA;總覺得沒那麼優雅就放棄了這個想法。&#xA;直到最近閒來無事，想說樹莓派上的一些專案好像很久沒動了，就久違的來研究一下有沒有新的東西可以玩。&#xA;這邊就不廢話了直接上腳本&#xA;#!/bin/bash set -e # check if .az directory exists if [ -d &amp;#34;$HOME/.swift&amp;#34; ]; then echo &amp;#34;Swift is already installed&amp;#34; exit 1 fi wget https://download.swift.org/swift-5.9.2-release/ubuntu2004-aarch64/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Unzip swift-5.9.2&amp;#34; tar xzf swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Rename swift-5.9.2 to swift-5.9.2&amp;#34; mv swift-5.9.2-RELEASE-ubuntu20.04-aarch64 swift-5.9.2 echo &amp;#34;Move swift-5.9.2 to .swift&amp;#34; mv swift-5.9.2 &amp;#34;$HOME/.swift/&amp;#34; echo &amp;#34;Remove zip file&amp;#34; rm swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Add swift to path&amp;#34; export PATH=$PATH:$HOME/.</description>
+    </item>
     <item>
       <title>另外一種方式的依賴控制</title>
       <link>/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</link>

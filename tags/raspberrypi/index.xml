@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RaspberryPi on Insidehand</title>
+    <link>/tags/raspberrypi/</link>
+    <description>Recent content in RaspberryPi on Insidehand</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 04 Jan 2024 13:47:08 +0800</lastBuildDate>
+    <atom:link href="/tags/raspberrypi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在樹莓派4上執行Swift</title>
+      <link>/posts/2024-01-04-swift-on-rpi/</link>
+      <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
+      <guid>/posts/2024-01-04-swift-on-rpi/</guid>
+      <description>之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift&#xA;但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，&#xA;總覺得沒那麼優雅就放棄了這個想法。&#xA;直到最近閒來無事，想說樹莓派上的一些專案好像很久沒動了，就久違的來研究一下有沒有新的東西可以玩。&#xA;這邊就不廢話了直接上腳本&#xA;#!/bin/bash set -e # check if .az directory exists if [ -d &amp;#34;$HOME/.swift&amp;#34; ]; then echo &amp;#34;Swift is already installed&amp;#34; exit 1 fi wget https://download.swift.org/swift-5.9.2-release/ubuntu2004-aarch64/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Unzip swift-5.9.2&amp;#34; tar xzf swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Rename swift-5.9.2 to swift-5.9.2&amp;#34; mv swift-5.9.2-RELEASE-ubuntu20.04-aarch64 swift-5.9.2 echo &amp;#34;Move swift-5.9.2 to .swift&amp;#34; mv swift-5.9.2 &amp;#34;$HOME/.swift/&amp;#34; echo &amp;#34;Remove zip file&amp;#34; rm swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Add swift to path&amp;#34; export PATH=$PATH:$HOME/.</description>
+    </item>
+  </channel>
+</rss>
