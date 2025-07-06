@@ -12,11 +12,13 @@
 注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同， 如果開發需要不同的比對方式，請自行修改。切勿照抄。
 舉個例子，如果目前有一個Student，需要進行比對
 classs Student: Equatable, Identifiable { let id = UUID() let name: String } 一般寫完這段程式碼以後，要自己實作Equatable。
-extension Student { static func == (lhs: Student, rhs: Student) -&amp;gt; Bool { lhs.id == rhs.id } } 如此，才能使用==來比對兩個物件是否相等。
+extension Student { static func == (lhs: Student, rhs: Student) -&gt; Bool { lhs.id == rhs.id } } 如此，才能使用==來比對兩個物件是否相等。
 不過，
 如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼
 所以這邊就可以用Protocol Extension來簡化程式碼。
-extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&amp;gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。" />
+extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。
+如果有不一樣的需求，再自己實作一次介面方法就可以了。
+import UIKit class Student: Equatable, Identifiable { init(name: String) { self.name = name } let id = UUID() let name: String } let obj1: Student = .init(name: &#34;1&#34;) let obj2: Student = .init(name: &#34;1&#34;) extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } print(obj1 == obj2) // return false //extension Student { // static func == (lhs: Student, rhs: Student) -&gt; Bool { // lhs.name == rhs.name // } //} // //print(obj1 == obj2) // return true " />
 <meta name="keywords" content=", Swift" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -46,8 +48,9 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="善用Protocol與Protocol Extension">
-<meta itemprop="description" content="例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
+
+  <meta itemprop="name" content="善用Protocol與Protocol Extension">
+  <meta itemprop="description" content="例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
 每次要做比較的時候都要寫一次Equatable的等價關係
 如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充
 所有實作了Identifiable的對象都可以直接擴充Equatable，而不用再寫同樣的程式碼
@@ -58,12 +61,17 @@ extension Student { static func == (lhs: Student, rhs: Student) -&gt; Bool { lhs
 不過，
 如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼
 所以這邊就可以用Protocol Extension來簡化程式碼。
-extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。"><meta itemprop="datePublished" content="2024-01-04T13:47:08+08:00" />
-<meta itemprop="dateModified" content="2024-01-04T13:47:08+08:00" />
-<meta itemprop="wordCount" content="161">
-<meta itemprop="keywords" content="Swift," />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="善用Protocol與Protocol Extension"/>
-<meta name="twitter:description" content="例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
+extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。
+如果有不一樣的需求，再自己實作一次介面方法就可以了。
+import UIKit class Student: Equatable, Identifiable { init(name: String) { self.name = name } let id = UUID() let name: String } let obj1: Student = .init(name: &#34;1&#34;) let obj2: Student = .init(name: &#34;1&#34;) extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } print(obj1 == obj2) // return false //extension Student { // static func == (lhs: Student, rhs: Student) -&gt; Bool { // lhs.name == rhs.name // } //} // //print(obj1 == obj2) // return true">
+  <meta itemprop="datePublished" content="2024-01-04T13:47:08+08:00">
+  <meta itemprop="dateModified" content="2024-01-04T13:47:08+08:00">
+  <meta itemprop="wordCount" content="161">
+  <meta itemprop="keywords" content="Swift">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="善用Protocol與Protocol Extension">
+  <meta name="twitter:description" content="例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
 每次要做比較的時候都要寫一次Equatable的等價關係
 如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充
 所有實作了Identifiable的對象都可以直接擴充Equatable，而不用再寫同樣的程式碼
@@ -74,12 +82,16 @@ extension Student { static func == (lhs: Student, rhs: Student) -&gt; Bool { lhs
 不過，
 如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼
 所以這邊就可以用Protocol Extension來簡化程式碼。
-extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。"/>
+extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。
+如果有不一樣的需求，再自己實作一次介面方法就可以了。
+import UIKit class Student: Equatable, Identifiable { init(name: String) { self.name = name } let id = UUID() let name: String } let obj1: Student = .init(name: &#34;1&#34;) let obj2: Student = .init(name: &#34;1&#34;) extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } print(obj1 == obj2) // return false //extension Student { // static func == (lhs: Student, rhs: Student) -&gt; Bool { // lhs.name == rhs.name // } //} // //print(obj1 == obj2) // return true">
 
 
 
-    <meta property="og:title" content="善用Protocol與Protocol Extension" />
-<meta property="og:description" content="例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
+    <meta property="og:url" content="/posts/2024-01-04-protocol-and-extension/">
+  <meta property="og:site_name" content="Insidehand">
+  <meta property="og:title" content="善用Protocol與Protocol Extension">
+  <meta property="og:description" content="例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
 每次要做比較的時候都要寫一次Equatable的等價關係
 如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充
 所有實作了Identifiable的對象都可以直接擴充Equatable，而不用再寫同樣的程式碼
@@ -90,12 +102,15 @@ extension Student { static func == (lhs: Student, rhs: Student) -&gt; Bool { lhs
 不過，
 如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼
 所以這邊就可以用Protocol Extension來簡化程式碼。
-extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/2024-01-04-protocol-and-extension/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-01-04T13:47:08+08:00" />
-<meta property="article:modified_time" content="2024-01-04T13:47:08+08:00" />
-
+extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。
+如果有不一樣的需求，再自己實作一次介面方法就可以了。
+import UIKit class Student: Equatable, Identifiable { init(name: String) { self.name = name } let id = UUID() let name: String } let obj1: Student = .init(name: &#34;1&#34;) let obj2: Student = .init(name: &#34;1&#34;) extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&gt; Bool { lhs.id == rhs.id } } print(obj1 == obj2) // return false //extension Student { // static func == (lhs: Student, rhs: Student) -&gt; Bool { // lhs.name == rhs.name // } //} // //print(obj1 == obj2) // return true">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-01-04T13:47:08+08:00">
+    <meta property="article:modified_time" content="2024-01-04T13:47:08+08:00">
+    <meta property="article:tag" content="Swift">
 
 
 
@@ -103,6 +118,8 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
 
 
     <meta property="article:published_time" content="2024-01-04 13:47:08 &#43;0800 CST" />
+
+
 
 
 
@@ -192,8 +209,7 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
 <p>所有實作了<code>Identifiable</code>的對象都可以直接擴充<code>Equatable</code>，而不用再寫同樣的程式碼</p>
 <blockquote>
 <p>注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同，
-如果開發需要不同的比對方式，請自行修改。切勿照抄。</p>
-</blockquote>
+如果開發需要不同的比對方式，請自行修改。切勿照抄。</p></blockquote>
 <p>舉個例子，如果目前有一個<code>Student</code>，需要進行比對</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>classs Student: Equatable, Identifiable {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> id = UUID()
@@ -394,6 +410,13 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
 
         <div class="pagination__buttons">
             
+            <span class="button previous">
+                <a href="/posts/2024-01-16-oop2/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">關於Object Oriented Programming的那點事 2</span>
+                </a>
+            </span>
+            
 
             
             <span class="button next">
@@ -430,7 +453,7 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
 
 
 
-<script type="text/javascript" src="/bundle.min.46e438bd2eca7eb6358c700b40f6f56b22ab0b92503ecc11a2d8e4bcc610b8b4da83e5ea3d3e84fdb5f3c3c765744b9f5bbaf43cf5a027910be07ee39a9c12a1.js" integrity="sha512-RuQ4vS7KfrY1jHALQPb1ayKrC5JQPswRotjkvMYQuLTag&#43;XqPT6E/bXzw8dldEufW7r0PPWgJ5EL4H7jmpwSoQ=="></script>
+<script type="text/javascript" src="/bundle.min.ad54ad97364f77ede35def9096b162bb1f0b3973aa50b080f5e82fa147f6882e2a7200d7535adbf9b51bebf939f1c1ca9bbe6be87530092aca720eac4a226fda.js" integrity="sha512-rVStlzZPd&#43;3jXe&#43;QlrFiux8LOXOqULCA9egvoUf2iC4qcgDXU1rb&#43;bUb6/k58cHKm75r6HUwCSrKcg6sSiJv2g=="></script>
 
 
 

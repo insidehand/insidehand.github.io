@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="ssh到GitHub的時候，使用私鑰進行驗證" />
+<meta name="keywords" content=", ssh" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/posts/2020-06-28-ssh-basic-setup/" />
+
+
+    <title>
+        
+            SSH 基本設定 :: Insidehand  — Just note something.
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.949191c1dcc9c4a887997048b240354e47152016d821198f89448496ba42e491.css" integrity="sha256-lJGRwdzJxKiHmXBIskA1TkcVIBbYIRmPiUSElrpC5JE=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="SSH 基本設定">
+  <meta itemprop="description" content="ssh到GitHub的時候，使用私鑰進行驗證">
+  <meta itemprop="datePublished" content="2020-06-28T18:34:47+08:00">
+  <meta itemprop="dateModified" content="2020-06-28T18:34:47+08:00">
+  <meta itemprop="wordCount" content="138">
+  <meta itemprop="keywords" content="SSH">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SSH 基本設定">
+  <meta name="twitter:description" content="ssh到GitHub的時候，使用私鑰進行驗證">
+
+
+
+    <meta property="og:url" content="/posts/2020-06-28-ssh-basic-setup/">
+  <meta property="og:site_name" content="Insidehand">
+  <meta property="og:title" content="SSH 基本設定">
+  <meta property="og:description" content="ssh到GitHub的時候，使用私鑰進行驗證">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-06-28T18:34:47+08:00">
+    <meta property="article:modified_time" content="2020-06-28T18:34:47+08:00">
+    <meta property="article:tag" content="SSH">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-06-28 18:34:47 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text ">
+                inside my hand</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="/posts/2020-06-28-ssh-basic-setup/">SSH 基本設定</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <p>最近電腦爆了，懷疑應該是副廠的線造成的問題，</p>
+<p>看樣子東西真的不能買便宜的（？</p>
+<p>剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;</p>
+<p>之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。</p>
+<blockquote>
+<p>身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。</p></blockquote>
+<p>正文開始</p>
+<hr>
+<h2 id="ssh到github的時候使用私鑰進行驗證">ssh到GitHub的時候，使用私鑰進行驗證</h2>
+<p>具體步驟大概分為</p>
+<ol>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e7%94%a2%e7%94%9frsa%e7%9a%84%e5%85%ac%e7%a7%81%e9%91%b0">產生rsa的公私鑰</a></li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e8%a8%ad%e5%ae%9assh%e7%9a%84config">設定ssh的config</a> （optional）</li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e7%99%bb%e5%85%a5Github%e4%b8%a6%e4%b8%94%e5%8a%a0%e5%85%a5%e5%89%9b%e5%89%9b%e7%94%a2%e7%94%9f%e7%9a%84%e5%85%ac%e9%91%b0">登入Github並且加入剛剛產生的公鑰</a> （手動）</li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e6%b8%ac%e8%a9%a6%e9%80%a3%e7%b7%9a">測試連線</a></li>
+</ol>
+<hr>
+<h3 id="產生rsa的公私鑰">產生rsa的公私鑰</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen
+</span></span></code></pre></div><p>過程中會問兩個問題</p>
+<ol>
+<li>產生的公私鑰要放的位置</li>
+<li>設定密碼 ( passphrase )</li>
+</ol>
+<p>公私鑰的位置如果直接按Return的話，就會存在預設的位置。</p>
+<p>預設位置為：<code>/Users/username/.ssh/id_rsa</code></p>
+<blockquote>
+<p>這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;</p></blockquote>
+<p>不然也可以自行輸入要存放的位置，例如：</p>
+<p><code>/Users/username/.ssh/rsa-for-github</code></p>
+<blockquote>
+<p>不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字</p></blockquote>
+<p>密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。</p>
+<p>如果輸入密碼的話就每次使用ssh連接時都需要打密碼。</p>
+<p>這部分我就沒特別研究了，有需要的請自行研究。</p>
+<p>完成以後會產生一組公私鑰檔案，例如</p>
+<p><code>rsa-for-github.pub</code> and <code>rsa-for-github</code></p>
+<blockquote>
+<p>沒有<code>.pub</code>的檔案就是私鑰，請好好保管。</p></blockquote>
+<hr>
+<h3 id="設定ssh的config">設定ssh的config</h3>
+<p>如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧</p>
+<p>用不同鑰匙的好處，就跟你不同網站用不同密碼是一樣的概念，</p>
+<p>減少私鑰遺失後全部都被攻破的風險。</p>
+<p>缺點當然是要自行管理這些檔案，管理的方法就是用config來告訴ssh要用哪一個私鑰來驗證。</p>
+<p>因為預設的ssh會去讀<code>id_rsa</code>作為私鑰去驗證，所以如果不用config讓ssh知道要用哪一把鑰匙去做驗證，不管怎麼都入都是失敗的喔。</p>
+<p>基本上我常用的大概就幾個</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Host         <span style="color:#75715e"># 用來連線的 alias 名稱</span>
+</span></span><span style="display:flex;"><span>HostName     <span style="color:#75715e"># host domain 或 ip</span>
+</span></span><span style="display:flex;"><span>Port         <span style="color:#75715e"># host 的 SSH port</span>
+</span></span><span style="display:flex;"><span>IdentityFile <span style="color:#75715e"># 私鑰位置</span>
+</span></span><span style="display:flex;"><span>User         <span style="color:#75715e"># 登入帳號</span>
+</span></span></code></pre></div><p>舉幾個例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Github</span>
+</span></span><span style="display:flex;"><span>Host github.com
+</span></span><span style="display:flex;"><span>HostName github.com
+</span></span><span style="display:flex;"><span>IdentityFile ~/.ssh/rsa_for_github
+</span></span><span style="display:flex;"><span>User git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Raspberry</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 因為我有買樹莓派回來玩，如果不用這樣登入的話，每次都是要打帳號密碼，很煩。</span>
+</span></span><span style="display:flex;"><span>Host raspbian
+</span></span><span style="display:flex;"><span>HostName 192.168.1.123
+</span></span><span style="display:flex;"><span>IdentityFile ~/.ssh/rsa_for_rpi
+</span></span><span style="display:flex;"><span>User pi
+</span></span></code></pre></div><hr>
+<h3 id="登入github並且加入剛剛產生的公鑰">登入Github並且加入剛剛產生的公鑰</h3>
+<p>可以先用<code>cat</code>指令來顯示公鑰內容，然後再把公鑰貼到Github的SSH Key欄位中</p>
+<p><img src="/github-setting-ssh-step-1.png" alt="image"></p>
+<p><img src="/github-setting-ssh-step-2.png" alt="image"></p>
+<p><img src="/github-setting-ssh-step-3.png" alt="image"></p>
+<p>這邊比較簡單就放三張圖自己研究一下就夠了。</p>
+<p>這邊補充一下，如果要用命令將公鑰加入到目標server中的話（例如樹莓派）可以用以下的命令來執行。</p>
+<p>不確定能不能用命令把公鑰加入到Github中，這部分沒特別研究。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 語法：</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id user@host
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果不是用預設的名稱，就要加入參數 i，用來指定IdentityFile</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub user@host
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 範例</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id pi@192.168.1.123
+</span></span><span style="display:flex;"><span>ssh-copy-id -i ~/.ssh/rsa-for-rpi.pub pi@192.168.1.123
+</span></span></code></pre></div><hr>
+<h3 id="測試連線">測試連線</h3>
+<p>根據Github的<a href="https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection">線上文件</a>，只要透過下面這行命令即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ssh -T git@github.com
+</span></span></code></pre></div><p>只要最後出現的是下面這樣就算成功了，至於沒出現的話，就看看有哪些地方做錯了吧。</p>
+<pre tabindex="0"><code>&gt; Hi username! You&#39;ve successfully authenticated, but GitHub does not
+&gt; provide shell access.
+</code></pre><h2 id="參考網頁">參考網頁</h2>
+<p><a href="">https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/</a></p>
+<p><a href="">https://xenby.com/b/220-教學-產生ssh-key並且透過key進行免密碼登入</a></p>
+<p><a href="">https://help.github.com/en/github/authenticating-to-github/testing-your-ssh-connection</a></p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="/tags/ssh/">ssh</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        138 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-06-28 18:34
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a&amp;caption=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a&amp;canonicalUrl=%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a&amp;body=%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=%2fposts%2f2020-06-28-ssh-basic-setup%2f&amp;media=%2fposts%2f2020-06-28-ssh-basic-setup%2f;description=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fposts%2f2020-06-28-ssh-basic-setup%2f&amp;title=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a&amp;summary=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a&amp;source=%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=%2fposts%2f2020-06-28-ssh-basic-setup%2f&amp;resubmit=true&amp;title=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=%2fposts%2f2020-06-28-ssh-basic-setup%2f;title=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a%20%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=%2fposts%2f2020-06-28-ssh-basic-setup%2f&amp;t=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=SSH%20%e5%9f%ba%e6%9c%ac%e8%a8%ad%e5%ae%9a&amp;url=%2fposts%2f2020-06-28-ssh-basic-setup%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">關於GCD的一些筆記-1</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="/posts/2020-06-28-hello-world/">
+                    <span class="button__text">Hello World</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ad54ad97364f77ede35def9096b162bb1f0b3973aa50b080f5e82fa147f6882e2a7200d7535adbf9b51bebf939f1c1ca9bbe6be87530092aca720eac4a226fda.js" integrity="sha512-rVStlzZPd&#43;3jXe&#43;QlrFiux8LOXOqULCA9egvoUf2iC4qcgDXU1rb&#43;bUb6/k58cHKm75r6HUwCSrKcg6sSiJv2g=="></script>
+
+
+
+
+    </body>
+</html>

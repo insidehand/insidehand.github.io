@@ -6,8 +6,466 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Thu, 04 Jan 2024 13:47:08 +0800</lastBuildDate>
+        <lastBuildDate>Mon, 07 Jul 2025 05:10:33 +0800</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Mobkins Support</title>
+            <link>/posts/apps/mobkins/support/</link>
+            <pubDate>Mon, 07 Jul 2025 05:10:33 +0800</pubDate>
+            
+            <guid>/posts/apps/mobkins/support/</guid>
+            <description>Support information for Mobkins</description>
+            <content type="html"><![CDATA[<h2 id="mobkins-support">Mobkins Support</h2>
+<p>Thank you for using <strong>Mobkins</strong>, an iOS app designed to help you manage your Jenkins builds directly from your iPhone.</p>
+<h3 id="contact">Contact</h3>
+<p>If you have any questions, feature requests, or bug reports, feel free to contact us:</p>
+<ul>
+<li>Email: <a href="mailto:requestflow@gmail.com">requestflow@gmail.com</a></li>
+</ul>
+<h3 id="frequently-asked-questions">Frequently Asked Questions</h3>
+<p><strong>Q: Does Mobkins collect any personal data?</strong><br>
+A: No. Mobkins does not collect, store, or transmit any personal data to us. All connections are made directly between your device and the Jenkins server you specify.</p>
+<p><strong>Q: My Jenkins server requires login. Does Mobkins support authentication?</strong><br>
+A: Yes. You can provide your username and API token/password directly within the app to connect securely to your Jenkins server.</p>
+<p><strong>Q: Is Mobkins an official Jenkins app?</strong><br>
+A: No. Mobkins is an independent app and not affiliated with or endorsed by the Jenkins project.</p>
+<hr>
+<h2 id="mobkins-支援說明">Mobkins 支援說明</h2>
+<p>感謝您使用 <strong>Mobkins</strong>，這是一款幫助您從 iPhone 管理 Jenkins 建置流程的 iOS 應用程式。</p>
+<h3 id="聯絡方式">聯絡方式</h3>
+<p>如果您有任何問題、功能建議或錯誤回報，歡迎透過以下方式聯絡我們：</p>
+<ul>
+<li>電子郵件：<a href="mailto:requestflow@gmail.com">requestflow@gmail.com</a></li>
+</ul>
+<h3 id="常見問題">常見問題</h3>
+<p><strong>問：Mobkins 會蒐集個人資料嗎？</strong><br>
+答：不會。Mobkins 不會向我們蒐集、儲存或傳送任何個人資料。所有連線僅在您的裝置與您所指定的 Jenkins 伺服器之間進行。</p>
+<p><strong>問：我的 Jenkins 伺服器需要登入，Mobkins 支援身份驗證嗎？</strong><br>
+答：支援。您可以在 App 中提供帳號與 API Token 或密碼，安全地連線至您的 Jenkins 伺服器。</p>
+<p><strong>問：Mobkins 是官方的 Jenkins App 嗎？</strong><br>
+答：不是。Mobkins 是獨立開發的應用程式，並未獲得 Jenkins 官方的認可或授權。</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Mobkins privacy term</title>
+            <link>/posts/apps/mobkins/privacy_policy/</link>
+            <pubDate>Mon, 07 Jul 2025 04:52:33 +0800</pubDate>
+            
+            <guid>/posts/apps/mobkins/privacy_policy/</guid>
+            <description>Mobkins Privacy Term</description>
+            <content type="html"><![CDATA[<h2 id="privacy-policy--隱私條款">Privacy Policy / 隱私條款</h2>
+<p><strong>Last updated: 2025-07-07</strong></p>
+<h3 id="english">English</h3>
+<p>Mobkins does not collect, store, or transmit any personal data to us.<br>
+The app connects only to Jenkins servers that you configure, and all data communication happens directly between your device and your own server.<br>
+We do not use analytics, advertising, or tracking tools.<br>
+Your server information is stored only on your device and is never shared with us.</p>
+<p>If you have any questions, feel free to contact us.</p>
+<h3 id="中文">中文</h3>
+<p>Mobkins 不會向我們蒐集、儲存或傳送任何個人資料。<br>
+本應用程式僅會連線至您所設定的 Jenkins 伺服器，所有資料傳輸皆在您的裝置與您的伺服器之間進行。<br>
+我們不使用任何分析工具、廣告服務或追蹤技術。<br>
+您的伺服器資訊僅保留在您的裝置上，絕不會與我們分享。</p>
+<p>若您有任何疑問，歡迎與我們聯繫。</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>如何把Server只開放給SSH RSA登入</title>
+            <link>/posts/2024-01-05-ssh-only-via-rsa/</link>
+            <pubDate>Sat, 20 Jan 2024 23:47:08 +0800</pubDate>
+            
+            <guid>/posts/2024-01-05-ssh-only-via-rsa/</guid>
+            <description>&lt;p&gt;大家都知道，讓明碼在網路上傳輸是很危險的，所以我們都會使用SSH RSA登入，但是如果你的Server是直接連上網路的話，那麼你的Server就會被駭客不斷的嘗試登入，這時候你就可以使用下面的方法，讓你的Server只開放給SSH RSA登入。&lt;/p&gt;
+&lt;p&gt;原則上有幾個步驟要處理&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;加入SSH公鑰（不然一開始就封閉，除非Server有可以直接操作的螢幕，不然就再也沒辦法控制了）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;具體加入的方法可以參考&lt;a href=&#34;/posts/2020-06-28-ssh-basic-setup/&#34;&gt;這篇&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;設定防火牆，只開放特定的IP可以連線&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;設定SSH，只開放RSA登入&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;重啟SSH&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step2-設定防火牆只開放特定的ip可以連線&#34;&gt;Step2. 設定防火牆，只開放特定的IP可以連線&lt;/h2&gt;
+&lt;p&gt;使用編輯器修改下面兩個檔案，並且加入新的設定&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/hosts.allow&lt;/code&gt;
+&lt;code&gt;/etc/hosts.deny&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# /etc/hosts.allow&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/etc/hosts.allow
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 允許所有本地IP（記得修改網段，未必每個人都是192.168.50.xx）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sshd: 192.168.50.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# /etc/hosts.deny&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 禁止所有來源 IP 的連線&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sshd: ANY
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step3-設定ssh只開放rsa登入&#34;&gt;Step3. 設定SSH，只開放RSA登入&lt;/h2&gt;
+&lt;p&gt;使用編輯器修改下面檔案，並且加入新的設定&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# /etc/ssh/sshd_config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PubkeyAuthentication yes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PasswordAuthentication no
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step4-重啟ssh&#34;&gt;Step4. 重啟SSH&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo /etc/init.d/ssh restart
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;參考資料&#34;&gt;參考資料&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://officeguide.cc/linux-hosts-allow-deny-restrict-ip-address-tutorial-examples/&#34;&gt;https://officeguide.cc/linux-hosts-allow-deny-restrict-ip-address-tutorial-examples/&lt;/a&gt;&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>大家都知道，讓明碼在網路上傳輸是很危險的，所以我們都會使用SSH RSA登入，但是如果你的Server是直接連上網路的話，那麼你的Server就會被駭客不斷的嘗試登入，這時候你就可以使用下面的方法，讓你的Server只開放給SSH RSA登入。</p>
+<p>原則上有幾個步驟要處理</p>
+<ol>
+<li>
+<p>加入SSH公鑰（不然一開始就封閉，除非Server有可以直接操作的螢幕，不然就再也沒辦法控制了）</p>
+<blockquote>
+<p>具體加入的方法可以參考<a href="/posts/2020-06-28-ssh-basic-setup/">這篇</a></p></blockquote>
+</li>
+<li>
+<p>設定防火牆，只開放特定的IP可以連線</p>
+</li>
+<li>
+<p>設定SSH，只開放RSA登入</p>
+</li>
+<li>
+<p>重啟SSH</p>
+</li>
+</ol>
+<h2 id="step2-設定防火牆只開放特定的ip可以連線">Step2. 設定防火牆，只開放特定的IP可以連線</h2>
+<p>使用編輯器修改下面兩個檔案，並且加入新的設定</p>
+<p><code>/etc/hosts.allow</code>
+<code>/etc/hosts.deny</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># /etc/hosts.allow</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/etc/hosts.allow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 允許所有本地IP（記得修改網段，未必每個人都是192.168.50.xx）</span>
+</span></span><span style="display:flex;"><span>sshd: 192.168.50.
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># /etc/hosts.deny</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 禁止所有來源 IP 的連線</span>
+</span></span><span style="display:flex;"><span>sshd: ANY
+</span></span></code></pre></div><h2 id="step3-設定ssh只開放rsa登入">Step3. 設定SSH，只開放RSA登入</h2>
+<p>使用編輯器修改下面檔案，並且加入新的設定</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># /etc/ssh/sshd_config</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PubkeyAuthentication yes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PasswordAuthentication no
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
+</span></span></code></pre></div><h2 id="step4-重啟ssh">Step4. 重啟SSH</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo /etc/init.d/ssh restart
+</span></span></code></pre></div><h2 id="參考資料">參考資料</h2>
+<p><a href="https://officeguide.cc/linux-hosts-allow-deny-restrict-ip-address-tutorial-examples/">https://officeguide.cc/linux-hosts-allow-deny-restrict-ip-address-tutorial-examples/</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>關於Object Oriented Programming的那點事 1</title>
+            <link>/posts/2024-01-16-oop1/</link>
+            <pubDate>Tue, 16 Jan 2024 11:17:00 +0800</pubDate>
+            
+            <guid>/posts/2024-01-16-oop1/</guid>
+            <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;會寫這篇是因為在工作了幾年之後，發現很多人都不知道什麼是OOP，也不知道OOP的好處。常常會看到重複的程式碼，或是程式碼的可讀性很差。&lt;/p&gt;
+&lt;p&gt;基於取之於社群，用之於社群的精神，想寫一些關於OOP的文章
+希望能夠幫助到一些人，也在寫文章的時候釐清一下自己的想法。&lt;/p&gt;
+&lt;h2 id=&#34;什麼是oop-&#34;&gt;什麼是OOP ?&lt;/h2&gt;
+&lt;p&gt;OOP是Object Oriented Programming的縮寫，中文翻譯為物件導向程式設計，是一種程式設計的方法論，這種方法論的核心是將程式中的資料與操作資料的程式碼封裝成一個個的物件，並且透過物件之間的互動來完成程式的功能。&lt;/p&gt;
+&lt;h2 id=&#34;物件導向基本原則&#34;&gt;物件導向基本原則&lt;/h2&gt;
+&lt;p&gt;物件導向的概念有幾個，分別是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;封裝&lt;/code&gt;: 將資料與操作資料的程式碼隱藏在物件內部，只提供介面給外部使用&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;繼承&lt;/code&gt;: 將程式碼中相同的部分抽到父物件，讓不同的子物件可以共用，減少重複的程式碼&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;多型&lt;/code&gt;: 透過相同的介面來達成不同的實作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;SOLID原則是物件導向的五個基本原則，分別是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Single Responsibility Principle&lt;/code&gt;: 一個物件只做一件事&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Open/Closed Principle&lt;/code&gt;: 一個物件應該是可以擴充的，但應該避免修改&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Liskov Substitution Principle&lt;/code&gt;: 子物件可以替換父物件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Interface Segregation Principle&lt;/code&gt;: 物件之間的互動應該相依於介面&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Dependency Inversion Principle&lt;/code&gt;: 高階模組不應該依賴低階模組，兩者都應該依賴抽象&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;物件導向的目的&#34;&gt;物件導向的目的&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Divide and Conquer. - Caesar&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;這些原則其實最終都指向一個基本想法：「可維護」&lt;/p&gt;
+&lt;p&gt;透過這些原則，可以減少重複的程式碼、增加可讀性、並且更容易找到要修改的地方。&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<h2 id="前言">前言</h2>
+<p>會寫這篇是因為在工作了幾年之後，發現很多人都不知道什麼是OOP，也不知道OOP的好處。常常會看到重複的程式碼，或是程式碼的可讀性很差。</p>
+<p>基於取之於社群，用之於社群的精神，想寫一些關於OOP的文章
+希望能夠幫助到一些人，也在寫文章的時候釐清一下自己的想法。</p>
+<h2 id="什麼是oop-">什麼是OOP ?</h2>
+<p>OOP是Object Oriented Programming的縮寫，中文翻譯為物件導向程式設計，是一種程式設計的方法論，這種方法論的核心是將程式中的資料與操作資料的程式碼封裝成一個個的物件，並且透過物件之間的互動來完成程式的功能。</p>
+<h2 id="物件導向基本原則">物件導向基本原則</h2>
+<p>物件導向的概念有幾個，分別是：</p>
+<ol>
+<li><code>封裝</code>: 將資料與操作資料的程式碼隱藏在物件內部，只提供介面給外部使用</li>
+<li><code>繼承</code>: 將程式碼中相同的部分抽到父物件，讓不同的子物件可以共用，減少重複的程式碼</li>
+<li><code>多型</code>: 透過相同的介面來達成不同的實作</li>
+</ol>
+<p>SOLID原則是物件導向的五個基本原則，分別是：</p>
+<ol>
+<li><code>Single Responsibility Principle</code>: 一個物件只做一件事</li>
+<li><code>Open/Closed Principle</code>: 一個物件應該是可以擴充的，但應該避免修改</li>
+<li><code>Liskov Substitution Principle</code>: 子物件可以替換父物件</li>
+<li><code>Interface Segregation Principle</code>: 物件之間的互動應該相依於介面</li>
+<li><code>Dependency Inversion Principle</code>: 高階模組不應該依賴低階模組，兩者都應該依賴抽象</li>
+</ol>
+<h2 id="物件導向的目的">物件導向的目的</h2>
+<blockquote>
+<p>Divide and Conquer. - Caesar</p></blockquote>
+<p>這些原則其實最終都指向一個基本想法：「可維護」</p>
+<p>透過這些原則，可以減少重複的程式碼、增加可讀性、並且更容易找到要修改的地方。</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>關於Object Oriented Programming的那點事 2</title>
+            <link>/posts/2024-01-16-oop2/</link>
+            <pubDate>Tue, 16 Jan 2024 11:17:00 +0800</pubDate>
+            
+            <guid>/posts/2024-01-16-oop2/</guid>
+            <description>&lt;h2 id=&#34;實務應用&#34;&gt;實務應用&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;基於這篇是在講概念，所以程式碼的部分就寫個意思，並不能真的執行的。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;這裡也不太想要老調重彈的說一些 Duck, Animal, Dog, Cat 的例子，直接來點實務上面的應用，來說明一下物件導向的優點。&lt;/p&gt;
+&lt;p&gt;在幾年前，我在一家寫POS系統的公司工作，當時需要列印電子發票，公司找了Epson的印表機的代理商，從他們那邊確定了貨源。&lt;/p&gt;
+&lt;p&gt;於是乎，有了以下這段程式碼。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;EpsonPrinterHelper&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; shared = EpsonPrinterHelper()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;init&lt;/span&gt;() {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/// 列印發票&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;print&lt;/span&gt;(invoice: Invoice) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; printer = EpsonPrinter()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printer.setText(invoice.title)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printer.setText(invoice.date)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printer.setText(invoice.number)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printer.print()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printer.cut()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/// 列印收據&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;print&lt;/span&gt;(receipt: Receipt) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; printer = EpsonPrinter()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/// 結帳頁面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CheckoutViewController&lt;/span&gt;: UIViewController {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;printInvoice&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; invoice = Invoice()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        EpsonPrinterHelper.shared.print(invoice: invoice)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;printReceipt&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; receipt = Receipt()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        EpsonPrinterHelper.shared.print(receipt: receipt)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這段程式碼運作起來很正常，很美好，直到公司決定要賣其他廠牌印表機的那一天。&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<h2 id="實務應用">實務應用</h2>
+<blockquote>
+<p>基於這篇是在講概念，所以程式碼的部分就寫個意思，並不能真的執行的。</p></blockquote>
+<p>這裡也不太想要老調重彈的說一些 Duck, Animal, Dog, Cat 的例子，直接來點實務上面的應用，來說明一下物件導向的優點。</p>
+<p>在幾年前，我在一家寫POS系統的公司工作，當時需要列印電子發票，公司找了Epson的印表機的代理商，從他們那邊確定了貨源。</p>
+<p>於是乎，有了以下這段程式碼。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpsonPrinterHelper</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> shared = EpsonPrinterHelper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">init</span>() {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/// 列印發票</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">print</span>(invoice: Invoice) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> printer = EpsonPrinter()
+</span></span><span style="display:flex;"><span>        printer.setText(invoice.title)
+</span></span><span style="display:flex;"><span>        printer.setText(invoice.date)
+</span></span><span style="display:flex;"><span>        printer.setText(invoice.number)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        printer.print()
+</span></span><span style="display:flex;"><span>        printer.cut()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/// 列印收據</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">print</span>(receipt: Receipt) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> printer = EpsonPrinter()
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/// 結帳頁面</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CheckoutViewController</span>: UIViewController {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printInvoice</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> invoice = Invoice()
+</span></span><span style="display:flex;"><span>        EpsonPrinterHelper.shared.print(invoice: invoice)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printReceipt</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> receipt = Receipt()
+</span></span><span style="display:flex;"><span>        EpsonPrinterHelper.shared.print(receipt: receipt)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>這段程式碼運作起來很正常，很美好，直到公司決定要賣其他廠牌印表機的那一天。</p>
+<p>先來看一下這段程式碼會有什麼問題。由內往外逐步分析</p>
+<p><strong>問題一：每一個方法都直接對應一種單據，所以如果要新增一種單據，就要修改這個檔案。</strong></p>
+<p>這就是違反了「單一職責」與「開放封閉」，那麼造成的問題呢？這個檔案就會參雜許多不同的異動記錄，有問題會難以追根溯源。</p>
+<p>例如</p>
+<ul>
+<li>修復：「工單_00321」發票QRCode大小異常</li>
+<li>新增：「工單_00322」列印打卡記錄</li>
+<li>移除：「工單_00323」盤點庫存明細</li>
+</ul>
+<p>顯然，如果異動記錄是這樣會比較好</p>
+<ul>
+<li>修復：「工單_00321」發票QRCode大小異常</li>
+<li>新增：「工單_00322」發票明細增加商品金額</li>
+<li>新增：「工單_00323」發票頂部新增自訂圖片</li>
+</ul>
+<p>好處一目瞭然：所有的異動都是針對發票，而不是其他要列印的單據。</p>
+<blockquote>
+<p>commit message 要寫好，不過這個會另外寫一篇文章來講。</p></blockquote>
+<p><strong>問題二：列印畫面直接依賴在EpsonPrinter，沒有辦法替換印表機。</strong></p>
+<p>這個就是違反「子物件替換」與「介面隔離」。就如同上面的修改，如果每次要新增一個新的印表機類型，就要來修改結帳畫面。但是結帳畫面的「職責」是「整理要結帳資料」而不是選擇印表機</p>
+<p>基於上面的問題，於是有了以下的修改版本。</p>
+<blockquote>
+<p>這段程式碼會有一點長，所以拆開來講解</p></blockquote>
+<h4 id="第一步拆分列印任務">第一步：拆分列印任務</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">PrinterTask</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">print</span>(with printer: Printer)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">PrintInvoiceTask</span>: PrinterTask {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> invoice: Invoice
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">print</span>(with printer: Printer) {
+</span></span><span style="display:flex;"><span>        printer.setText(invoice.title)
+</span></span><span style="display:flex;"><span>        printer.setText(invoice.date)
+</span></span><span style="display:flex;"><span>        printer.setText(invoice.number)
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>        printer.print()
+</span></span><span style="display:flex;"><span>        printer.cut()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">PrintReceiptTask</span>: PrinterTask {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> receipt: Receipt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">print</span>(with printer: Printer) {
+</span></span><span style="display:flex;"><span>        printer.setText(receipt.title)
+</span></span><span style="display:flex;"><span>        printer.setText(receipt.date)
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>        printer.print()
+</span></span><span style="display:flex;"><span>        printer.cut()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如此，就能把不同的列印任務，拆分到不同的類別中。針對檔案的 commit 也能夠更精確地說明修改內容。</p>
+<h4 id="第二步高階物件使用抽象介面">第二步：高階物件使用抽象介面</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrinterHelper</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> shared = PrinterHelper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">init</span>() {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/// 列印</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">print</span>(task: PrinterTask, with: Printer) {
+</span></span><span style="display:flex;"><span>       task.print(with: Printer)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>乍看之下感覺這個物件沒什麼用處，只是單純的 <code>Middle Man</code> 。</p>
+<p>是因為這邊並沒有引入錯誤處理的流程。</p>
+<p>這邊可以另外負責列印任務失敗以後的處理，諸如重印、拋出錯誤、記錄 log 等等，這個物件的職責就會從「處理各種單據」變成「處理列印任務」，這樣職責就細化了。</p>
+<h4 id="第三步印表機職責">第三步：印表機職責</h4>
+<p>上面的程式碼會發現宣告了一個<code>Printer protocol</code>，但是並沒有實作。因為這邊牽扯到一個稍微複雜的設計，所以放到後面才講。</p>
+<p>照一般的寫法，會是這樣的設計</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpsonPrinter</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printInvoice</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printReceipt</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StarPrinter</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printInvoice</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printReceipt</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>這樣寫的問題也很明顯，一來程式碼重複性很高，二來兩邊的邏輯就有可能會對不上。有可能發生「修好一個印表機的發票格式，忘了修其他的」。所以這邊需要引入一個 Design Pattern</p>
+<p>使用了 <code>Bridge Pattern</code> 改寫以後的程式碼是這樣，將抽象與實作分離</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">Printer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">setText</span>(<span style="color:#66d9ef">_</span> text: String)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">setBarcode</span>(<span style="color:#66d9ef">_</span> text: String)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">setQrcode</span>(<span style="color:#66d9ef">_</span> text: String)
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpsonPrinter</span>: NSObject, EpsonPrinterDelegate, Printer {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StarPrinter</span>: Printer {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>把商業邏輯從物件中去掉，讓Printer只具有基本能力。</p>
+<p>如此一來，結帳頁面就可以改寫成這個版本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">/// 結帳頁面</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CheckoutViewController</span>: UIViewController {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printInvoice</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> invoice = Invoice(...)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> task = PrintInvoiceTask(invoice: invoice)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> invoicePrinter = PrinterManager.shared.getInvoicePrinter()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        PrinterHelper.shared.print(task: task, invoicePrinter)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printReceipt</span>() {
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>當然過程中有很多奇奇怪怪的坑要踩，列印流程也不是一次到位，要根據不同的印表機整理出一個共同能使用的基本流程本來就很複雜。</p>
+<p>優點也很明顯，後面有新增第三台印表機的時候，可以直接讓印表機實作<code>Printer</code>這個協定，然後<code>PrinterManager</code>這裡面提供這個印表機實體就處理完了。</p>
+<p>也不會遇到邏輯不一致的問題，因為邏輯封裝在各種的<code>Task</code>內部。</p>
+<h2 id="結論">結論</h2>
+<p>物件導向的重點</p>
+<p>這樣的流程也是當初慢慢摸索出來的</p>
+<p>重點是 <strong>「如果沒有需求，就不要花時間設計」</strong></p>
+]]></content>
+        </item>
         
         <item>
             <title>善用Protocol與Protocol Extension</title>
@@ -15,26 +473,72 @@
             <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
             
             <guid>/posts/2024-01-04-protocol-and-extension/</guid>
-            <description>例如說常在SwiftUI List, ForEach裡面用到的Identifiable，
-每次要做比較的時候都要寫一次Equatable的等價關係
-如果善用protocol extenion的話，就可以針對大部分的Identifiable做一個通用的擴充
-所有實作了Identifiable的對象都可以直接擴充Equatable，而不用再寫同樣的程式碼
-注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同， 如果開發需要不同的比對方式，請自行修改。切勿照抄。
-舉個例子，如果目前有一個Student，需要進行比對
-classs Student: Equatable, Identifiable { let id = UUID() let name: String } 一般寫完這段程式碼以後，要自己實作Equatable。
-extension Student { static func == (lhs: Student, rhs: Student) -&amp;gt; Bool { lhs.id == rhs.id } } 如此，才能使用==來比對兩個物件是否相等。
-不過，
-如果沒有其他情況要特別比對，每次都只是比對id是否相等，那會產生大量的無用程式碼
-所以這邊就可以用Protocol Extension來簡化程式碼。
-extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: Self) -&amp;gt; Bool { lhs.id == rhs.id } } 這樣就可以針對所有實作Equatable與Identifiable的物件進行一個預設的擴充。</description>
+            <description>&lt;p&gt;例如說常在SwiftUI &lt;code&gt;List&lt;/code&gt;, &lt;code&gt;ForEach&lt;/code&gt;裡面用到的&lt;code&gt;Identifiable&lt;/code&gt;，&lt;/p&gt;
+&lt;p&gt;每次要做比較的時候都要寫一次&lt;code&gt;Equatable&lt;/code&gt;的等價關係&lt;/p&gt;
+&lt;p&gt;如果善用&lt;code&gt;protocol extenion&lt;/code&gt;的話，就可以針對大部分的&lt;code&gt;Identifiable&lt;/code&gt;做一個通用的擴充&lt;/p&gt;
+&lt;p&gt;所有實作了&lt;code&gt;Identifiable&lt;/code&gt;的對象都可以直接擴充&lt;code&gt;Equatable&lt;/code&gt;，而不用再寫同樣的程式碼&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同，
+如果開發需要不同的比對方式，請自行修改。切勿照抄。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;舉個例子，如果目前有一個&lt;code&gt;Student&lt;/code&gt;，需要進行比對&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;classs Student: Equatable, Identifiable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; id = UUID()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; name: String
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一般寫完這段程式碼以後，要自己實作&lt;code&gt;Equatable&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;extension&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Student&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; == (lhs: Student, rhs: Student) -&amp;gt; Bool {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      lhs.id == rhs.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如此，才能使用&lt;code&gt;==&lt;/code&gt;來比對兩個物件是否相等。&lt;/p&gt;
+&lt;p&gt;不過，&lt;/p&gt;
+&lt;p&gt;如果沒有其他情況要特別比對，每次都只是比對&lt;code&gt;id&lt;/code&gt;是否相等，那會產生大量的無用程式碼&lt;/p&gt;
+&lt;p&gt;所以這邊就可以用&lt;code&gt;Protocol Extension&lt;/code&gt;來簡化程式碼。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;extension&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Equatable&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Self&lt;/span&gt;: Identifiable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; == (lhs: &lt;span style=&#34;color:#66d9ef&#34;&gt;Self&lt;/span&gt;, rhs: &lt;span style=&#34;color:#66d9ef&#34;&gt;Self&lt;/span&gt;) -&amp;gt; Bool {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      lhs.id == rhs.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這樣就可以針對所有實作&lt;code&gt;Equatable&lt;/code&gt;與&lt;code&gt;Identifiable&lt;/code&gt;的物件進行一個預設的擴充。&lt;/p&gt;
+&lt;p&gt;如果有不一樣的需求，再自己實作一次介面方法就可以了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;UIKit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Student&lt;/span&gt;: Equatable, Identifiable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;init&lt;/span&gt;(name: String) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.name = name
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; id = UUID()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; name: String
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; obj1: Student = .&lt;span style=&#34;color:#66d9ef&#34;&gt;init&lt;/span&gt;(name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; obj2: Student = .&lt;span style=&#34;color:#66d9ef&#34;&gt;init&lt;/span&gt;(name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;extension&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Equatable&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Self&lt;/span&gt;: Identifiable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; == (lhs: &lt;span style=&#34;color:#66d9ef&#34;&gt;Self&lt;/span&gt;, rhs: &lt;span style=&#34;color:#66d9ef&#34;&gt;Self&lt;/span&gt;) -&amp;gt; Bool {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        lhs.id == rhs.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(obj1 == obj2) &lt;span style=&#34;color:#75715e&#34;&gt;// return false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//extension Student {&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//    static func == (lhs: Student, rhs: Student) -&amp;gt; Bool {&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//        lhs.name == rhs.name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//    }&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//print(obj1 == obj2) // return true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
             <content type="html"><![CDATA[<p>例如說常在SwiftUI <code>List</code>, <code>ForEach</code>裡面用到的<code>Identifiable</code>，</p>
 <p>每次要做比較的時候都要寫一次<code>Equatable</code>的等價關係</p>
 <p>如果善用<code>protocol extenion</code>的話，就可以針對大部分的<code>Identifiable</code>做一個通用的擴充</p>
 <p>所有實作了<code>Identifiable</code>的對象都可以直接擴充<code>Equatable</code>，而不用再寫同樣的程式碼</p>
 <blockquote>
 <p>注意：這邊只是因為個人開發習慣，所以相同 id 的物件會直接視為相同，
-如果開發需要不同的比對方式，請自行修改。切勿照抄。</p>
-</blockquote>
+如果開發需要不同的比對方式，請自行修改。切勿照抄。</p></blockquote>
 <p>舉個例子，如果目前有一個<code>Student</code>，需要進行比對</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>classs Student: Equatable, Identifiable {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> id = UUID()
@@ -95,12 +599,38 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
             <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
             
             <guid>/posts/2024-01-04-swift-on-rpi/</guid>
-            <description>之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift
-但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，
-總覺得沒那麼優雅就放棄了這個想法。
-直到最近閒來無事，想說樹莓派上的一些專案好像很久沒動了，就久違的來研究一下有沒有新的東西可以玩。
-這邊就不廢話了直接上腳本
-#!/bin/bash set -e # check if .az directory exists if [ -d &amp;#34;$HOME/.swift&amp;#34; ]; then echo &amp;#34;Swift is already installed&amp;#34; exit 1 fi wget https://download.swift.org/swift-5.9.2-release/ubuntu2004-aarch64/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Unzip swift-5.9.2&amp;#34; tar xzf swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Rename swift-5.9.2 to swift-5.9.2&amp;#34; mv swift-5.9.2-RELEASE-ubuntu20.04-aarch64 swift-5.9.2 echo &amp;#34;Move swift-5.9.2 to .swift&amp;#34; mv swift-5.9.2 &amp;#34;$HOME/.swift/&amp;#34; echo &amp;#34;Remove zip file&amp;#34; rm swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz echo &amp;#34;Add swift to path&amp;#34; export PATH=$PATH:$HOME/.</description>
+            <description>&lt;p&gt;之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift&lt;/p&gt;
+&lt;p&gt;但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，&lt;/p&gt;
+&lt;p&gt;總覺得沒那麼優雅就放棄了這個想法。&lt;/p&gt;
+&lt;p&gt;直到最近閒來無事，想說樹莓派上的一些專案好像很久沒動了，就久違的來研究一下有沒有新的東西可以玩。&lt;/p&gt;
+&lt;p&gt;這邊就不廢話了直接上腳本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;set -e
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# check if .az directory exists&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/.swift&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Swift is already installed&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    exit &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget https://download.swift.org/swift-5.9.2-release/ubuntu2004-aarch64/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Unzip swift-5.9.2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar xzf swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rename swift-5.9.2 to swift-5.9.2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mv swift-5.9.2-RELEASE-ubuntu20.04-aarch64 swift-5.9.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Move swift-5.9.2 to .swift&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mv swift-5.9.2 &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/.swift/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Remove zip file&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rm swift-5.9.2-RELEASE-ubuntu20.04-aarch64.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Add swift to path&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$PATH:$HOME/.swift/swift-5.9.2/usr/bin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把內容複製到樹莓派中，並且執行腳本&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>之前剛買到樹莓派的時候就有在想，樹莓派上能不能執行Swift</p>
 <p>但是之前 Swift 要在 arm 架構上執行需要用其他人編譯的一個 Swift-arm 版本，</p>
 <p>總覺得沒那麼優雅就放棄了這個想法。</p>
@@ -147,24 +677,57 @@ extension Equatable where Self: Identifiable { static func == (lhs: Self, rhs: S
             <pubDate>Mon, 20 Jun 2022 14:34:32 +0800</pubDate>
             
             <guid>/posts/2022-06-20-ios-ota/</guid>
-            <description>常見的iOS發布不外乎為
-App Store上架 Vpp Store上架（大量授權） TestFlight 這三種方式都必須要通過審核（至少在寫文章的時候是這樣）
-那麼，如果只是發布給公司內部的員工使用。
-例如：給測試人員使用，或是給業務等前線單位試用的時候，也要經過審核的話就非常耗費時間。
-所以這邊就説說另外一種方式，可以不用通過Apple審核也可以進行發布的方式：Ad Hoc
-使用Ad Hoc有一個前提，那就是目標手機必須要在開發者帳號下登記過。
-所以要先檢查provisioning profile中有沒有手機的UDID。
-2024註：
-這邊建議手機可以在註冊的時候把UUID跟機型、使用者之類的做個表管理一下
-透過解析 ipa 中的 embbed provision profile 就能比較輕鬆的找出這個 ipa 有哪些人可以安裝
-Ad Hoc 具體發布大概有以下步驟
-打包 輸出 ipa 準備 manifest.plist 準備一個可以存取的網路空間(https) 準備一個網頁或是QRCode 執行下載 上述所有步驟裡面，最麻煩的大概就是一定要走https協定這件事。 所以這部分我覺得分兩個情境來看。
-如果走的是內網下載，之前有試過用python架設https server，是可以用的。 ref of http ref of https
-如果走的是外網下載，但是沒有購買SSL憑證。 那也可以自己建立憑證讓目標手機下載，
-2024註
-後來好像不行了，建議走 Dropbox 吧
-先來説說如果不用腳本的話要怎麼做到這些事情。
-Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration。 在Organizer中選擇Distribute App，選Ad Hoc，之後就是一路next OTA的選項可以勾也可以不勾，勾起來的話會自動幫你產生一個manifest而已。 將manifest中的路徑、bundle identifier等相關資訊修改完 將ipa, manifest 上傳到網路空間 從網頁或是QR Code中執行下載功能。 整套流程能使用Fastlane去處理，會方便很多。 這邊是把最基礎的手動版本寫出來。</description>
+            <description>&lt;p&gt;常見的iOS發布不外乎為&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;App Store上架&lt;/li&gt;
+&lt;li&gt;Vpp Store上架（大量授權）&lt;/li&gt;
+&lt;li&gt;TestFlight&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這三種方式都必須要通過審核（至少在寫文章的時候是這樣）&lt;/p&gt;
+&lt;p&gt;那麼，如果只是發布給公司內部的員工使用。&lt;/p&gt;
+&lt;p&gt;例如：給測試人員使用，或是給業務等前線單位試用的時候，也要經過審核的話就非常耗費時間。&lt;/p&gt;
+&lt;p&gt;所以這邊就説說另外一種方式，可以不用通過Apple審核也可以進行發布的方式：&lt;code&gt;Ad Hoc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用Ad Hoc有一個前提，那就是目標手機必須要在開發者帳號下登記過。&lt;/p&gt;
+&lt;p&gt;所以要先檢查&lt;code&gt;provisioning profile&lt;/code&gt;中有沒有手機的UDID。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2024註：&lt;/p&gt;
+&lt;p&gt;這邊建議手機可以在註冊的時候把UUID跟機型、使用者之類的做個表管理一下&lt;/p&gt;
+&lt;p&gt;透過解析 ipa 中的 &lt;code&gt;embbed provision profile&lt;/code&gt; 就能比較輕鬆的找出這個 ipa 有哪些人可以安裝&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;ad-hoc&#34;&gt;Ad Hoc&lt;/h2&gt;
+&lt;p&gt;具體發布大概有以下步驟&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打包&lt;/li&gt;
+&lt;li&gt;輸出 ipa&lt;/li&gt;
+&lt;li&gt;準備 manifest.plist&lt;/li&gt;
+&lt;li&gt;準備一個可以存取的網路空間(https)&lt;/li&gt;
+&lt;li&gt;準備一個網頁或是QRCode&lt;/li&gt;
+&lt;li&gt;執行下載&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上述所有步驟裡面，最麻煩的大概就是一定要走https協定這件事。
+所以這部分我覺得分兩個情境來看。&lt;/p&gt;
+&lt;p&gt;如果走的是內網下載，之前有試過用python架設https server，是可以用的。
+&lt;a href=&#34;https://chwang12341.medium.com/coding%E8%B5%B7%E4%BE%86-python-%E4%B8%80%E8%A1%8C%E6%8C%87%E4%BB%A4%E5%B0%B1%E8%83%BD%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E7%B6%B2%E9%A0%81%E4%BC%BA%E6%9C%8D%E5%99%A8-simplehttpserver%E5%A5%97%E4%BB%B6-http-server%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-34c30b81c26&#34;&gt;ref of http&lt;/a&gt;
+&lt;a href=&#34;https://stackoverflow.com/questions/19705785/python-3-simple-https-server&#34;&gt;ref of https&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果走的是外網下載，但是沒有購買SSL憑證。
+那也可以自己建立憑證讓目標手機下載，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2024註&lt;/p&gt;
+&lt;p&gt;後來好像不行了，建議走 Dropbox 吧&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;先來説說如果不用腳本的話要怎麼做到這些事情。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Xcode中選擇&lt;code&gt;Archive&lt;/code&gt;，打包的時候記得挑好對應的&lt;code&gt;Build Configuration&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;Organizer&lt;/code&gt;中選擇&lt;code&gt;Distribute App&lt;/code&gt;，選&lt;code&gt;Ad Hoc&lt;/code&gt;，之後就是一路&lt;code&gt;next&lt;/code&gt;
+&lt;ol&gt;
+&lt;li&gt;OTA的選項可以勾也可以不勾，勾起來的話會自動幫你產生一個manifest而已。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;將&lt;code&gt;manifest&lt;/code&gt;中的路徑、bundle identifier等相關資訊修改完&lt;/li&gt;
+&lt;li&gt;將&lt;code&gt;ipa&lt;/code&gt;, &lt;code&gt;manifest&lt;/code&gt; 上傳到網路空間&lt;/li&gt;
+&lt;li&gt;從網頁或是QR Code中執行下載功能。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;整套流程能使用&lt;code&gt;Fastlane&lt;/code&gt;去處理，會方便很多。
+這邊是把最基礎的手動版本寫出來。&lt;/p&gt;&lt;/blockquote&gt;</description>
             <content type="html"><![CDATA[<p>常見的iOS發布不外乎為</p>
 <ol>
 <li>App Store上架</li>
@@ -180,8 +743,7 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
 <blockquote>
 <p>2024註：</p>
 <p>這邊建議手機可以在註冊的時候把UUID跟機型、使用者之類的做個表管理一下</p>
-<p>透過解析 ipa 中的 <code>embbed provision profile</code> 就能比較輕鬆的找出這個 ipa 有哪些人可以安裝</p>
-</blockquote>
+<p>透過解析 ipa 中的 <code>embbed provision profile</code> 就能比較輕鬆的找出這個 ipa 有哪些人可以安裝</p></blockquote>
 <h2 id="ad-hoc">Ad Hoc</h2>
 <p>具體發布大概有以下步驟</p>
 <ol>
@@ -201,8 +763,7 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
 那也可以自己建立憑證讓目標手機下載，</p>
 <blockquote>
 <p>2024註</p>
-<p>後來好像不行了，建議走 Dropbox 吧</p>
-</blockquote>
+<p>後來好像不行了，建議走 Dropbox 吧</p></blockquote>
 <p>先來説說如果不用腳本的話要怎麼做到這些事情。</p>
 <ol>
 <li>Xcode中選擇<code>Archive</code>，打包的時候記得挑好對應的<code>Build Configuration</code>。</li>
@@ -217,8 +778,7 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
 </ol>
 <blockquote>
 <p>整套流程能使用<code>Fastlane</code>去處理，會方便很多。
-這邊是把最基礎的手動版本寫出來。</p>
-</blockquote>
+這邊是把最基礎的手動版本寫出來。</p></blockquote>
 ]]></content>
         </item>
         
@@ -228,36 +788,67 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
             <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
             
             <guid>/posts/2022-06-19-%E6%96%B0%E5%85%AC%E5%8F%B8%E6%87%89%E8%A9%B2%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%96%8B%E7%99%BC%E8%A7%80%E5%BF%B5/</guid>
-            <description>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子
-花了一段時間以後，突然有所體悟。
-在老闆、主管、工程師都是新手的情況下，
-在一個公司是新創、員工是新手、老闆不懂技術狀況下
-一起合作下去是有一定程度上的難處的。
-這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。 也希望這些資料可以對其他人產生幫助。
-不過這邊都是以工程師的角度出發， 對於一個資方要怎麼面對勞方我就沒輒了啊。
-關於產品 工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。 能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。
-但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。 工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。
-所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。
-直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。
-當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。 有些規劃還是要由工程師來完成的。
-舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。 包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。
-這在大公司可以，但是在小公司不行。
-因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。
-小公司一旦賭錯，整個公司都會直接陪進去。
-至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。
-關於文件 所有產品、功能在具現化的過程都是不斷地溝通討論。 產品在具現化的過程中必須要留下一些資料。 基本的就是研究數據、使用情境、開發環境。
-這部分都統稱為「文件」
-文件的撰寫與程式碼的註解基本保持一個原則： 「不要告訴我What，告訴我Why。」
-舉個「沒用」的例子
-// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色 view.background = someCondition ? .black : .blue 這種註解，不寫會更好。因為程式碼就能看得出來。 程式碼看不出來的是：「為什麼是藍色跟黑色」。
-開發過程中留下的文件也一樣。
-寫下「為什麼這樣寫」比起「這裡寫了什麼」更為重要。
-開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。 但至少這功能想表達什麼要寫個文件。
-關於程式碼 對於程式碼來說，一定要有一套Coding Style的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。
-至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。
-套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。
-程式碼有幾個注意點：
-註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。 IDE自動產生的註解記得拿掉，例如說前人有很多的TODO: //Auto generate method stub留在那邊，不知道為什麼。 不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。 變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西 不要在程式碼裡面留下常數，全部都請拿去定義。 3.14請定義成pi errorCode請定義成有意義的名稱 關於版本控制 版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」</description>
+            <description>&lt;p&gt;最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子&lt;/p&gt;
+&lt;p&gt;花了一段時間以後，突然有所體悟。&lt;/p&gt;
+&lt;p&gt;在老闆、主管、工程師都是新手的情況下，&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;在一個公司是新創、員工是新手、老闆不懂技術狀況下&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;一起合作下去是有一定程度上的難處的。&lt;/p&gt;
+&lt;p&gt;這邊想說也想說做個簡單的記錄，讓自己以後有些資料可以參考。
+也希望這些資料可以對其他人產生幫助。&lt;/p&gt;
+&lt;p&gt;不過這邊都是以工程師的角度出發，
+對於一個資方要怎麼面對勞方我就沒輒了啊。&lt;/p&gt;
+&lt;h2 id=&#34;關於產品&#34;&gt;關於產品&lt;/h2&gt;
+&lt;p&gt;工程師基本也等於魔術師，基本上就是把想像中的產品具現化出來。
+能夠透過一些包裝、手法讓使用者有完全不一樣的使用體驗。&lt;/p&gt;
+&lt;p&gt;但工程師不是魔法師，並不能夠透過念咒來無中生有，跳過研發直接變出產品。
+工程師也不會通靈，並不知道客戶、老闆到底想要什麼東西。&lt;/p&gt;
+&lt;p&gt;所以在跟工程師討論產品開發的過程中，記得不要畫餅，那是慰留工程師的時候才要說的。&lt;/p&gt;
+&lt;p&gt;直接講說希望產品具備什麼功能、想要長什麼樣子、要返回什麼樣的資料就好了。&lt;/p&gt;
+&lt;p&gt;當然這邊也並不是說要細化到每一個細節，包含畫面什麼顏色，資料要有哪些屬性等等。
+有些規劃還是要由工程師來完成的。&lt;/p&gt;
+&lt;p&gt;舉個例子吧，這間公司的老闆常常說「要做一個某某產品」，但是具體的細節一概不知。
+包含目標客群有哪些、需要用到哪些技術、預計什麼時候上市。&lt;/p&gt;
+&lt;p&gt;這在大公司可以，但是在小公司不行。&lt;/p&gt;
+&lt;p&gt;因為在大公司有其他的主管負責分析、研究、規劃等功能，有資源能夠投入，失敗了也並不會影響到公司的生計。&lt;/p&gt;
+&lt;p&gt;小公司一旦賭錯，整個公司都會直接陪進去。&lt;/p&gt;
+&lt;p&gt;至少，大方向要給出來。線上的還是離線的，賣點是硬體還是軟體，商用的還是民用的。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;關於文件&#34;&gt;關於文件&lt;/h2&gt;
+&lt;p&gt;所有產品、功能在具現化的過程都是不斷地溝通討論。
+產品在具現化的過程中必須要留下一些資料。
+基本的就是研究數據、使用情境、開發環境。&lt;/p&gt;
+&lt;p&gt;這部分都統稱為「文件」&lt;/p&gt;
+&lt;p&gt;文件的撰寫與程式碼的註解基本保持一個原則：
+「不要告訴我What，告訴我Why。」&lt;/p&gt;
+&lt;p&gt;舉個「沒用」的例子&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 設定背景顏色，如果someCondition為真為黑色，為假則是藍色&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;view.background = someCondition ? .black : .blue
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這種註解，不寫會更好。因為程式碼就能看得出來。
+程式碼看不出來的是：「為什麼是藍色跟黑色」。&lt;/p&gt;
+&lt;p&gt;開發過程中留下的文件也一樣。&lt;/p&gt;
+&lt;p&gt;寫下「&lt;strong&gt;為什麼這樣寫&lt;/strong&gt;」比起「&lt;strong&gt;這裡寫了什麼&lt;/strong&gt;」更為重要。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。
+但至少這功能想表達什麼要寫個文件。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;關於程式碼&#34;&gt;關於程式碼&lt;/h2&gt;
+&lt;p&gt;對於程式碼來說，一定要有一套&lt;code&gt;Coding Style&lt;/code&gt;的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。&lt;/p&gt;
+&lt;p&gt;至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。&lt;/p&gt;
+&lt;p&gt;套用style的時機，可以設計在IDE要build code的時候，或是版控commit之前。&lt;/p&gt;
+&lt;p&gt;程式碼有幾個注意點：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;註解掉的程式碼請直接刪除，請用版控保護你的程式碼，而不是靠註解掉的程式碼。&lt;/li&gt;
+&lt;li&gt;IDE自動產生的註解記得拿掉，例如說前人有很多的&lt;code&gt;TODO: //Auto generate method stub&lt;/code&gt;留在那邊，不知道為什麼。&lt;/li&gt;
+&lt;li&gt;不要留下`20220603 modified這樣子的程式碼在上面。除了告訴後面的人你不會用版控以外，並沒有任何幫助。&lt;/li&gt;
+&lt;li&gt;變數命名不要命一些aa bb，也不要留一堆print(++++)之類的東西&lt;/li&gt;
+&lt;li&gt;不要在程式碼裡面留下常數，全部都請拿去定義。
+&lt;ul&gt;
+&lt;li&gt;3.14請定義成pi&lt;/li&gt;
+&lt;li&gt;errorCode請定義成有意義的名稱&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;關於版本控制&#34;&gt;關於版本控制&lt;/h2&gt;
+&lt;p&gt;版本控制，我現在的理解就是：「所有的記錄都可以被追蹤」&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>最近被之前的同事找回以前離職的公司去幫忙收拾各種前人留下來的爛攤子</p>
 <p>花了一段時間以後，突然有所體悟。</p>
 <p>在老闆、主管、工程師都是新手的情況下，</p>
@@ -299,8 +890,7 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
 <p>寫下「<strong>為什麼這樣寫</strong>」比起「<strong>這裡寫了什麼</strong>」更為重要。</p>
 <blockquote>
 <p>開發文件一定要留。可以不用畫多專業的UML圖、做多精美的PPT、Word。
-但至少這功能想表達什麼要寫個文件。</p>
-</blockquote>
+但至少這功能想表達什麼要寫個文件。</p></blockquote>
 <h2 id="關於程式碼">關於程式碼</h2>
 <p>對於程式碼來說，一定要有一套<code>Coding Style</code>的工具，而且共同開發同一個專案的工程師必須要認同這裡面的一些規則。</p>
 <p>至於Coding Style工具的選擇，基本上每套語言幾乎都會有屬於自己的lint工具以及官方的推薦的naming規則。</p>
@@ -339,8 +929,7 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
 </ul>
 <blockquote>
 <p>韌體、前端、移動端、後端、資料庫schema一定要有對應，
-而對應只能靠版本號碼，版本號碼只能靠版控或文件。</p>
-</blockquote>
+而對應只能靠版本號碼，版本號碼只能靠版控或文件。</p></blockquote>
 <p>後面想到再寫吧。</p>
 <p>一樣舉個例子：</p>
 <p>這家公司的<strong>所有，對，是所有</strong>。所有的東西都沒有版控。
@@ -356,8 +945,7 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
 </li>
 </ul>
 <blockquote>
-<p>如果為了安全性要進行修改，就把整套的功能都研究完再來處理。</p>
-</blockquote>
+<p>如果為了安全性要進行修改，就把整套的功能都研究完再來處理。</p></blockquote>
 <p>情境：</p>
 <ul>
 <li>遇到電信公司改IP，結果無法登入遠端機器。最後發現不只在管理區有擋，還在遠端機器內部寫死允許連線的IP。而且沒有留下文件</li>
@@ -372,20 +960,59 @@ Xcode中選擇Archive，打包的時候記得挑好對應的Build Configuration�
             <pubDate>Thu, 11 Nov 2021 16:07:08 +0800</pubDate>
             
             <guid>/posts/2021-11-11-kobo-nickel-menu%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
-            <description>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，
-有聽說其他閱讀軟體可以抓但是有點懶得弄。
-後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。
-Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。
-但是傳資料還是一個痛點。
-經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是Nickel Menu 這就是本篇的重點。
-基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。 安裝第三方閱讀器
-安裝完以後右下角會出現一個Nickel Menu的功能選項，裡面的選項是可以自訂的。下面會說明
-流程概略是這樣：
-安裝第三方閱讀器 打開KOReader 在KOReader中打開SSH Server 連線進Kobo，進到/mnt/onboard/.adds/nm資料夾 建立一個檔案，檔名自訂，不要加上副檔名不確定加了會怎麼樣，可以自行嘗試，概不負責啊 加入想要的命令 整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講
-進到/mnt/onboard/.adds/nm這邊後，裡面基本上會有一個doc檔， 裡面就是文件說明。
-建議可以用cp複製一份以後，直接用vi或是nano來編輯。 下面有很多的範例可供參考
-這邊列一些我覺得比較實用的
-# Reboot menu_item :main :Reboot :power :reboot # Refresh library menu_item :main :Import books :nickel_misc :rescan_books_full # Force Wifi On/Off menu_item :main :Force Wi-Fi On (toggle) :nickel_setting :toggle:force_wifi # Toggle Telnet menu_item :main :Telnet (toggle) :cmd_output :500:quiet :/usr/bin/pkill -f &amp;#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&amp;#34; chain_success:skip:5 chain_failure :cmd_spawn :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;amp;&amp;amp; /bin/mount -t devpts devpts /dev/pts; } chain_success :cmd_spawn :quiet :exec /usr/bin/tcpsvd -E 0.</description>
+            <description>&lt;p&gt;如果要用kobo來看txt或是從calibre導入書籍有諸多不便，&lt;/p&gt;
+&lt;p&gt;有聽說其他閱讀軟體可以抓但是有點懶得弄。&lt;/p&gt;
+&lt;p&gt;後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。&lt;/p&gt;
+&lt;p&gt;Koreader功能是真的多，但是相對的電力也是噴很快。不過書本的啟動速度還是比官方慢了一點。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;但是傳資料還是一個痛點。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;經歷各種不方便，後來無意中發現已經有大神寫好一個工具方便使用，那就是&lt;code&gt;Nickel Menu&lt;/code&gt;
+這就是本篇的重點。&lt;/p&gt;
+&lt;p&gt;基本上先參考這個連結來安裝第三方閱讀器，具體要安裝哪一個就看個人需求。
+&lt;a href=&#34;https://chiahsien.github.io/post/alternative-kobo-e-reader-koreader-and-plato/&#34;&gt;安裝第三方閱讀器&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安裝完以後右下角會出現一個&lt;code&gt;Nickel Menu&lt;/code&gt;的功能選項，裡面的選項是可以自訂的。下面會說明&lt;/p&gt;
+&lt;p&gt;流程概略是這樣：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安裝第三方閱讀器&lt;/li&gt;
+&lt;li&gt;打開KOReader&lt;/li&gt;
+&lt;li&gt;在KOReader中打開SSH Server&lt;/li&gt;
+&lt;li&gt;連線進Kobo，進到&lt;code&gt;/mnt/onboard/.adds/nm&lt;/code&gt;資料夾&lt;/li&gt;
+&lt;li&gt;建立一個檔案，檔名自訂，不要加上副檔名&lt;del&gt;不確定加了會怎麼樣，可以自行嘗試，概不負責啊&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;加入想要的命令&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;整體操作大致流程是這樣，前三點就不說了，直接從第四點往下講&lt;/p&gt;
+&lt;p&gt;進到&lt;code&gt;/mnt/onboard/.adds/nm&lt;/code&gt;這邊後，裡面基本上會有一個doc檔，
+裡面就是文件說明。&lt;/p&gt;
+&lt;p&gt;建議可以用&lt;code&gt;cp&lt;/code&gt;複製一份以後，直接用&lt;code&gt;vi&lt;/code&gt;或是&lt;code&gt;nano&lt;/code&gt;來編輯。
+下面有很多的範例可供參考&lt;/p&gt;
+&lt;p&gt;這邊列一些我覺得比較實用的&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# Reboot
+menu_item               :main :Reboot :power :reboot
+
+# Refresh library
+menu_item               :main :Import books       :nickel_misc        :rescan_books_full
+
+# Force Wifi On/Off
+menu_item               :main :Force Wi-Fi On (toggle)       :nickel_setting        :toggle:force_wifi
+
+# Toggle Telnet
+menu_item               :main :Telnet (toggle)    :cmd_output         :500:quiet :/usr/bin/pkill -f &amp;#34;^/usr/bin/tcpsvd -E 0.0.0.0 2023&amp;#34;
+  chain_success:skip:5
+    chain_failure                      :cmd_spawn          :quiet :/bin/mount -t devpts | /bin/grep -q /dev/pts || { /bin/mkdir -p /dev/pts &amp;amp;&amp;amp; /bin/mount -t devpts devpts /dev/pts; }
+    chain_success                      :cmd_spawn          :quiet :exec /usr/bin/tcpsvd -E 0.0.0.0 2023 /usr/sbin/telnetd -i -l /bin/login
+    chain_success                      :dbg_toast          :Started Telnet server on port 2023
+    chain_failure                      :dbg_toast          :Error starting Telnet server on port 2023
+    chain_always:skip:-1
+  chain_success                        :dbg_toast          :Stopped Telnet server on port 2023
+
+# Open FTP
+menu_item               :main    :FTP                :cmd_spawn          :quiet:/usr/bin/pkill -f &amp;#34;^/usr/bin/tcpsvd -E 0.0.0.0 1021&amp;#34; || true &amp;amp;&amp;amp; exec /usr/bin/tcpsvd -E 0.0.0.0 1021 /usr/sbin/ftpd -w -t 30 /mnt/onboard
+  chain_success                        :dbg_toast          :Started FTP server for KOBOeReader partition on port 1021.
+
+# Show IP
+menu_item               :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk &amp;#39;/inet addr/{print substr($2,6)}&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;mac端基本設定&#34;&gt;mac端基本設定&lt;/h2&gt;
+&lt;p&gt;這邊是用macOS，但是基於安全性macOS已經移除了&lt;code&gt;telnet&lt;/code&gt;這個套件
+所以要先安裝&lt;code&gt;telnet&lt;/code&gt;，這邊推薦用&lt;code&gt;inetutils&lt;/code&gt;，裡面就包含了&lt;code&gt;telnet, FTP&lt;/code&gt;等&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>如果要用kobo來看txt或是從calibre導入書籍有諸多不便，</p>
 <p>有聽說其他閱讀軟體可以抓但是有點懶得弄。</p>
 <p>後來看到大神的blog，有統整了怎麼安裝第三方閱讀器，就順便抓了一下。</p>
@@ -457,15 +1084,15 @@ menu_item               :main    :IP Address         :cmd_output         :500:/s
             <guid>/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/</guid>
             <description>Git常用命令筆記</description>
             <content type="html"><![CDATA[<ul>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">基本命令</a>
+<li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4">基本命令</a>
 <ul>
-<li><a href="#stash">stash</a></li>
-<li><a href="#clean">clean</a></li>
+<li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#stash">stash</a></li>
+<li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#clean">clean</a></li>
 </ul>
 </li>
-<li><a href="#%E6%87%89%E7%94%A8%E7%AF%87">應用篇</a>
+<li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#%e6%87%89%e7%94%a8%e7%af%87">應用篇</a>
 <ul>
-<li><a href="#%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D">重新命名</a></li>
+<li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#%e9%87%8d%e6%96%b0%e5%91%bd%e5%90%8d">重新命名</a></li>
 </ul>
 </li>
 </ul>
@@ -548,6 +1175,103 @@ git branch -m &lt;newname&gt;
         </item>
         
         <item>
+            <title>EnterHealth Support</title>
+            <link>/posts/apps/enterhealth/support/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/enterhealth/support/</guid>
+            <description>EnterHealth support</description>
+            <content type="html"><![CDATA[<h1 id="enterhealth">EnterHealth</h1>
+<p>EnterHealth 提供簡單易用的方式輸入健康資訊到Apple的健康之中。
+讓健康資訊不再散落在各地。</p>
+<p>以輕鬆記錄血壓資訊為主建立的App</p>
+<p>因為家人有記錄血壓的需求，所以想幫他們建立一個容易閱讀、記錄的軟體。</p>
+<p>相關的健康資訊都會保留在Apple提供的「健康」App中</p>
+<p>・使用Apple的Health保存資訊，不再將健康資訊儲存在多個地方。</p>
+<p>・提供保存「最近刪除的記錄」讓手滑刪除後還能救得回來。</p>
+<p>提醒：
+刪除的資訊只會保留在手機之中，並不會上傳到網路。
+如果在「健康App」中刪除這些資訊，則不會被保留記錄，該檔案將會永久刪除。</p>
+<ul>
+<li>
+<p>可以匯出JSON與CSV格式的檔案，可以提供給醫療人員幫忙分析。</p>
+</li>
+<li>
+<p>提供通知來提醒自己量測血壓。</p>
+</li>
+</ul>
+<p>如果需要任何支援或提供建議</p>
+<p>歡迎<a href="insidehand@gmail.com">來信</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>EnterHealth Terms</title>
+            <link>/posts/apps/enterhealth/terms_and_privacy_policy/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/enterhealth/terms_and_privacy_policy/</guid>
+            <description>EnterHealth terms and privacy policy</description>
+            <content type="html"><![CDATA[<h1 id="enterhealth">EnterHealth</h1>
+<h2 id="使用條款">使用條款</h2>
+<p>EnterHealth提供記錄血壓、心律等健康數據。</p>
+<p>輸入的數據會儲存於Apple.Inc提供的健康 App之中。</p>
+<p>刪除的數據會被保存在手機本地之中，
+方便搶救誤刪的資料。</p>
+<p>用戶可以隨時刪除這些保存的資料，這次的刪除則是永久性的。
+刪除後則無法再次恢復這些資料。</p>
+<h3 id="免責聲明">免責聲明</h3>
+<ul>
+<li>
+<p>請用戶對於自己輸入的資料正確性負責。任何數據所衍生的問題，EnterHealth概不負責</p>
+</li>
+<li>
+<p>因為資料不會上傳，所以請用戶妥善保存這些資訊。任何數據遺失衍生的問題，EnterHealth概不負責。</p>
+</li>
+</ul>
+<hr>
+<h2 id="隱私權政策">隱私權政策</h2>
+<p><strong>EnterHealth不會使用任何用戶資料。</strong></p>
+<p>所有輸入的資料都會儲存到Apple.Inc的Health中，</p>
+<p>你可以在任何時間透過隱私權設定拒絕EnterHealth存取Health中的資料。</p>
+<p>EnterHealth會保留「最近刪除的記錄」，用戶可以隨時永久性的刪除這些資訊。</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>LooPlayer privacy term</title>
+            <link>/posts/apps/looplayer/privacy_policy/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/looplayer/privacy_policy/</guid>
+            <description>LooPlayer support</description>
+            <content type="html"><![CDATA[<h1 id="looplayer">LooPlayer</h1>
+<h2 id="隱私權政策">隱私權政策</h2>
+<p><strong>LooPlayer</strong> 是一個簡單的循環播放筆記軟體</p>
+<p>由<strong>LooPlayer</strong>所產生的資料會被儲存在app本地或是iCloud之中。</p>
+<p>無論是儲存在哪裡，這些資料都只會被你所使用。</p>
+<p><strong>LooPlayer</strong>並不會搜集或使用你的任何資訊。</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Requestflow Support</title>
+            <link>/posts/apps/requestflow/privacy_policy/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>/posts/apps/requestflow/privacy_policy/</guid>
+            <description>Requestflow support</description>
+            <content type="html"><![CDATA[<h1 id="requestflow">Requestflow</h1>
+<h2 id="隱私權政策">隱私權政策</h2>
+<p><strong>Requestflow</strong> 是一個純粹的網路測試工具</p>
+<p>由<strong>Requestflow</strong>所產生的資料會被儲存在app本地或是iCloud之中。</p>
+<p>無論是儲存在哪裡，這些資料都只會被你所使用。</p>
+<p><strong>Requestflow</strong>並不會搜集或使用你的任何資訊。</p>
+<p>由於許多網站的設計並不相同，送出的資訊可能會造成資料缺失，請小心的處理你要送出的資訊。任何使用本軟體所造成的損害，Requestflow概不負責。</p>
+]]></content>
+        </item>
+        
+        <item>
             <title>如何快速找到Simulator的Document位置</title>
             <link>/posts/2021-11-09-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0simulator%E7%9A%84document%E4%BD%8D%E7%BD%AE/</link>
             <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
@@ -570,20 +1294,58 @@ git branch -m &lt;newname&gt;
             <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
             
             <guid>/posts/2021-10-11-%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A8%AE%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%8E%A7%E5%88%B6/</guid>
-            <description>什麼是依賴，為什麼要管理？ 任何你不能控制的物件，都是隱藏的依賴
-具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。
-要管理依賴的理由在於給測試一個介入的途徑。
-例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。
-struct SantaClausTracker { func isWorking() -&amp;gt; Bool { let today = Date() let month = Calendar.current.components(.month, today) let day = Calendar.current.components(.day, today) return month == 12 &amp;amp;&amp;amp; day == 25 } } 顯然，要這個方法回傳true的話，就只能在聖誕節當天進行測試。 其他日子回傳都是false。
-這個方法裡面有兩個依賴，一個是Date()，另一個則是Calendar.current。 如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）
-傳統的方法有三：
-建構子注入 屬性注入 方法參數注入 名稱應該足以描述相對應的行為，就不多贅述了。
-換言之，在程式碼中，只要是使用的物件，都要記得可以替換。 舉個例子
-(X func somefunction() { Date() } (O func somefunction(date: Date) { date } (X func somefunction() { URLSession.share } (🔺 func somefunction(session: URLSession) { session } 那麼，顯然會出現的問題就是「依賴要怎麼來」</description>
+            <description>&lt;h2 id=&#34;什麼是依賴為什麼要管理&#34;&gt;什麼是依賴，為什麼要管理？&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;任何你不能控制的物件，都是隱藏的依賴&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。&lt;/p&gt;
+&lt;p&gt;要管理依賴的理由在於給測試一個介入的途徑。&lt;/p&gt;
+&lt;p&gt;例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SantaClausTracker&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;isWorking&lt;/span&gt;() -&amp;gt; Bool {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; today = Date()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; month = Calendar.current.components(.month, today)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; day = Calendar.current.components(.day, today)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; month == &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; day == &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;顯然，要這個方法回傳&lt;code&gt;true&lt;/code&gt;的話，就只能在聖誕節當天進行測試。
+其他日子回傳都是&lt;code&gt;false&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;這個方法裡面有兩個依賴，一個是&lt;code&gt;Date()&lt;/code&gt;，另一個則是&lt;code&gt;Calendar.current&lt;/code&gt;。
+如果想要把這些依賴變得可控，那麼就是要透過外部傳入。也就是依賴注入（dependency injection）&lt;/p&gt;
+&lt;p&gt;傳統的方法有三：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;建構子注入&lt;/li&gt;
+&lt;li&gt;屬性注入&lt;/li&gt;
+&lt;li&gt;方法參數注入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;名稱應該足以描述相對應的行為，就不多贅述了。&lt;/p&gt;
+&lt;p&gt;換言之，在程式碼中，只要是&lt;code&gt;使用&lt;/code&gt;的物件，都要記得可以替換。
+舉個例子&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(X
+func somefunction() {
+    Date() 
+}
+
+(O
+func somefunction(date: Date) {
+    date 
+}
+
+(X
+func somefunction() {
+    URLSession.share
+}
+
+(🔺
+func somefunction(session: URLSession) {
+    session
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那麼，顯然會出現的問題就是「&lt;strong&gt;依賴要怎麼來&lt;/strong&gt;」&lt;/p&gt;</description>
             <content type="html"><![CDATA[<h2 id="什麼是依賴為什麼要管理">什麼是依賴，為什麼要管理？</h2>
 <blockquote>
-<p>任何你不能控制的物件，都是隱藏的依賴</p>
-</blockquote>
+<p>任何你不能控制的物件，都是隱藏的依賴</p></blockquote>
 <p>具體來說，如果程式完全不寫測試，那麼其實就不用考慮依賴的問題。</p>
 <p>要管理依賴的理由在於給測試一個介入的途徑。</p>
 <p>例如說有一個物件是用來追蹤聖誕老人，裡面判斷他有沒有上班。</p>
@@ -656,13 +1418,11 @@ View1 --> View2 --> View3 --> View4
 <p>也不是直接是一個Date屬性
 因為當你存取Current.date時，每次取的都是不一樣的值
 如果想要每次都取得同一個時間的話，就做不到這個需求</p>
-<p>當然這邊也可以把這個<code>struct</code>改寫成<code>protocol</code>，然後實作不同的物件來提供不同的測試需要，不過那就是另外一回事了。</p>
-</blockquote>
+<p>當然這邊也可以把這個<code>struct</code>改寫成<code>protocol</code>，然後實作不同的物件來提供不同的測試需要，不過那就是另外一回事了。</p></blockquote>
 <p>說回正題，當你宣告了這樣的<code>struct</code>，你還需要一個<strong>全域</strong>的<strong>變數</strong></p>
 <pre tabindex="0"><code>var Current = World()
 </code></pre><blockquote>
-<p>這是一個<code>Singleton</code>！<del>皮諾可，這個直接電死</del></p>
-</blockquote>
+<p>這是一個<code>Singleton</code>！<del>皮諾可，這個直接電死</del></p></blockquote>
 <p>別急，這時候這個設計神的地方來了。</p>
 <p>用上面的範例來實作的話就會變這樣</p>
 <pre tabindex="0"><code>struct SantaClusTracker {
@@ -724,8 +1484,7 @@ View1 --> View2 --> View3 --> View4
 <blockquote>
 <p>例如說一個資料庫存取介面，有四個方法CRUD</p>
 <p>那麼建立一個新的Mock物件就要實作四個方法。</p>
-<p>而一個正常的介面方法都不止四個</p>
-</blockquote>
+<p>而一個正常的介面方法都不止四個</p></blockquote>
 <h3 id="全域變數很危險不應該用不是嗎">全域變數很危險，不應該用不是嗎？</h3>
 <p>全域變數的危險之處在於「<strong>你不知道什麼時候被改動</strong>」</p>
 <p>誠然，設定為變數是存在風險的，但是不應該把<code>Current</code>當成是一個傳遞、暫存參數的地方。而是一個依賴保管區（Production時）、依賴注入區（Develop時）</p>
@@ -866,8 +1625,7 @@ View1 --> View2 --> View3 --> View4
 利用GCD，可以很方便地操控各種需要多執行緒的情境</p>
 <h2 id="gcd的運作原理">GCD的運作原理</h2>
 <blockquote>
-<p>這邊姑且先不討論程式面的東西，先從抽象一點的地方來看。</p>
-</blockquote>
+<p>這邊姑且先不討論程式面的東西，先從抽象一點的地方來看。</p></blockquote>
 <p>基本上來說，GCD掌控了Queue，而Queue包含了Work Item，最後WorkItem就是要執行的Closure</p>
 <h3 id="queue">Queue</h3>
 <p>Queue可以被翻成「佇列」，但是看了翻譯還是不知道是什麼意思。</p>
@@ -939,34 +1697,32 @@ async
 <p>具體的挑選就看自己的情境來決定。</p>
 <p>本來還要寫一些DispatchGroup、訊號機等筆記的，但是寫的有點煩了。</p>
 <blockquote>
-<p>要改的東西太多了，那麼就改天吧。</p>
-</blockquote>
+<p>要改的東西太多了，那麼就改天吧。</p></blockquote>
 ]]></content>
         </item>
         
         <item>
             <title>SSH 基本設定</title>
-            <link>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</link>
+            <link>/posts/2020-06-28-ssh-basic-setup/</link>
             <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
             
-            <guid>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</guid>
+            <guid>/posts/2020-06-28-ssh-basic-setup/</guid>
             <description>ssh到GitHub的時候，使用私鑰進行驗證</description>
             <content type="html"><![CDATA[<p>最近電腦爆了，懷疑應該是副廠的線造成的問題，</p>
 <p>看樣子東西真的不能買便宜的（？</p>
 <p>剛好也想說順便重新設定一些環境上的東西，只是這次要認真的寫筆記了&hellip;</p>
 <p>之前的筆記都非常的零碎，重看的時候才會覺得好像少了很多東西。</p>
 <blockquote>
-<p>身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。</p>
-</blockquote>
+<p>身為一個軟體工程師，寫一些坑人的筆記也是理所當然的事。</p></blockquote>
 <p>正文開始</p>
 <hr>
 <h2 id="ssh到github的時候使用私鑰進行驗證">ssh到GitHub的時候，使用私鑰進行驗證</h2>
 <p>具體步驟大概分為</p>
 <ol>
-<li><a href="#%E7%94%A2%E7%94%9Frsa%E7%9A%84%E5%85%AC%E7%A7%81%E9%91%B0">產生rsa的公私鑰</a></li>
-<li><a href="#%E8%A8%AD%E5%AE%9Assh%E7%9A%84config">設定ssh的config</a> （optional）</li>
-<li><a href="#%E7%99%BB%E5%85%A5Github%E4%B8%A6%E4%B8%94%E5%8A%A0%E5%85%A5%E5%89%9B%E5%89%9B%E7%94%A2%E7%94%9F%E7%9A%84%E5%85%AC%E9%91%B0">登入Github並且加入剛剛產生的公鑰</a> （手動）</li>
-<li><a href="#%E6%B8%AC%E8%A9%A6%E9%80%A3%E7%B7%9A">測試連線</a></li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e7%94%a2%e7%94%9frsa%e7%9a%84%e5%85%ac%e7%a7%81%e9%91%b0">產生rsa的公私鑰</a></li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e8%a8%ad%e5%ae%9assh%e7%9a%84config">設定ssh的config</a> （optional）</li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e7%99%bb%e5%85%a5Github%e4%b8%a6%e4%b8%94%e5%8a%a0%e5%85%a5%e5%89%9b%e5%89%9b%e7%94%a2%e7%94%9f%e7%9a%84%e5%85%ac%e9%91%b0">登入Github並且加入剛剛產生的公鑰</a> （手動）</li>
+<li><a href="/posts/2020-06-28-ssh-basic-setup/#%e6%b8%ac%e8%a9%a6%e9%80%a3%e7%b7%9a">測試連線</a></li>
 </ol>
 <hr>
 <h3 id="產生rsa的公私鑰">產生rsa的公私鑰</h3>
@@ -979,21 +1735,18 @@ async
 <p>公私鑰的位置如果直接按Return的話，就會存在預設的位置。</p>
 <p>預設位置為：<code>/Users/username/.ssh/id_rsa</code></p>
 <blockquote>
-<p>這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;</p>
-</blockquote>
+<p>這邊的username請自行修改成你的帳號，不是真的路徑喔&hellip;</p></blockquote>
 <p>不然也可以自行輸入要存放的位置，例如：</p>
 <p><code>/Users/username/.ssh/rsa-for-github</code></p>
 <blockquote>
-<p>不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字</p>
-</blockquote>
+<p>不過這邊要留意一點：不能用tab自動補全，在輸入的時候要注意大小寫跟拼字</p></blockquote>
 <p>密碼的部分應該是為了多人共用電腦而設計的，避免使用別人的私鑰去亂搞。</p>
 <p>如果輸入密碼的話就每次使用ssh連接時都需要打密碼。</p>
 <p>這部分我就沒特別研究了，有需要的請自行研究。</p>
 <p>完成以後會產生一組公私鑰檔案，例如</p>
 <p><code>rsa-for-github.pub</code> and <code>rsa-for-github</code></p>
 <blockquote>
-<p>沒有<code>.pub</code>的檔案就是私鑰，請好好保管。</p>
-</blockquote>
+<p>沒有<code>.pub</code>的檔案就是私鑰，請好好保管。</p></blockquote>
 <hr>
 <h3 id="設定ssh的config">設定ssh的config</h3>
 <p>如果在第一步中使用預設位置的話，這一步就可以跳過，如果還有興趣就隨便看看吧</p>

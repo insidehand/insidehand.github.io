@@ -4,30 +4,31 @@
     <title>Memoes on Insidehand</title>
     <link>/memo/</link>
     <description>Recent content in Memoes on Insidehand</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="/memo/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title></title>
-      <link>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</guid>
-      <description>Git rename remote branch Git checkout -b localBranchname origin/remoteBranchName Git push origin &amp;ndash;delete remoteBranchName Git push origin -u localBranchName OR 尚未測試過&#xA;Git push origin : remoteBranchName newBranchName Git push origin -u newBranchName </description>
-    </item>
     <item>
       <title></title>
       <link>/memo/git-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/memo/git-command/</guid>
-      <description>Git 主幹名稱 因為SJW的不懈努力，git的主幹名稱從master改成main了&#xA;如果是早期的config還是使用master的命名的話，git會建議你更換名稱。&#xA;更換git預設的主幹名稱&#xA;git config &amp;ndash;global init.defaultBranch &amp;lt;#NewMainBranchName#&amp;gt;&#xA;更換當前主幹/分支名稱&#xA;git branch -m main</description>
+      <description>&lt;h1 id=&#34;git-主幹名稱&#34;&gt;Git 主幹名稱&lt;/h1&gt;&#xA;&lt;p&gt;因為SJW的不懈努力，&lt;code&gt;git&lt;/code&gt;的主幹名稱從&lt;code&gt;master&lt;/code&gt;改成&lt;code&gt;main&lt;/code&gt;了&lt;/p&gt;&#xA;&lt;p&gt;如果是早期的&lt;code&gt;config&lt;/code&gt;還是使用&lt;code&gt;master&lt;/code&gt;的命名的話，&lt;code&gt;git&lt;/code&gt;會建議你更換名稱。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;更換git預設的主幹名稱&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;git config &amp;ndash;global init.defaultBranch &amp;lt;#NewMainBranchName#&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;更換當前主幹/分支名稱&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;git branch -m main&lt;/p&gt;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</guid>
+      <description>&lt;h1 id=&#34;git-rename-remote-branch&#34;&gt;Git rename remote branch&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Git checkout -b localBranchname origin/remoteBranchName&lt;/li&gt;&#xA;&lt;li&gt;Git push origin &amp;ndash;delete remoteBranchName&lt;/li&gt;&#xA;&lt;li&gt;Git push origin -u localBranchName&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;or&#34;&gt;OR&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;尚未測試過&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Git push origin : remoteBranchName newBranchName&lt;/li&gt;&#xA;&lt;li&gt;Git push origin -u newBranchName&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/memo/git%E4%BD%BF%E7%94%A8personalaccesstoken/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/memo/git%E4%BD%BF%E7%94%A8personalaccesstoken/</guid>
-      <description>Git 在Github上設定personal access token 如果要做git clone的時候，要用https下載 這時候要打密碼，如果不記起來的話密碼可能就不能用第二次了。 # 要記憶密碼的話 git config --global credential.helper cache # 如果要清除掉設定的話 git config --global --unset credential.helper </description>
+      <description>&lt;h1 id=&#34;git&#34;&gt;Git&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;在Github上設定personal access token&lt;/li&gt;&#xA;&lt;li&gt;如果要做git clone的時候，要用https下載&lt;/li&gt;&#xA;&lt;li&gt;這時候要打密碼，如果不記起來的話密碼可能就不能用第二次了。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 要記憶密碼的話&#xA;git config --global credential.helper cache&#xA;&#xA;# 如果要清除掉設定的話&#xA;git config --global --unset credential.helper&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     <item>
       <title></title>
@@ -41,14 +42,14 @@
       <link>/memo/%E7%94%A8terminal%E5%9F%B7%E8%A1%8Cxcode%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/memo/%E7%94%A8terminal%E5%9F%B7%E8%A1%8Cxcode%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6/</guid>
-      <description> PROJECT=xxxx SCHEME=xxxx xcodebuild test \ -project $PROJECT.proj \ -scheme $SCHEME \ -destination &amp;#34;platform=iOS Simulator,OS=15.1,name=iPhone 8&amp;#34; \ -enable xcodebuild \ -project $PROJECT.xcodeproj \ -scheme $SCHEME \ -destination &amp;#34;platform=iOS Simulator,name=iPhone 8,OS=15.2&amp;#34; \ -enableCodeCoverage YES test // view xcresult&#xA;brew install XCTestHtmlReport/xchtmlreport/xchtmlreport </description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PROJECT&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;xxxx&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;SCHEME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;xxxx&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xcodebuild test &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-project $PROJECT.proj &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-scheme $SCHEME &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-destination &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;platform=iOS Simulator,OS=15.1,name=iPhone 8&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-enable&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xcodebuild &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-project $PROJECT.xcodeproj &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-scheme $SCHEME &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-destination &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;platform=iOS Simulator,name=iPhone 8,OS=15.2&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;-enableCodeCoverage YES test&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;// view xcresult&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;brew install XCTestHtmlReport/xchtmlreport/xchtmlreport&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/memo/%E9%97%9C%E6%96%BCssh%E7%99%BB%E5%85%A5%E9%80%99%E5%9B%9E%E4%BA%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/memo/%E9%97%9C%E6%96%BCssh%E7%99%BB%E5%85%A5%E9%80%99%E5%9B%9E%E4%BA%8B/</guid>
-      <description>關於ssh登入這回事 交接資料中有許多東西都是與帳號密碼相關， 但是在交接資料中可以看到帳號密碼是一件非常詭異的事情。&#xA;這就讓我去思考遠端連線到底應該要怎麼做才會是正確的。&#xA;帳號跟密碼只應該由MIS保留，且取得需要有相關授權之類的&#xA;MIS應該負責創建使用者的RSA金鑰&#xA;由MIS負責配發金鑰，讓使用者能夠進行連線或是相關操作。&#xA;當同事離職以後，也應該由MIS負責將對應的金鑰從遠端機器中刪除。</description>
+      <description>&lt;h1 id=&#34;關於ssh登入這回事&#34;&gt;關於ssh登入這回事&lt;/h1&gt;&#xA;&lt;p&gt;交接資料中有許多東西都是與帳號密碼相關，&#xA;但是在交接資料中可以看到帳號密碼是一件非常詭異的事情。&lt;/p&gt;&#xA;&lt;p&gt;這就讓我去思考遠端連線到底應該要怎麼做才會是正確的。&lt;/p&gt;&#xA;&lt;p&gt;帳號跟密碼只應該由MIS保留，且取得需要有相關授權之類的&lt;/p&gt;&#xA;&lt;p&gt;MIS應該負責創建使用者的RSA金鑰&lt;/p&gt;&#xA;&lt;p&gt;由MIS負責配發金鑰，讓使用者能夠進行連線或是相關操作。&lt;/p&gt;&#xA;&lt;p&gt;當同事離職以後，也應該由MIS負責將對應的金鑰從遠端機器中刪除。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -3,10 +3,40 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/</loc>
-    <lastmod>2024-01-04T13:47:08+08:00</lastmod>
+    <lastmod>2025-07-07T05:10:33+08:00</lastmod>
+  </url><url>
+    <loc>/posts/apps/mobkins/support/</loc>
+    <lastmod>2025-07-07T05:10:33+08:00</lastmod>
   </url><url>
     <loc>/posts/</loc>
-    <lastmod>2024-01-04T13:47:08+08:00</lastmod>
+    <lastmod>2025-07-07T05:10:33+08:00</lastmod>
+  </url><url>
+    <loc>/posts/apps/mobkins/privacy_policy/</loc>
+    <lastmod>2025-07-07T04:52:33+08:00</lastmod>
+  </url><url>
+    <loc>/tags/rsa/</loc>
+    <lastmod>2024-01-20T23:47:08+08:00</lastmod>
+  </url><url>
+    <loc>/tags/server/</loc>
+    <lastmod>2024-01-20T23:47:08+08:00</lastmod>
+  </url><url>
+    <loc>/tags/ssh/</loc>
+    <lastmod>2024-01-20T23:47:08+08:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2024-01-20T23:47:08+08:00</lastmod>
+  </url><url>
+    <loc>/posts/2024-01-05-ssh-only-via-rsa/</loc>
+    <lastmod>2024-01-20T23:47:08+08:00</lastmod>
+  </url><url>
+    <loc>/drafts/</loc>
+    <lastmod>2024-01-16T11:17:00+08:00</lastmod>
+  </url><url>
+    <loc>/posts/2024-01-16-oop1/</loc>
+    <lastmod>2024-01-16T11:17:00+08:00</lastmod>
+  </url><url>
+    <loc>/posts/2024-01-16-oop2/</loc>
+    <lastmod>2024-01-16T11:17:00+08:00</lastmod>
   </url><url>
     <loc>/tags/raspberrypi/</loc>
     <lastmod>2024-01-04T13:47:08+08:00</lastmod>
@@ -14,14 +44,14 @@
     <loc>/tags/swift/</loc>
     <lastmod>2024-01-04T13:47:08+08:00</lastmod>
   </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2024-01-04T13:47:08+08:00</lastmod>
-  </url><url>
     <loc>/posts/2024-01-04-protocol-and-extension/</loc>
     <lastmod>2024-01-04T13:47:08+08:00</lastmod>
   </url><url>
     <loc>/posts/2024-01-04-swift-on-rpi/</loc>
     <lastmod>2024-01-04T13:47:08+08:00</lastmod>
+  </url><url>
+    <loc>/memo/</loc>
+    <lastmod>2023-12-19T15:45:07+08:00</lastmod>
   </url><url>
     <loc>/posts/2022-06-20-ios-ota/</loc>
     <lastmod>2022-06-20T14:34:32+08:00</lastmod>
@@ -80,10 +110,7 @@
     <loc>/posts/2020-06-29-gcd%E7%AD%86%E8%A8%98-01/</loc>
     <lastmod>2020-06-29T19:18:33+08:00</lastmod>
   </url><url>
-    <loc>/tags/ssh/</loc>
-    <lastmod>2020-06-28T18:34:47+08:00</lastmod>
-  </url><url>
-    <loc>/posts/2020-06-28-ssh-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/</loc>
+    <loc>/posts/2020-06-28-ssh-basic-setup/</loc>
     <lastmod>2020-06-28T18:34:47+08:00</lastmod>
   </url><url>
     <loc>/posts/2020-06-28-hello-world/</loc>
@@ -93,8 +120,6 @@
   </url><url>
     <loc>/drafts/2024-01-05-raspberry-pi-usb-gadget/</loc>
   </url><url>
-    <loc>/drafts/2024-01-05-ssh-only-via-rsa/</loc>
-  </url><url>
     <loc>/drafts/data-model/</loc>
   </url><url>
     <loc>/drafts/gitbook%E6%9E%B6%E8%A8%AD%E9%81%8E%E7%A8%8B/</loc>
@@ -103,21 +128,25 @@
   </url><url>
     <loc>/drafts/nvm/</loc>
   </url><url>
+    <loc>/drafts/pop-request-struct/</loc>
+  </url><url>
     <loc>/drafts/protocol-extension-/</loc>
   </url><url>
     <loc>/drafts/redux-in-swift/</loc>
   </url><url>
     <loc>/drafts/shell-command/</loc>
   </url><url>
-    <loc>/drafts/swiftui%E7%9A%84identifiable-equable/</loc>
+    <loc>/drafts/swiftdata/</loc>
+  </url><url>
+    <loc>/drafts/swiftui%E7%9A%84identifiable--equable/</loc>
   </url><url>
     <loc>/drafts/%E4%BD%BF%E7%94%A8%E6%A2%9D%E6%AC%BE-%E8%8B%B1%E6%96%87%E7%89%88/</loc>
   </url><url>
     <loc>/drafts/%E6%9C%AA%E5%91%BD%E5%90%8D-3/</loc>
   </url><url>
-    <loc>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</loc>
-  </url><url>
     <loc>/memo/git-command/</loc>
+  </url><url>
+    <loc>/memo/git-%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF/</loc>
   </url><url>
     <loc>/memo/git%E4%BD%BF%E7%94%A8personalaccesstoken/</loc>
   </url><url>
@@ -127,17 +156,7 @@
   </url><url>
     <loc>/memo/%E9%97%9C%E6%96%BCssh%E7%99%BB%E5%85%A5%E9%80%99%E5%9B%9E%E4%BA%8B/</loc>
   </url><url>
-    <loc>/posts/apps/enterhealth/</loc>
-  </url><url>
-    <loc>/posts/apps/looplayer/</loc>
-  </url><url>
-    <loc>/posts/apps/requestflow/</loc>
-  </url><url>
     <loc>/blog/</loc>
-  </url><url>
-    <loc>/drafts/</loc>
-  </url><url>
-    <loc>/memo/</loc>
   </url><url>
     <loc>/series/</loc>
   </url>

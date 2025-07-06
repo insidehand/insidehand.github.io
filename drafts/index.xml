@@ -4,85 +4,93 @@
     <title>Drafts on Insidehand</title>
     <link>/drafts/</link>
     <description>Recent content in Drafts on Insidehand</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="/drafts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>/drafts/2022-06-20-%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%87%89%E8%A9%B2%E5%85%B7%E5%82%99%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%8C%96%E6%A6%82%E5%BF%B5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/2022-06-20-%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%87%89%E8%A9%B2%E5%85%B7%E5%82%99%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%8C%96%E6%A6%82%E5%BF%B5/</guid>
-      <description>用Aido &amp;amp; Aido baby的例子來說明抽象化的概念</description>
+      <description>&lt;p&gt;用Aido &amp;amp; Aido baby的例子來說明抽象化的概念&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/2024-01-05-raspberry-pi-usb-gadget/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/2024-01-05-raspberry-pi-usb-gadget/</guid>
-      <description>https://www.hardill.me.uk/wordpress/2019/11/02/pi4-usb-c-gadget/</description>
-    </item>
-    <item>
-      <title></title>
-      <link>/drafts/2024-01-05-ssh-only-via-rsa/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/drafts/2024-01-05-ssh-only-via-rsa/</guid>
-      <description>sudo vim /etc/hosts.allow&#xA;/etc/hosts.allow sshd: 192.168.50. sshd: 101.9.100.254&#xA;sudo vim /etc/hosts.deny&#xA;sudo vim /etc/ssh/sshd_config PubkeyAuthentication yes PasswordAuthentication no&#xA;sudo /etc/init.d/ssh restart</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.hardill.me.uk/wordpress/2019/11/02/pi4-usb-c-gadget/&#34;&gt;https://www.hardill.me.uk/wordpress/2019/11/02/pi4-usb-c-gadget/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/data-model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/data-model/</guid>
-      <description>JSON 開發觀念 不要用underline之類的方式來作為JSON的key&#xA;如果有多個底線相關的key，就應該考慮用object封裝起來。&#xA;{ &amp;#34;SomeKeyTitle&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;SomeKeyNote&amp;#34;: { &amp;#34;SomeKeyArray&amp;#34;: [ { &amp;#34;someKey_node_id&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;someKey_list_id&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey_type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey_time&amp;#34;: &amp;#34;Value&amp;#34;, } ] }, } 改成&#xA;{ &amp;#34;SomeKey&amp;#34;: { &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Notes&amp;#34;: { &amp;#34;Array&amp;#34;: [ { &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34; } } ] } } } 既然一個物件裡面只裝著陣列，那爲什麼不直接抽出來將Value作為陣列？ { &amp;#34;SomeKey&amp;#34;: { &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Notes&amp;#34;: [ { &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;otherKey&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;, &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34; } }, { xxx } ] } } </description>
+      <description>&lt;h1 id=&#34;json-開發觀念&#34;&gt;JSON 開發觀念&lt;/h1&gt;&#xA;&lt;p&gt;不要用underline之類的方式來作為JSON的key&lt;/p&gt;&#xA;&lt;p&gt;如果有多個底線相關的key，就應該考慮用object封裝起來。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#xA;  &amp;#34;SomeKeyTitle&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;  &amp;#34;SomeKeyNote&amp;#34;: {&#xA;    &amp;#34;SomeKeyArray&amp;#34;: [&#xA;      {&#xA;        &amp;#34;someKey_node_id&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;        &amp;#34;someKey_list_id&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;        &amp;#34;otherKey_type&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;        &amp;#34;otherKey_time&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;      }      &#xA;    ]&#xA;  },&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;改成&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#xA;  &amp;#34;SomeKey&amp;#34;: {&#xA;    &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;,&#xA;    &amp;#34;Notes&amp;#34;: {&#xA;      &amp;#34;Array&amp;#34;: [&#xA;        {&#xA;          &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;          &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;          &amp;#34;otherKey&amp;#34;: {&#xA;            &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;            &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34;&#xA;          }&#xA;        }&#xA;      ]&#xA;    }&#xA;  }&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;既然一個物件裡面只裝著陣列那爲什麼不直接抽出來將value作為陣列&#34;&gt;既然一個物件裡面只裝著陣列，那爲什麼不直接抽出來將Value作為陣列？&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#xA;  &amp;#34;SomeKey&amp;#34;: {&#xA;    &amp;#34;Title&amp;#34;: &amp;#34;&amp;#34;,&#xA;    &amp;#34;Notes&amp;#34;: [&#xA;        {&#xA;          &amp;#34;nodeId&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;          &amp;#34;listId&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;          &amp;#34;otherKey&amp;#34;: {&#xA;            &amp;#34;type&amp;#34;: &amp;#34;Value&amp;#34;,&#xA;            &amp;#34;time&amp;#34;: &amp;#34;Value&amp;#34;&#xA;          }&#xA;        },&#xA;        {&#xA;          xxx&#xA;        }&#xA;     ]&#xA;  }&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/gitbook%E6%9E%B6%E8%A8%AD%E9%81%8E%E7%A8%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/gitbook%E6%9E%B6%E8%A8%AD%E9%81%8E%E7%A8%8B/</guid>
-      <description>Gitbook架設 Part 1 根據目前查到的資料，似乎線上版有一些微微妙妙的問題， 所以這邊打算採用自己架設的做法。&#xA;因為文件都散落在各個MD檔之中，想說要找找一個方便地管理工具 有很多東西因為以前比較少碰到，所以也算是粗略做個記錄。&#xA;以下是踩坑過程。&#xA;安裝yarn 要安裝Gitbook的時候，網路上搜尋到的是用npm來安裝。 然後莫名的就搜尋到新的管理工具yarn&#xA;秉持著有新的就用新的原則，就學著用新的工具來安裝看看。&#xA;brew install yarn 然後就是安裝gitbook套件&#xA;yarn global add gitbook gitbook-cli 因為有很多地方都打算導入gitbook來管理文件，所以就選用global&#xA;node 與 nvm 然後按照教學輸入&#xA;gitbook init 之後就就很順利地炸了。error log如下&#xA;warn: no summary file in this book info: create SUMMARY.md TypeError [ERR_INVALID_ARG_TYPE]: The &amp;#34;data&amp;#34; argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Promise 發現是node的版本太新，可以用node -v來檢查當前的node版本。&#xA;於是就開始研究nvm的使用方式。&#xA;nvm: 管理Node版本的工具 使用homebrew來安裝nvm&#xA;brew install nvm 安裝成功後有一些環境變數要設定到.</description>
+      <description>&lt;h1 id=&#34;gitbook架設-part-1&#34;&gt;Gitbook架設 Part 1&lt;/h1&gt;&#xA;&lt;p&gt;根據目前查到的資料，似乎線上版有一些微微妙妙的問題，&#xA;所以這邊打算採用自己架設的做法。&lt;/p&gt;&#xA;&lt;p&gt;因為文件都散落在各個MD檔之中，想說要找找一個方便地管理工具&#xA;有很多東西因為以前比較少碰到，所以也算是粗略做個記錄。&lt;/p&gt;&#xA;&lt;p&gt;以下是踩坑過程。&lt;/p&gt;&#xA;&lt;h2 id=&#34;安裝yarn&#34;&gt;安裝yarn&lt;/h2&gt;&#xA;&lt;p&gt;要安裝Gitbook的時候，網路上搜尋到的是用&lt;code&gt;npm&lt;/code&gt;來安裝。&#xA;然後莫名的就搜尋到新的管理工具&lt;code&gt;yarn&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;秉持著&lt;del&gt;有新的就用新的&lt;/del&gt;原則，就學著用新的工具來安裝看看。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;brew install yarn&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然後就是安裝gitbook套件&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;yarn global add gitbook gitbook-cli&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;因為有很多地方都打算導入&lt;code&gt;gitbook&lt;/code&gt;來管理文件，所以就選用&lt;code&gt;global&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;node-與-nvm&#34;&gt;node 與 nvm&lt;/h2&gt;&#xA;&lt;p&gt;然後按照教學輸入&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;gitbook init&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之後就就很順利地炸了。error log如下&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;warn: no summary file in this book&#xA;info: create SUMMARY.md&#xA;&#xA;TypeError [ERR_INVALID_ARG_TYPE]: The &amp;#34;data&amp;#34; argument must be of type string or an instance of Buffer, &#xA;TypedArray, or DataView. Received an instance of Promise&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;發現是&lt;code&gt;node&lt;/code&gt;的版本太新，可以用&lt;code&gt;node -v&lt;/code&gt;來檢查當前的node版本。&lt;/p&gt;&#xA;&lt;p&gt;於是就開始研究&lt;code&gt;nvm&lt;/code&gt;的使用方式。&lt;/p&gt;&#xA;&lt;h2 id=&#34;nvm-管理node版本的工具&#34;&gt;nvm: 管理Node版本的工具&lt;/h2&gt;&#xA;&lt;p&gt;使用&lt;code&gt;homebrew&lt;/code&gt;來安裝nvm&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;brew install nvm&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;安裝成功後有一些環境變數要設定到.zshrc(或是.bashrc中)&#xA;全部處理完成以後就可以使用nvm來管理node&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;nvm ls-remote&#xA;nvm install v13.14.0&#xA;nvm use v13.14.0&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;詳細的nvm指令與功能就另外開一篇來寫好了，就不在這邊多說了。&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/mysql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/mysql/</guid>
-      <description>要放權限給使用者（帳號），不然會查不到。 GRANT ALL PRIVILEGES ON databaseName.tableName ( or * ) TO &amp;lsquo;username&amp;rsquo;@&amp;lsquo;host&amp;rsquo;;</description>
+      <description>&lt;h1 id=&#34;要放權限給使用者帳號不然會查不到&#34;&gt;要放權限給使用者（帳號），不然會查不到。&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;GRANT ALL PRIVILEGES ON databaseName.tableName ( or * ) TO &amp;lsquo;username&amp;rsquo;@&amp;lsquo;host&amp;rsquo;;&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/nvm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/nvm/</guid>
-      <description>Node &amp;amp; NVM // 檢查線上版本 nvm ls-remote // 安裝node // 安裝特定版本 nvm install v13.14.0 // 安裝穩定版 nvm install stable // 檢查已經安裝過的node列表 nvm ls // 移除node nvm uninstall v14.19.2 // 切換版本 nvm use v13.14.0 NPM yarn&#xA;npm&#xA;package.json&#xA;package-lock.json&#xA;Ref https://medium.com/哆啦實驗室/node-js管理神器nvm-b6acfca44ea5 https://segmentfault.com/a/1190000019037664 https://blog.csdn.net/zheng18237111686/article/details/113878602&#xA;npm http://dreamerslab.com/blog/tw/npm-basic-commands/&#xA;yarn https://segmentfault.com/a/1190000008489881 https://simpleit.rocks/javascript/yarn/how-to-search-packages-using-yarn/ https://yarnpkg.com/cli/init https://ithelp.ithome.com.tw/articles/10191888 https://ithelp.ithome.com.tw/articles/10191745 http://nodejs.cn/learn/the-package-json-guide&#xA;LTS Long Time Support Node https://www.796t.com/post/bG80Ng==.html</description>
+      <description>&lt;h1 id=&#34;node--nvm&#34;&gt;Node &amp;amp; NVM&lt;/h1&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 檢查線上版本&#xA;nvm ls-remote&#xA;&#xA;// 安裝node&#xA;&#xA;// 安裝特定版本&#xA;nvm install v13.14.0&#xA;&#xA;// 安裝穩定版&#xA;nvm install stable&#xA;&#xA;// 檢查已經安裝過的node列表&#xA;nvm ls&#xA;&#xA;// 移除node&#xA;nvm uninstall v14.19.2&#xA;&#xA;// 切換版本&#xA;nvm use v13.14.0&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;npm&#34;&gt;NPM&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;yarn&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;npm&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;package.json&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;package-lock.json&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://phoeshow.github.io/2017/05/15/Mac%E5%88%A0%E9%99%A4nodejs%E7%9A%84%E6%96%B9%E6%B3%95/&#34;&gt;Ref&lt;/a&gt;&#xA;&lt;a href=&#34;https://medium.com/%E5%93%86%E5%95%A6%E5%AF%A6%E9%A9%97%E5%AE%A4/node-js%E7%AE%A1%E7%90%86%E7%A5%9E%E5%99%A8nvm-b6acfca44ea5&#34;&gt;https://medium.com/哆啦實驗室/node-js管理神器nvm-b6acfca44ea5&lt;/a&gt;&#xA;&lt;a href=&#34;https://segmentfault.com/a/1190000019037664&#34;&gt;https://segmentfault.com/a/1190000019037664&lt;/a&gt;&#xA;&lt;a href=&#34;https://blog.csdn.net/zheng18237111686/article/details/113878602&#34;&gt;https://blog.csdn.net/zheng18237111686/article/details/113878602&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;npm&lt;/strong&gt;&#xA;&lt;a href=&#34;http://dreamerslab.com/blog/tw/npm-basic-commands/&#34;&gt;http://dreamerslab.com/blog/tw/npm-basic-commands/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;yarn&lt;/strong&gt;&#xA;&lt;a href=&#34;https://segmentfault.com/a/1190000008489881&#34;&gt;https://segmentfault.com/a/1190000008489881&lt;/a&gt;&#xA;&lt;a href=&#34;https://simpleit.rocks/javascript/yarn/how-to-search-packages-using-yarn/&#34;&gt;https://simpleit.rocks/javascript/yarn/how-to-search-packages-using-yarn/&lt;/a&gt;&#xA;&lt;a href=&#34;https://yarnpkg.com/cli/init&#34;&gt;https://yarnpkg.com/cli/init&lt;/a&gt;&#xA;&lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10191888&#34;&gt;https://ithelp.ithome.com.tw/articles/10191888&lt;/a&gt;&#xA;&lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10191745&#34;&gt;https://ithelp.ithome.com.tw/articles/10191745&lt;/a&gt;&#xA;&lt;a href=&#34;http://nodejs.cn/learn/the-package-json-guide&#34;&gt;http://nodejs.cn/learn/the-package-json-guide&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;LTS Long Time Support Node&lt;/strong&gt;&#xA;&lt;a href=&#34;https://www.796t.com/post/bG80Ng==.html&#34;&gt;https://www.796t.com/post/bG80Ng==.html&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>/drafts/pop-request-struct/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/drafts/pop-request-struct/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;過去參考喵神的&lt;a href=&#34;https://onevcat.com/2016/12/pop-cocoa-2/&#34;&gt;文章&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;有實做一版簡單的 Request API 架構&lt;/p&gt;&#xA;&lt;p&gt;但是受限於當時的 Swift 語言特性，如果要把 Request 保存起來作為快取相對麻煩&lt;/p&gt;&#xA;&lt;p&gt;其實現在才寫這一篇已經是有點遲了，&lt;/p&gt;&#xA;&lt;p&gt;不過因為 Swift 支援了 &lt;code&gt;any&lt;/code&gt; &lt;code&gt;some&lt;/code&gt; 這種語法，所以可以更簡單的實做這個架構&lt;/p&gt;&#xA;&lt;p&gt;還是想來説說這套寫法的優點&lt;/p&gt;&#xA;&lt;h2 id=&#34;實作&#34;&gt;實作&lt;/h2&gt;&#xA;&lt;p&gt;最早會向整理這些 API 是因為，是因為大部分的 API 都是寫在同一個檔案之中。&lt;/p&gt;&#xA;&lt;p&gt;這樣的寫法會造成檔案過大，不好維護，也不好閱讀。&lt;/p&gt;&#xA;&lt;p&gt;所以希望能找到一個方法，把 API 分類，&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/protocol-extension-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/protocol-extension-/</guid>
-      <description>Extension for Protocol 先說結論： 善用protocol來實作一些功能&#xA;Todo: [WWDC talk 連結]&#xA;在傳統的OOP觀念中，基本上要最小化程式碼重複的方法就是透過繼承。&#xA;Swift 是針對 protocol 來設計的 </description>
+      <description>&lt;h1 id=&#34;extension-for-protocol&#34;&gt;Extension for Protocol&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;先說結論：&#xA;善用protocol來實作一些功能&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Todo: [WWDC talk 連結]&lt;/p&gt;&#xA;&lt;p&gt;在傳統的OOP觀念中，基本上要最小化程式碼重複的方法就是透過繼承。&lt;/p&gt;&#xA;&lt;h2 id=&#34;swift-是針對-protocol-來設計的&#34;&gt;Swift 是針對 protocol 來設計的&lt;/h2&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/redux-in-swift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/redux-in-swift/</guid>
-      <description>Redux in SwiftUI 透過泛型來限制型別&#xA;針對sub-view的資料處理 sub-state &amp;amp; sub-action &amp;amp; sub-reducer Store derived View -&amp;gt; sub-view 的 Connector </description>
+      <description>&lt;h1 id=&#34;redux-in-swiftui&#34;&gt;Redux in SwiftUI&lt;/h1&gt;&#xA;&lt;p&gt;透過泛型來限制型別&lt;/p&gt;&#xA;&lt;h2 id=&#34;針對sub-view的資料處理&#34;&gt;針對sub-view的資料處理&lt;/h2&gt;&#xA;&lt;h3 id=&#34;sub-state--sub-action--sub-reducer&#34;&gt;sub-state &amp;amp; sub-action &amp;amp; sub-reducer&lt;/h3&gt;&#xA;&lt;h3 id=&#34;store-derived&#34;&gt;Store derived&lt;/h3&gt;&#xA;&lt;h3 id=&#34;view---sub-view-的-connector&#34;&gt;View -&amp;gt; sub-view 的 Connector&lt;/h3&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/shell-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/shell-command/</guid>
-      <description>檢查MacBook的SSD使用狀況 sudo smartctl —all /dev/disk0</description>
+      <description>&lt;h1 id=&#34;檢查macbook的ssd使用狀況&#34;&gt;檢查MacBook的SSD使用狀況&lt;/h1&gt;&#xA;&lt;p&gt;sudo smartctl —all /dev/disk0&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>/drafts/swiftui%E7%9A%84identifiable-equable/</link>
+      <link>/drafts/swiftdata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/drafts/swiftui%E7%9A%84identifiable-equable/</guid>
+      <guid>/drafts/swiftdata/</guid>
+      <description>&lt;h1 id=&#34;swiftdata-踩坑記錄&#34;&gt;SwiftData 踩坑記錄&lt;/h1&gt;&#xA;&lt;h2 id=&#34;lightweight-migration&#34;&gt;lightweight migration&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.hackingwithswift.com/quick-start/swiftdata/lightweight-vs-complex-migrations&#34;&gt;https://www.hackingwithswift.com/quick-start/swiftdata/lightweight-vs-complex-migrations&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如果有新增欄位，可以用 lightweight migration&lt;/p&gt;&#xA;&lt;p&gt;記得要加上預設值，不然會 crash&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>/drafts/swiftui%E7%9A%84identifiable--equable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/drafts/swiftui%E7%9A%84identifiable--equable/</guid>
       <description></description>
     </item>
     <item>
@@ -90,14 +98,14 @@
       <link>/drafts/%E4%BD%BF%E7%94%A8%E6%A2%9D%E6%AC%BE-%E8%8B%B1%E6%96%87%E7%89%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/%E4%BD%BF%E7%94%A8%E6%A2%9D%E6%AC%BE-%E8%8B%B1%E6%96%87%E7%89%88/</guid>
-      <description>Terms of Use EnterHealth (following call &amp;ldquo;Eh&amp;rdquo; or &amp;ldquo;we&amp;rdquo;) provide to read and write blood pressure, heart rate, etc. health record from Apple.Inc Health app. (following call &amp;ldquo;Health app&amp;rdquo;)&#xA;All that data will store in Health app&#xA;When you delete record in Eh, we will backup that record in local to make sure you can restore it any time.&#xA;If you don&amp;rsquo;t want to restore this record you can delete permanently.</description>
+      <description>&lt;h2 id=&#34;terms-of-use&#34;&gt;Terms of Use&lt;/h2&gt;&#xA;&lt;p&gt;EnterHealth (following call &amp;ldquo;Eh&amp;rdquo; or &amp;ldquo;we&amp;rdquo;) provide to read and write blood pressure, heart rate, etc. health record from Apple.Inc Health app. (following call &amp;ldquo;Health app&amp;rdquo;)&lt;/p&gt;&#xA;&lt;p&gt;All that data will store in Health app&lt;/p&gt;&#xA;&lt;p&gt;When you delete record in Eh,&#xA;we will backup that record in local to make sure you can restore it any time.&lt;/p&gt;&#xA;&lt;p&gt;If you don&amp;rsquo;t want to restore this record you can delete permanently.&#xA;There no way to restore it again.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>/drafts/%E6%9C%AA%E5%91%BD%E5%90%8D-3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/drafts/%E6%9C%AA%E5%91%BD%E5%90%8D-3/</guid>
-      <description>https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch&#xA;https://en.wikipedia.org/wiki/GraalVM&#xA;https://www.zhihu.com/question/430792464&#xA;https://benjr.tw/98233&#xA;https://www.cnblogs.com/xiaowuzi/p/3485302.html&#xA;https://docs.spring.io/spring-data/jpa/docs/current/reference/html/</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch&#34;&gt;https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/GraalVM&#34;&gt;https://en.wikipedia.org/wiki/GraalVM&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.zhihu.com/question/430792464&#34;&gt;https://www.zhihu.com/question/430792464&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://benjr.tw/98233&#34;&gt;https://benjr.tw/98233&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/xiaowuzi/p/3485302.html&#34;&gt;https://www.cnblogs.com/xiaowuzi/p/3485302.html&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://docs.spring.io/spring-data/jpa/docs/current/reference/html/&#34;&gt;https://docs.spring.io/spring-data/jpa/docs/current/reference/html/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

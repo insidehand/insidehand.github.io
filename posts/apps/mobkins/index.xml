@@ -1,0 +1,29 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Insidehand</title>
+        <link>//localhost:1313/posts/apps/mobkins/</link>
+        <description>Recent content on Insidehand</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Tue, 09 Nov 2021 19:18:33 +0800</lastBuildDate>
+        <atom:link href="//localhost:1313/posts/apps/mobkins/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Mobkins privacy term</title>
+            <link>//localhost:1313/posts/apps/mobkins/privacy_policy/</link>
+            <pubDate>Tue, 09 Nov 2021 19:18:33 +0800</pubDate>
+            
+            <guid>//localhost:1313/posts/apps/mobkins/privacy_policy/</guid>
+            <description>Mobkins support</description>
+            <content type="html"><![CDATA[<h1 id="mobkins">Mobkins</h1>
+<h2 id="隱私權政策">隱私權政策</h2>
+<p><strong>Mobkins</strong> 是一個簡單的循環播放筆記軟體</p>
+<p>由<strong>Mobkins</strong>所產生的資料會被儲存在app本地或是iCloud之中。</p>
+<p>無論是儲存在哪裡，這些資料都只會被你所使用。</p>
+<p><strong>Mobkins</strong>並不會搜集或使用你的任何資訊。</p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>
