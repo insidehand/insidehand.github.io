@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
 <meta name="description" content="Git常用命令筆記" />
-<meta name="keywords" content=", git" />
+<meta name="keywords" content="homepage, blog, git" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/" />
@@ -14,7 +15,7 @@
 
     <title>
         
-            Git常用命令筆記 :: Insidehand  — Just note something.
+            Git常用命令筆記 :: Insidehand 
         
     </title>
 
@@ -22,7 +23,9 @@
 
 
 
-<link rel="stylesheet" href="/main.949191c1dcc9c4a887997048b240354e47152016d821198f89448496ba42e491.css" integrity="sha256-lJGRwdzJxKiHmXBIskA1TkcVIBbYIRmPiUSElrpC5JE=">
+  <link rel="stylesheet" href="/main.min.7289daf2e88ea2c7b253a51cc5794c7cc17e7aeb7295a19d978db764a5862f25.css" integrity="sha256-cona8uiOoseyU6UcxXlMfMF&#43;eutylaGdl423ZKWGLyU=" crossorigin="anonymous">
+
+
 
 
 
@@ -53,7 +56,7 @@
   <meta property="og:site_name" content="Insidehand">
   <meta property="og:title" content="Git常用命令筆記">
   <meta property="og:description" content="Git常用命令筆記">
-  <meta property="og:locale" content="en">
+  <meta property="og:locale" content="zh_tw">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2021-11-10T23:47:08+08:00">
@@ -66,7 +69,6 @@
 
 
     <meta property="article:published_time" content="2021-11-10 23:47:08 &#43;0800 CST" />
-
 
 
 
@@ -105,11 +107,15 @@
 
 
         <span class="header__right">
-            
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    <ul class="menu__inner">
+                <li><a href="/posts">Blog</a></li>
+            
+                <li><a href="/tags">Tags</a></li>
+            
     </ul>
 </nav>
+
 
                 <span class="menu-trigger">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -117,41 +123,35 @@
                         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                     </svg>
                 </span>
-            
         </span>
     </span>
 </header>
 
 
-            <div class="content">
-                
-  <main class="post">
+            
+  <div class="content">
+    <main class="post">
 
-    <div class="post-info">
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        One minute
+      <div class="post-info">
+        <p>
+
+          
+        </p>
+      </div>
+
+      <article>
+        <h1 class="post-title">
+          <a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/">Git常用命令筆記</a>
+        </h1>
 
         
-      </p>
-    </div>
 
-    <article>
-      <h1 class="post-title">
-        <a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/">Git常用命令筆記</a>
-      </h1>
+        
 
-      
+        
 
-      
-
-      
-
-      <div class="post-content">
-        <ul>
+        <div class="post-content">
+          <ul>
 <li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4">基本命令</a>
 <ul>
 <li><a href="/posts/2021-11-10-git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AD%86%E8%A8%98/#stash">stash</a></li>
@@ -171,7 +171,7 @@
 <p>如果今天突然有問題要修改，但是你現在的code又還不能commit
 那麼就適合用<code>stash</code>來保存這些異動</p>
 <p>基本命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存當前所有異動</span>
 </span></span><span style="display:flex;"><span>git stash save
 </span></span><span style="display:flex;"><span>
@@ -197,7 +197,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果要更精細的看異動內容，就加上 -p 這個變數</span>
 </span></span><span style="display:flex;"><span>git stash show stash@<span style="color:#ae81ff">\{</span>i<span style="color:#ae81ff">\}</span>
 </span></span></code></pre></div><p>常用命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 用來保存當前所有的異動，message為這個stash的說明，或著說註解。</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 在 git stash list 的時候會看得到</span>
 </span></span><span style="display:flex;"><span>git stash save -m <span style="color:#e6db74">&#39;message&#39;</span>
@@ -215,7 +215,7 @@
 </span></span></code></pre></div><h3 id="clean">clean</h3>
 <p>針對那些沒有被版控的檔案，如果老是要一個一個刪就會很煩躁</p>
 <p>這個沒啥好筆記的，直接把可用變數列出來好了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>--dry-run      -n  -- only show what would and what would not be removed
 </span></span><span style="display:flex;"><span>--exclude      -e  -- skip files matching specified pattern
 </span></span><span style="display:flex;"><span>--force        -f  -- required when clean.requireForce is true <span style="color:#f92672">(</span>default<span style="color:#f92672">)</span>
@@ -240,13 +240,13 @@ git branch -m &lt;oldname&gt; &lt;newname&gt;
 git branch -m &lt;newname&gt;
 </code></pre><p><a href="https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch">reference</a></p>
 
-      </div>
-    </article>
+        </div>
+      </article>
 
-    <hr />
+      <hr />
 
-    <div class="post-info">
-      
+      <div class="post-info">
+        
     <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
 
@@ -254,38 +254,38 @@ git branch -m &lt;newname&gt;
         
     </p>
 
-      
-
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-        192 Words
-      </p>
-
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-        
-          2021-11-10 23:47
         
 
-         
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          192字
+        </p>
+
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
           
-        
-      </p>
-    </div>
-      <hr />
-      <div class="sharing-buttons">
-        
+            2021-11-10 23:47
+          
+
+           
+            
+          
+        </p>
+      </div>
+        <hr />
+        <div class="sharing-buttons">
+          
 <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=%2fposts%2f2021-11-10-git-%25E5%25B8%25B8%25E7%2594%25A8%25E5%2591%25BD%25E4%25BB%25A4%25E7%25AD%2586%25E8%25A8%2598%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
   <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
@@ -375,15 +375,10 @@ git branch -m &lt;newname&gt;
   </div>
 </a>
 
-      </div>
-
-    
-    <div class="pagination">
-        
-        <div class="pagination__title">
-            <span class="pagination__title-h">Read other posts</span>
-            <hr />
         </div>
+
+      
+    <div class="pagination">
         
 
         <div class="pagination__buttons">
@@ -398,8 +393,8 @@ git branch -m &lt;newname&gt;
 
             
             <span class="button next">
-                <a href="/posts/apps/enterhealth/support/">
-                    <span class="button__text">EnterHealth Support</span>
+                <a href="/posts/template/">
+                    <span class="button__text">Template</span>
                     <span class="button__icon">→</span>
                 </a>
             </span>
@@ -408,15 +403,15 @@ git branch -m &lt;newname&gt;
     </div>
 
 
-    
+      
 
-    
+      
 
-    
+      
 
-  </main>
+    </main>
+  </div>
 
-            </div>
 
             
                 <footer class="footer">
@@ -431,7 +426,7 @@ git branch -m &lt;newname&gt;
 
 
 
-<script type="text/javascript" src="/bundle.min.ad54ad97364f77ede35def9096b162bb1f0b3973aa50b080f5e82fa147f6882e2a7200d7535adbf9b51bebf939f1c1ca9bbe6be87530092aca720eac4a226fda.js" integrity="sha512-rVStlzZPd&#43;3jXe&#43;QlrFiux8LOXOqULCA9egvoUf2iC4qcgDXU1rb&#43;bUb6/k58cHKm75r6HUwCSrKcg6sSiJv2g=="></script>
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
 
 
 

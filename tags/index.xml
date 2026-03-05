@@ -5,50 +5,22 @@
     <link>/tags/</link>
     <description>Recent content in Tags on Insidehand</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>zh-tw</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 20 Jan 2024 23:47:08 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jun 2022 17:41:32 +0800</lastBuildDate>
     <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>RSA</title>
-      <link>/tags/rsa/</link>
-      <pubDate>Sat, 20 Jan 2024 23:47:08 +0800</pubDate>
-      <guid>/tags/rsa/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Server</title>
-      <link>/tags/server/</link>
-      <pubDate>Sat, 20 Jan 2024 23:47:08 +0800</pubDate>
-      <guid>/tags/server/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SSH</title>
-      <link>/tags/ssh/</link>
-      <pubDate>Sat, 20 Jan 2024 23:47:08 +0800</pubDate>
-      <guid>/tags/ssh/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>RaspberryPi</title>
-      <link>/tags/raspberrypi/</link>
-      <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
-      <guid>/tags/raspberrypi/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Swift</title>
-      <link>/tags/swift/</link>
-      <pubDate>Thu, 04 Jan 2024 13:47:08 +0800</pubDate>
-      <guid>/tags/swift/</guid>
-      <description></description>
-    </item>
     <item>
       <title>DevOpt</title>
       <link>/tags/devopt/</link>
       <pubDate>Sun, 19 Jun 2022 17:41:32 +0800</pubDate>
       <guid>/tags/devopt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Xcode</title>
+      <link>/tags/xcode/</link>
+      <pubDate>Thu, 23 Dec 2021 13:02:24 +0800</pubDate>
+      <guid>/tags/xcode/</guid>
       <description></description>
     </item>
     <item>
@@ -94,10 +66,24 @@
       <description></description>
     </item>
     <item>
+      <title>Swift</title>
+      <link>/tags/swift/</link>
+      <pubDate>Mon, 11 Oct 2021 17:41:32 +0800</pubDate>
+      <guid>/tags/swift/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>GCD</title>
       <link>/tags/gcd/</link>
       <pubDate>Mon, 29 Jun 2020 19:18:33 +0800</pubDate>
       <guid>/tags/gcd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssh</title>
+      <link>/tags/ssh/</link>
+      <pubDate>Sun, 28 Jun 2020 18:34:47 +0800</pubDate>
+      <guid>/tags/ssh/</guid>
       <description></description>
     </item>
   </channel>

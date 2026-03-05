@@ -1,0 +1,13 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Insidehand</title>
+        <link>/posts/apps/membarcard/</link>
+        <description>Recent content on Insidehand</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Thu, 05 Mar 2026 00:00:00 +0800</lastBuildDate>
+        <atom:link href="/posts/apps/membarcard/index.xml" rel="self" type="application/rss+xml" />
+        
+    </channel>
+</rss>
